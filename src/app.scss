@@ -1,0 +1,7 @@
+@use "./sass/colors" as col;
+
+.container {
+    height: 80vh;
+    width: 80vw;
+    background-color: rgba(col.$color-black, 0.7);
+}
