@@ -1,0 +1,22 @@
+@use "./colors" as col;
+
+// BORDER-RADIUS
+
+$border-radius-small: 5px;
+$border-radius-medium: 10px;
+$border-radius-large: 15px;
+$border-radius-huge: 20px;
+
+// BORDERS
+
+$border-white-small: 1px solid col.$color-white;
+
+$border-grey-light-small: 1px solid col.$color-grey-light;
+$border-grey-medium-small: 1px solid col.$color-grey-medium;
+$border-grey-dark-small: 1px solid col.$color-grey-dark;
+
+//MARGINS
+
+$margin-small: 0.5rem;
+$margin-medium: 1rem;
+$margin-large: 2rem;

@@ -1,0 +1,9 @@
+@use "../../sass/abstracts" as a;
+
+.chat__list {
+    grid-column: 1/2;
+    @include a.flexbox(center, flex-start, column);
+    border: a.$border-grey-light-small;
+    border-top-left-radius: a.$border-radius-small;
+    border-bottom-left-radius: a.$border-radius-small;
+}

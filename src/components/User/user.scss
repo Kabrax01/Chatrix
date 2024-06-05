@@ -1,0 +1,15 @@
+@use "../../sass/abstracts" as a;
+
+.user {
+    @include a.flexbox(center, space-evenly);
+    width: 100%;
+    margin: a.$margin-medium 0;
+
+    &__img {
+        height: 4rem;
+        width: 4rem;
+        background-position: center;
+        background-size: cover;
+        border-radius: 50%;
+    }
+}

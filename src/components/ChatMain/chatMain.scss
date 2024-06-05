@@ -1,0 +1,7 @@
+@use "../../sass/abstracts" as a;
+
+.chat__main {
+    grid-column: 2/3;
+    border-top: a.$border-grey-light-small;
+    border-bottom: a.$border-grey-light-small;
+}

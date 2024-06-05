@@ -1,0 +1,8 @@
+@use "../../sass/abstracts" as a;
+
+.chat__current {
+    grid-column: 3/4;
+    border: a.$border-grey-light-small;
+    border-top-right-radius: a.$border-radius-small;
+    border-bottom-right-radius: a.$border-radius-small;
+}
