@@ -1,0 +1,11 @@
+@use "../../sass/abstracts" as a;
+
+.item {
+    &__img {
+        height: 4rem;
+        width: 4rem;
+        background-position: center;
+        background-size: cover;
+        border-radius: 50%;
+    }
+}

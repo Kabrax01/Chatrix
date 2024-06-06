@@ -1,0 +1,26 @@
+@use "../../sass/abstracts" as a;
+
+.search {
+    width: 100%;
+    @include a.flexboxCenter();
+
+    &__input {
+        background-color: transparent;
+        border: a.$border-grey-medium-small;
+        border-radius: a.$border-radius-small;
+        padding: 0.4rem;
+        margin-right: 2rem;
+        color: inherit;
+    }
+
+    &__btn {
+        @include a.flexboxCenter();
+        background-color: transparent;
+        border: a.$border-grey-medium-small;
+        border-radius: a.$border-radius-small;
+        color: a.$color-white;
+        text-align: center;
+        padding: 0.2rem;
+        cursor: pointer;
+    }
+}

@@ -7,7 +7,7 @@ import ChatMain from "./components/ChatMain/ChatMain";
 import ChatCurrent from "./components/ChatCurrent/ChatCurrent";
 
 function App() {
-    const [theme, setTheme] = useState("dark");
+    const [theme, setTheme] = useState<string>("dark");
 
     // function handleSetTheme() {
     //     setTheme(theme === "dark" ? "light" : "dark");
