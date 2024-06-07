@@ -1,11 +1,37 @@
 @use "../../sass/abstracts" as a;
 
 .item {
+    @include a.flexbox(center, flex-start, row);
+    padding: a.$margin-medium;
+    border-bottom: a.$border-grey-light-small;
+
+    &:first-of-type {
+        border-top: a.$border-grey-light-small;
+    }
+
+    &:last-of-type {
+        border-bottom: none;
+    }
+
     &__img {
         height: 4rem;
         width: 4rem;
         background-position: center;
         background-size: cover;
         border-radius: 50%;
+    }
+
+    &__text {
+        margin-left: a.$margin-medium;
+
+        h3 {
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        p {
+            font-size: 0.9rem;
+            margin-top: a.$margin-small;
+        }
     }
 }

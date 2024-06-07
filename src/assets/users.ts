@@ -6,8 +6,8 @@ interface User {
 
 const usersData: User[] = [
     {
-        name: "Alice",
-        img: "../../public/user_list-1.jpg",
+        name: "Alice Malone",
+        img: "/user_list-1.jpg",
         messages: [
             "Hello!",
             "How are you?",
@@ -17,8 +17,8 @@ const usersData: User[] = [
         ],
     },
     {
-        name: "Bob",
-        img: "../../public/user_list-2.jpg",
+        name: "Bob Odenkirk",
+        img: "/user_list-2.jpg",
         messages: [
             "Hi there!",
             "Good morning!",
@@ -28,8 +28,8 @@ const usersData: User[] = [
         ],
     },
     {
-        name: "Charlie",
-        img: "../../public/user_list-3.jpg",
+        name: "Charlie Brown",
+        img: "/user_list-3.jpg",
         messages: [
             "Hey!",
             "Nice to meet you!",
@@ -39,8 +39,8 @@ const usersData: User[] = [
         ],
     },
     {
-        name: "David",
-        img: "../../public/user_list-4.jpg",
+        name: "David Guetta",
+        img: "/user_list-4.jpg",
         messages: [
             "Greetings!",
             "Hope you're well!",
@@ -50,8 +50,8 @@ const usersData: User[] = [
         ],
     },
     {
-        name: "Eve",
-        img: "../../public/user_list-5.jpg",
+        name: "Eve Stevens",
+        img: "/user_list-5.jpg",
         messages: [
             "Hi!",
             "How have you been?",
@@ -61,8 +61,8 @@ const usersData: User[] = [
         ],
     },
     {
-        name: "Frank",
-        img: "../../public/user_list-6.jpg",
+        name: "Frank Sinatra",
+        img: "/user_list-6.jpg",
         messages: [
             "Howdy!",
             "What's happening?",
@@ -72,8 +72,8 @@ const usersData: User[] = [
         ],
     },
     {
-        name: "Grace",
-        img: "../../public/user_list-7.jpg",
+        name: "Grace Rosenberg",
+        img: "/user_list-7.jpg",
         messages: [
             "Hello there!",
             "Good to see you!",
@@ -83,8 +83,8 @@ const usersData: User[] = [
         ],
     },
     {
-        name: "Hank",
-        img: "../../public/user_list-8.jpg",
+        name: "Hank Hankulski",
+        img: "/user_list-8.jpg",
         messages: [
             "Heya!",
             "How's everything?",
@@ -94,8 +94,8 @@ const usersData: User[] = [
         ],
     },
     {
-        name: "Ivy",
-        img: "../../public/user_list-9.jpg",
+        name: "Ivy Jones",
+        img: "/user_list-9.jpg",
         messages: [
             "Hiya!",
             "Hope all is good!",
@@ -105,8 +105,8 @@ const usersData: User[] = [
         ],
     },
     {
-        name: "Jack",
-        img: "../../public/user_list-10.jpg",
+        name: "Jack Sparrow",
+        img: "/user_list-10.jpg",
         messages: [
             "Hey there!",
             "What's up?",

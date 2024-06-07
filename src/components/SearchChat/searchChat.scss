@@ -3,6 +3,7 @@
 .search {
     width: 100%;
     @include a.flexboxCenter();
+    margin-bottom: a.$margin-medium;
 
     &__input {
         background-color: transparent;
