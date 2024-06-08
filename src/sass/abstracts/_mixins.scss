@@ -13,3 +13,12 @@
     justify-content: center;
     flex-direction: $direction;
 }
+
+// SUPPORT FOR ALL BROWSERS
+
+@mixin browserFix($property, $value) {
+    -moz-#{$property}: $value;
+    -ms-#{$property}: $value;
+    -o-#{$property}: $value;
+    -webkit-#{$property}: $value;
+}

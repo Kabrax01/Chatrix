@@ -6,10 +6,10 @@ interface ThemeContextProps {
     children: ReactNode;
 }
 
-interface ThemeContextType {
+type ThemeContextType = {
     theme: Theme;
     setTheme: React.Dispatch<React.SetStateAction<Theme>>;
-}
+};
 
 const ThemeContext = createContext<ThemeContextType | null>(null);
 
@@ -26,9 +26,10 @@ function ThemeContextProvider({ children }: ThemeContextProps) {
 function useThemeContext() {
     const context = useContext(ThemeContext);
 
-    if (context === undefined) throw new Error("No context");
+    if (!context) throw new Error("ThemeContext was used outside of provider");
 
     return context;
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export { ThemeContextProvider, useThemeContext };

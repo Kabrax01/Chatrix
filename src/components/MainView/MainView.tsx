@@ -4,8 +4,8 @@ type MainProps = {
     children: React.ReactNode;
 };
 
-function Main({ children }: MainProps) {
-    const theme = useThemeContext();
+function MainView({ children }: MainProps) {
+    const { theme } = useThemeContext();
 
     return (
         <main
@@ -13,8 +13,8 @@ function Main({ children }: MainProps) {
             style={{
                 backgroundImage: `${
                     theme === "dark"
-                        ? "url(../../public/bg_dark.jpg)"
-                        : "url(../../public/bg_light.jpg)"
+                        ? "url(/bg_dark.jpg)"
+                        : "url(/bg_light.jpg)"
                 }`,
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
@@ -24,4 +24,4 @@ function Main({ children }: MainProps) {
     );
 }
 
-export default Main;
+export default MainView;
