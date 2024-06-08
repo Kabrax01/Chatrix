@@ -1,0 +1,6 @@
+@use "../abstracts" as a;
+
+.form__container {
+    display: flex;
+    flex-direction: column;
+}

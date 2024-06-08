@@ -3,18 +3,31 @@ import ChatsList from "./components/ChatsList/ChatsList";
 import ChatMain from "./components/ChatMain/ChatMain";
 import ChatCurrent from "./components/ChatCurrent/ChatCurrent";
 import { ThemeContextProvider } from "./contexts/ThemeContext/ThemeContext";
-import MainView from "./components/MainView/MainView";
+import MainChatView from "./components/MainChatView/MainChatView";
+import { useState } from "react";
+import LoginForm from "./components/LoginForm/LoginForm";
+import RegisterForm from "./components/RegisterForm/RegisterForm";
 
 function App() {
+    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+
     return (
         <ThemeContextProvider>
-            <MainView>
-                <div className="container">
-                    <ChatsList />
-                    <ChatMain />
-                    <ChatCurrent />
-                </div>
-            </MainView>
+            <MainChatView>
+                {isLoggedIn ? (
+                    <div className="chat__container">
+                        <ChatsList />
+                        <ChatMain />
+                        <ChatCurrent />
+                    </div>
+                ) : (
+                    <div className="login__container">
+                        <LoginForm />
+                        <RegisterForm />
+                    </div>
+                )}
+            </MainChatView>
+            :
         </ThemeContextProvider>
     );
 }

@@ -6,7 +6,7 @@ function User() {
             <div
                 className="user__img"
                 style={{
-                    backgroundImage: "url(/public/user1.jpg)",
+                    backgroundImage: "url(/user1.webp)",
                 }}></div>
             <p className="user__name">Arnold Rogalski</p>
         </div>

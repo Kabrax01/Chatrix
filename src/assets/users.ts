@@ -7,7 +7,7 @@ interface User {
 const usersData: User[] = [
     {
         name: "Alice Malone",
-        img: "/user_list-1.jpg",
+        img: "/user_list-1.webp",
         messages: [
             "Hello!",
             "How are you?",
@@ -18,7 +18,7 @@ const usersData: User[] = [
     },
     {
         name: "Bob Odenkirk",
-        img: "/user_list-2.jpg",
+        img: "/user_list-2.webp",
         messages: [
             "Hi there!",
             "Good morning!",
@@ -29,7 +29,7 @@ const usersData: User[] = [
     },
     {
         name: "Charlie Brown",
-        img: "/user_list-3.jpg",
+        img: "/user_list-3.webp",
         messages: [
             "Hey!",
             "Nice to meet you!",
@@ -40,7 +40,7 @@ const usersData: User[] = [
     },
     {
         name: "David Guetta",
-        img: "/user_list-4.jpg",
+        img: "/user_list-4.webp",
         messages: [
             "Greetings!",
             "Hope you're well!",
@@ -51,7 +51,7 @@ const usersData: User[] = [
     },
     {
         name: "Eve Stevens",
-        img: "/user_list-5.jpg",
+        img: "/user_list-5.webp",
         messages: [
             "Hi!",
             "How have you been?",
@@ -62,7 +62,7 @@ const usersData: User[] = [
     },
     {
         name: "Frank Sinatra",
-        img: "/user_list-6.jpg",
+        img: "/user_list-6.webp",
         messages: [
             "Howdy!",
             "What's happening?",
@@ -73,7 +73,7 @@ const usersData: User[] = [
     },
     {
         name: "Grace Rosenberg",
-        img: "/user_list-7.jpg",
+        img: "/user_list-7.webp",
         messages: [
             "Hello there!",
             "Good to see you!",
@@ -84,7 +84,7 @@ const usersData: User[] = [
     },
     {
         name: "Hank Hankulski",
-        img: "/user_list-8.jpg",
+        img: "/user_list-8.webp",
         messages: [
             "Heya!",
             "How's everything?",
@@ -95,7 +95,7 @@ const usersData: User[] = [
     },
     {
         name: "Ivy Jones",
-        img: "/user_list-9.jpg",
+        img: "/user_list-9.webp",
         messages: [
             "Hiya!",
             "Hope all is good!",
@@ -106,7 +106,7 @@ const usersData: User[] = [
     },
     {
         name: "Jack Sparrow",
-        img: "/user_list-10.jpg",
+        img: "/user_list-10.webp",
         messages: [
             "Hey there!",
             "What's up?",
