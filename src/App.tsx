@@ -9,8 +9,22 @@ import LoginForm from "./components/LoginForm/LoginForm";
 import RegisterForm from "./components/RegisterForm/RegisterForm";
 import ThemeButton from "./components/ThemeButton/ThemeButton";
 
+// FIREBASE
+import { auth } from "./firebase/firebase.js";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
+
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+    const [user] = useAuthState(auth);
+
+    const googleSignIn = () => {
+        const provider = new GoogleAuthProvider();
+        signInWithRedirect(auth, provider);
+    };
+    const signOut = () => {
+        auth.signOut();
+    };
 
     return (
         <ThemeContextProvider>
