@@ -32,28 +32,3 @@ main {
     @include a.flexboxCenter;
     color: a.$color-white;
 }
-
-.chat__container,
-.login__container {
-    height: 80vh;
-    width: 80vw;
-    background-color: rgba(a.$color-black, 0.35);
-    display: grid;
-    grid-template-rows: auto;
-    border-radius: a.$border-radius-small;
-    backdrop-filter: blur(7px);
-}
-
-.chat__container {
-    grid-template-columns: 1fr 2fr 1fr;
-}
-
-.login__container {
-    grid-template-columns: 1fr 1fr;
-}
-
-.form__container {
-    @include a.flexboxCenter;
-    background-color: olivedrab;
-    margin: 10rem;
-}

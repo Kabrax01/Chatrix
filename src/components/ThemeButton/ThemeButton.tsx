@@ -1,10 +1,13 @@
-type ThemeButtonProps = {
-    handleSetTheme: () => void;
-};
+import { useThemeContext } from "../../contexts/ThemeContext/ThemeContext";
+import "./themeButton.scss";
 
-function ThemeButton({ handleSetTheme }: ThemeButtonProps) {
+function ThemeButton() {
+    const { theme, setTheme } = useThemeContext();
+
     return (
-        <button className="theme__btn" onClick={handleSetTheme}>
+        <button
+            className="theme__btn"
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
             Change theme
         </button>
     );

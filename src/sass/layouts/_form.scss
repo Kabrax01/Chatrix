@@ -1,6 +1,65 @@
 @use "../abstracts" as a;
 
 .form__container {
-    display: flex;
-    flex-direction: column;
+    &--register {
+        border-left: a.$border-grey-light-medium;
+    }
+
+    &--register,
+    &--login {
+        @include a.flexboxCenter;
+        text-align: center;
+        padding: 10rem;
+
+        .login {
+            width: 70%;
+            grid-column: 1/2;
+        }
+
+        .register {
+            width: 70%;
+            grid-column: 2/3;
+        }
+
+        .register__inputs,
+        .login__inputs {
+            display: flex;
+            flex-direction: column;
+
+            input {
+                margin-top: a.$margin-medium;
+                padding: 1rem 0.5rem;
+                border-radius: a.$border-radius-small;
+                border: none;
+                background-color: rgba(a.$color-black, 0.4);
+                color: a.$color-white;
+                font-size: 1rem;
+
+                &:last-of-type {
+                    margin-bottom: a.$margin-medium;
+                }
+            }
+        }
+
+        button {
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            width: 100%;
+            padding: 0.9rem 0;
+            cursor: pointer;
+            border: none;
+            border-radius: a.$border-radius-small;
+
+            &.google__btn {
+                @include a.flexboxCenter;
+                margin-top: a.$margin-medium;
+                padding: 0.6rem;
+
+                span {
+                    margin-left: 1rem;
+                }
+            }
+        }
+    }
 }

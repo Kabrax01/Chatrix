@@ -7,12 +7,14 @@ import MainChatView from "./components/MainChatView/MainChatView";
 import { useState } from "react";
 import LoginForm from "./components/LoginForm/LoginForm";
 import RegisterForm from "./components/RegisterForm/RegisterForm";
+import ThemeButton from "./components/ThemeButton/ThemeButton";
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
     return (
         <ThemeContextProvider>
+            <ThemeButton />
             <MainChatView>
                 {isLoggedIn ? (
                     <div className="chat__container">
