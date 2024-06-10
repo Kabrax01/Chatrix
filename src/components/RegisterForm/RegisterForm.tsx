@@ -4,10 +4,11 @@ import { IconContext } from "react-icons";
 import { useState } from "react";
 
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase/firebase.js";
+import { auth, db } from "../../firebase/firebase.js";
+import { doc, setDoc } from "firebase/firestore";
 
 function RegisterForm() {
-    // const [userName, setUserName] = useState("");
+    const [userName, setUserName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -15,11 +16,22 @@ function RegisterForm() {
         e.preventDefault();
 
         try {
-            await createUserWithEmailAndPassword(auth, email, password);
+            const res = await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+            const uid = res.user.uid;
+
+            await setDoc(doc(db, "users", `${uid}`), {
+                id: uid,
+                userName,
+                email,
+                messages: [],
+            });
         } catch (error) {
             console.error(error);
-        } finally {
-            console.log(auth);
         }
     }
 
@@ -28,12 +40,12 @@ function RegisterForm() {
             <form className="register" onSubmit={(e) => signIn(e)}>
                 <h1>Register</h1>
                 <div className="register__inputs">
-                    {/* <input
+                    <input
                         type="text"
                         placeholder="user name"
                         required
                         onChange={(e) => setUserName(e.target.value)}
-                    /> */}
+                    />
                     <input
                         type="email"
                         placeholder="email"
@@ -49,7 +61,7 @@ function RegisterForm() {
                 </div>
                 <button type="submit">Sign in</button>
                 <button className="google__btn">
-                    Sign with google
+                    Sign in with
                     <span>
                         <IconContext.Provider
                             value={{
