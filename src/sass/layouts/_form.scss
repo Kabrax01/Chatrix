@@ -54,9 +54,9 @@
             &.google__btn {
                 @include a.flexboxCenter;
                 margin-top: a.$margin-medium;
-                padding: 0.6rem;
 
                 span {
+                    line-height: 0;
                     margin-left: 1rem;
                 }
             }
