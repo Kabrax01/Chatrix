@@ -6,8 +6,10 @@ import { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../../firebase/firebase.js";
 import { doc, setDoc } from "firebase/firestore";
+import { useChatContext } from "../../contexts/ChatContext/ChatContext.js";
 
 function RegisterForm() {
+    const { dispatch } = useChatContext();
     const [userName, setUserName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -30,6 +32,8 @@ function RegisterForm() {
                 email,
                 messages: [],
             });
+
+            dispatch({ type: "loggedIn" });
         } catch (error) {
             console.error(error);
         }
