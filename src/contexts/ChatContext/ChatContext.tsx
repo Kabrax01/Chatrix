@@ -1,7 +1,10 @@
 import { ReactNode, createContext, useContext, useReducer } from "react";
 
 type StateTypes = {
-    user: string | null;
+    loading: boolean;
+    user: {
+        uid: string;
+    };
     isLoggedIn: boolean;
     dispatch: React.Dispatch<CounterAction>;
 };
@@ -10,20 +13,35 @@ type ChatContextProps = {
     children: ReactNode;
 };
 
-type CounterAction = { type: "loggedIn" };
+type CounterAction =
+    | { type: "loading" }
+    | { type: "loadingEnd" }
+    | { type: "loggedIn"; payload: string };
 
 const ChatContext = createContext<StateTypes | null>(null);
 
 const initialState = {
-    user: null,
+    loading: false,
+    user: {},
     isLoggedIn: false,
 };
 
 function reducer(state: StateTypes, action: CounterAction) {
     switch (action.type) {
-        case "loggedIn": {
-            return { ...state, isLoggedIn: true };
+        case "loading": {
+            return { ...state, loading: true };
         }
+        case "loadingEnd": {
+            return { ...state, loading: false };
+        }
+        case "loggedIn": {
+            return {
+                ...state,
+                isLoggedIn: true,
+                user: (state.user = { uid: action.payload }),
+            };
+        }
+
         default: {
             return state;
         }
@@ -31,13 +49,17 @@ function reducer(state: StateTypes, action: CounterAction) {
 }
 
 function ChatContextProvider({ children }: ChatContextProps) {
-    const [{ user, isLoggedIn }, dispatch] = useReducer(reducer, initialState);
+    const [{ user, isLoggedIn, loading }, dispatch] = useReducer(
+        reducer,
+        initialState
+    );
 
     return (
         <ChatContext.Provider
             value={{
                 user,
                 isLoggedIn,
+                loading,
                 dispatch,
             }}>
             {children}
