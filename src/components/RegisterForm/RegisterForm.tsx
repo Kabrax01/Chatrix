@@ -6,8 +6,8 @@ import { MutableRefObject, useRef, useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../../firebase/firebase.js";
 import { doc, setDoc } from "firebase/firestore";
-import { useChatContext } from "../../contexts/ChatContext/ChatContext.js";
 import NotificationMessage from "../NotificationMessage/NotificationMessage.js";
+import { useChatContext } from "../../contexts/ChatContext/ChatContext.js";
 
 function RegisterForm() {
     const input1Ref = useRef() as MutableRefObject<HTMLInputElement>;
@@ -19,7 +19,9 @@ function RegisterForm() {
     const [error, setError] = useState<[boolean, string]>([false, ""]);
     const [success, setSuccess] = useState(false);
 
-    const { dispatch, loading } = useChatContext();
+    const { state, dispatch } = useChatContext();
+
+    const { loading } = state;
 
     async function signIn(e) {
         e.preventDefault();

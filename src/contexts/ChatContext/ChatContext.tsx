@@ -1,16 +1,15 @@
-import { ReactNode, createContext, useContext, useReducer } from "react";
+import { ReactNode, useReducer, createContext, useContext } from "react";
+
+type ChatContextProps = {
+    children: ReactNode;
+};
 
 type StateTypes = {
     loading: boolean;
     user: {
-        uid: string;
+        uid?: string;
     };
     isLoggedIn: boolean;
-    dispatch: React.Dispatch<CounterAction>;
-};
-
-type ChatContextProps = {
-    children: ReactNode;
 };
 
 type CounterAction =
@@ -18,15 +17,18 @@ type CounterAction =
     | { type: "loadingEnd" }
     | { type: "loggedIn"; payload: string };
 
-const ChatContext = createContext<StateTypes | null>(null);
+const ChatContext = createContext<{
+    state: StateTypes;
+    dispatch: React.Dispatch<CounterAction>;
+} | null>(null);
 
-const initialState = {
+const initialState: StateTypes = {
     loading: false,
     user: {},
     isLoggedIn: false,
 };
 
-function reducer(state: StateTypes, action: CounterAction) {
+function reducer(state: StateTypes, action: CounterAction): StateTypes {
     switch (action.type) {
         case "loading": {
             return { ...state, loading: true };
@@ -38,7 +40,7 @@ function reducer(state: StateTypes, action: CounterAction) {
             return {
                 ...state,
                 isLoggedIn: true,
-                user: (state.user = { uid: action.payload }),
+                user: { uid: action.payload },
             };
         }
 
@@ -46,25 +48,6 @@ function reducer(state: StateTypes, action: CounterAction) {
             return state;
         }
     }
-}
-
-function ChatContextProvider({ children }: ChatContextProps) {
-    const [{ user, isLoggedIn, loading }, dispatch] = useReducer(
-        reducer,
-        initialState
-    );
-
-    return (
-        <ChatContext.Provider
-            value={{
-                user,
-                isLoggedIn,
-                loading,
-                dispatch,
-            }}>
-            {children}
-        </ChatContext.Provider>
-    );
 }
 
 function useChatContext() {
@@ -75,4 +58,17 @@ function useChatContext() {
     return context;
 }
 
-export { ChatContextProvider, useChatContext };
+function ChatContextProvider({ children }: ChatContextProps) {
+    const [state, dispatch] = useReducer(reducer, initialState);
+
+    const contextValue = { state, dispatch };
+
+    return (
+        <ChatContext.Provider value={contextValue}>
+            {children}
+        </ChatContext.Provider>
+    );
+}
+
+// eslint-disable-next-line
+export { useChatContext, ChatContextProvider };
