@@ -12,7 +12,8 @@ function LoginForm() {
     const [error, setError] = useState<[boolean, string]>([false, ""]);
     const [success, setSuccess] = useState(false);
 
-    const { loading, dispatch } = useChatContext();
+    const { state, dispatch } = useChatContext();
+    const { loading } = state;
 
     async function logIn(e) {
         e.preventDefault();
