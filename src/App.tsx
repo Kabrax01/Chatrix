@@ -2,29 +2,16 @@ import "./app.scss";
 import ChatsList from "./components/ChatsList/ChatsList";
 import ChatMain from "./components/ChatMain/ChatMain";
 import ChatCurrent from "./components/ChatCurrent/ChatCurrent";
-import { ThemeContextProvider } from "./contexts/ThemeContext/ThemeContext";
 import MainChatView from "./components/MainChatView/MainChatView";
-import { useState } from "react";
 import LoginForm from "./components/LoginForm/LoginForm";
 import RegisterForm from "./components/RegisterForm/RegisterForm";
 import ThemeButton from "./components/ThemeButton/ThemeButton";
 
-// FIREBASE
-import { auth } from "./firebase/firebase.js";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
+import { ThemeContextProvider } from "./contexts/ThemeContext/ThemeContext";
+import { useChatContext } from "./contexts/ChatContext/ChatContext";
 
 function App() {
-    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-    const [user] = useAuthState(auth);
-
-    const googleSignIn = () => {
-        const provider = new GoogleAuthProvider();
-        signInWithRedirect(auth, provider);
-    };
-    const signOut = () => {
-        auth.signOut();
-    };
+    const { isLoggedIn } = useChatContext();
 
     return (
         <ThemeContextProvider>
@@ -43,7 +30,6 @@ function App() {
                     </div>
                 )}
             </MainChatView>
-            :
         </ThemeContextProvider>
     );
 }

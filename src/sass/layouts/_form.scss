@@ -1,15 +1,16 @@
 @use "../abstracts" as a;
 
 .form__container {
+    position: relative;
     &--register {
         border-left: a.$border-grey-light-medium;
     }
 
     &--register,
     &--login {
-        @include a.flexboxCenter;
+        @include a.flexboxCenter(column);
         text-align: center;
-        padding: 10rem;
+        padding: 9rem;
 
         .login {
             width: 70%;
@@ -54,9 +55,9 @@
             &.google__btn {
                 @include a.flexboxCenter;
                 margin-top: a.$margin-medium;
-                padding: 0.6rem;
 
                 span {
+                    line-height: 0;
                     margin-left: 1rem;
                 }
             }
