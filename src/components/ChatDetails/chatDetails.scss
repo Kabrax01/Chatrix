@@ -5,4 +5,10 @@
     border: a.$border-grey-light-small;
     border-top-right-radius: a.$border-radius-small;
     border-bottom-right-radius: a.$border-radius-small;
+    @include a.flexboxCenter;
+
+    button {
+        padding: 2rem 4rem;
+        font-size: 2rem;
+    }
 }
