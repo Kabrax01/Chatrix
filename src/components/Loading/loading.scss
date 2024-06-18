@@ -1,0 +1,7 @@
+@use "../../sass/abstracts" as a;
+
+.loading {
+    height: 100%;
+    grid-column: 1/3;
+    @include a.flexboxCenter;
+}

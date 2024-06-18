@@ -22,7 +22,6 @@ function LoginForm() {
             const res = await signInWithEmailAndPassword(auth, email, password);
 
             if (res.user) setSuccess(true);
-            console.log(res);
         } catch (error) {
             console.error(error);
             setError([true, `${(error as Error).message}`]);
