@@ -11,13 +11,13 @@ import { ThemeContextProvider } from "./contexts/ThemeContext/ThemeContext";
 import { useChatContext } from "./contexts/ChatContext/ChatContext";
 
 function App() {
-    const { isLoggedIn } = useChatContext();
+    const { state } = useChatContext();
 
     return (
         <ThemeContextProvider>
             <ThemeButton />
             <MainChatView>
-                {isLoggedIn ? (
+                {state.isLoggedIn ? (
                     <div className="chat__container">
                         <ChatsList />
                         <ChatMain />

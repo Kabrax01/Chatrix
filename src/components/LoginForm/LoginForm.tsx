@@ -2,7 +2,6 @@ import { MutableRefObject, useRef, useState } from "react";
 import "./loginForm.scss";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import NotificationMessage from "../NotificationMessage/NotificationMessage";
-import { useChatContext } from "../../contexts/ChatContext/ChatContext";
 
 function LoginForm() {
     const input1Ref = useRef() as MutableRefObject<HTMLInputElement>;
@@ -11,28 +10,24 @@ function LoginForm() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState<[boolean, string]>([false, ""]);
     const [success, setSuccess] = useState(false);
-
-    const { state, dispatch } = useChatContext();
-    const { loading } = state;
+    const [loading, setLoading] = useState(false);
 
     async function logIn(e) {
         e.preventDefault();
+        setLoading(true);
 
         const auth = getAuth();
-        dispatch({ type: "loading" });
 
         try {
             const res = await signInWithEmailAndPassword(auth, email, password);
 
             if (res.user) setSuccess(true);
             console.log(res);
-
-            if (res.user) dispatch({ type: "loggedIn", payload: res.user.uid });
         } catch (error) {
             console.error(error);
             setError([true, `${(error as Error).message}`]);
         } finally {
-            dispatch({ type: "loadingEnd" });
+            setLoading(false);
             input1Ref.current.value = "";
             input2Ref.current.value = "";
         }

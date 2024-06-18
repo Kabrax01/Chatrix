@@ -7,7 +7,6 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../../firebase/firebase.js";
 import { doc, setDoc } from "firebase/firestore";
 import NotificationMessage from "../NotificationMessage/NotificationMessage.js";
-import { useChatContext } from "../../contexts/ChatContext/ChatContext.js";
 
 function RegisterForm() {
     const input1Ref = useRef() as MutableRefObject<HTMLInputElement>;
@@ -18,14 +17,11 @@ function RegisterForm() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState<[boolean, string]>([false, ""]);
     const [success, setSuccess] = useState(false);
-
-    const { state, dispatch } = useChatContext();
-
-    const { loading } = state;
+    const [loading, setLoading] = useState(false);
 
     async function signIn(e) {
         e.preventDefault();
-        dispatch({ type: "loading" });
+        setLoading(true);
 
         try {
             const res = await createUserWithEmailAndPassword(
@@ -47,7 +43,7 @@ function RegisterForm() {
             console.error(error);
             setError([true, `${(error as Error).message}`]);
         } finally {
-            dispatch({ type: "loadingEnd" });
+            setLoading(false);
             input1Ref.current.value = "";
             input2Ref.current.value = "";
             input3Ref.current.value = "";
