@@ -22,11 +22,22 @@ type StateTypes = {
     isLoggedIn: boolean;
 };
 
+type UserObject = {
+    email: string;
+    uid: string;
+    userName: string;
+    messages: [];
+};
+
 type CounterAction =
     | { type: "loading" }
     | { type: "loadingEnd" }
     | { type: "loggedIn"; payload: string }
-    | { type: "loggedOut" };
+    | { type: "loggedOut" }
+    | {
+          type: "userDataReceived";
+          payload: UserObject;
+      };
 
 const ChatContext = createContext<{
     state: StateTypes;
@@ -56,7 +67,10 @@ function reducer(state: StateTypes, action: CounterAction): StateTypes {
             };
         }
         case "loggedOut": {
-            return { ...state, isLoggedIn: false, user: {} };
+            return { ...state, isLoggedIn: false, user: {}, uid: "" };
+        }
+        case "userDataReceived": {
+            return { ...state, user: action.payload };
         }
 
         default: {
@@ -71,26 +85,44 @@ function ChatContextProvider({ children }: ChatContextProps) {
     const auth = getAuth();
     const { uid } = state;
 
-    onAuthStateChanged(auth, (user) => {
+    useEffect(() => {
         dispatch({ type: "loading" });
-        if (user) {
-            const uid = user.uid;
-            dispatch({ type: "loggedIn", payload: uid });
-        } else {
-            dispatch({ type: "loggedOut" });
-        }
-        dispatch({ type: "loadingEnd" });
-    });
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                const uid = user.uid;
+                dispatch({ type: "loggedIn", payload: uid });
+            } else {
+                dispatch({ type: "loggedOut" });
+            }
+            dispatch({ type: "loadingEnd" });
+        });
+
+        return () => unsubscribe();
+    }, [auth]);
 
     useEffect(() => {
         async function getUserData() {
             dispatch({ type: "loading" });
             try {
-                const docRef = doc(db, "users", uid);
+                const docRef = doc(db, `users`, `${uid}`);
                 const docSnap = await getDoc(docRef);
 
-                if (docSnap.exists())
+                if (docSnap.exists()) {
+                    // TODO: remove before release
                     console.log("Document data:", docSnap.data());
+                    const {
+                        email,
+                        id: uid,
+                        userName,
+                        messages,
+                    } = docSnap.data();
+                    dispatch({
+                        type: "userDataReceived",
+                        payload: { email, uid, userName, messages },
+                    });
+                } else {
+                    throw new Error("no document data");
+                }
             } catch (error) {
                 console.error(`${(error as Error).message}`);
             } finally {
@@ -98,7 +130,7 @@ function ChatContextProvider({ children }: ChatContextProps) {
             }
         }
 
-        getUserData();
+        if (uid) getUserData();
     }, [uid]);
 
     return (
