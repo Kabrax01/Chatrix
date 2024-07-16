@@ -6,8 +6,9 @@
     margin-bottom: a.$margin-medium;
 
     &__input {
-        background-color: transparent;
-        border: a.$border-grey-medium-small;
+        background: a.$input;
+        border: none;
+        outline: none;
         border-radius: a.$border-radius-small;
         padding: 0.4rem;
         margin-right: 2rem;
