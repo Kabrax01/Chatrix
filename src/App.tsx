@@ -13,7 +13,7 @@ import Loading from "./components/Loading/Loading";
 function App() {
     const { state } = useChatContext();
 
-    const { loading } = state;
+    const { loading, isLoggedIn } = state;
 
     return (
         <ThemeContextProvider>
@@ -23,7 +23,7 @@ function App() {
                         <Loading />
                     ) : (
                         <>
-                            {state.isLoggedIn ? (
+                            {isLoggedIn ? (
                                 <div className="chat__container">
                                     <ChatsList />
                                     <ChatMain />

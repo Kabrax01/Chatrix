@@ -15,10 +15,9 @@ type ChatContextProps = {
 
 type StateTypes = {
     loading: boolean;
+    registration: boolean;
     uid: string;
-    user: {
-        uid?: string;
-    };
+    user: null | UserObject;
     isLoggedIn: boolean;
 };
 
@@ -26,12 +25,12 @@ type UserObject = {
     email: string;
     uid: string;
     userName: string;
-    messages: [];
 };
 
 type CounterAction =
     | { type: "loading" }
     | { type: "loadingEnd" }
+    | { type: "registered"; payload: boolean }
     | { type: "loggedIn"; payload: string }
     | { type: "loggedOut" }
     | {
@@ -46,8 +45,9 @@ const ChatContext = createContext<{
 
 const initialState: StateTypes = {
     loading: false,
+    registration: false,
     uid: "",
-    user: {},
+    user: null,
     isLoggedIn: false,
 };
 
@@ -59,6 +59,9 @@ function reducer(state: StateTypes, action: CounterAction): StateTypes {
         case "loadingEnd": {
             return { ...state, loading: false };
         }
+        case "registered": {
+            return { ...state, registration: action.payload };
+        }
         case "loggedIn": {
             return {
                 ...state,
@@ -67,7 +70,7 @@ function reducer(state: StateTypes, action: CounterAction): StateTypes {
             };
         }
         case "loggedOut": {
-            return { ...state, isLoggedIn: false, user: {}, uid: "" };
+            return { ...state, isLoggedIn: false, user: null, uid: "" };
         }
         case "userDataReceived": {
             return { ...state, user: action.payload };
@@ -83,9 +86,10 @@ function ChatContextProvider({ children }: ChatContextProps) {
     const [state, dispatch] = useReducer(reducer, initialState);
     const contextValue = { state, dispatch };
     const auth = getAuth();
-    const { uid } = state;
+    const { uid, registration } = state;
 
     useEffect(() => {
+        if (registration) return;
         dispatch({ type: "loading" });
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
@@ -98,7 +102,7 @@ function ChatContextProvider({ children }: ChatContextProps) {
         });
 
         return () => unsubscribe();
-    }, [auth]);
+    }, [auth, registration]);
 
     useEffect(() => {
         async function getUserData() {
@@ -110,15 +114,10 @@ function ChatContextProvider({ children }: ChatContextProps) {
                 if (docSnap.exists()) {
                     // TODO: remove before release
                     console.log("Document data:", docSnap.data());
-                    const {
-                        email,
-                        id: uid,
-                        userName,
-                        messages,
-                    } = docSnap.data();
+                    const { email, id: uid, userName } = docSnap.data();
                     dispatch({
                         type: "userDataReceived",
-                        payload: { email, uid, userName, messages },
+                        payload: { email, uid, userName },
                     });
                 } else {
                     throw new Error("no document data");

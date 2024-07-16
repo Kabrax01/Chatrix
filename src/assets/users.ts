@@ -71,50 +71,6 @@ const usersData: User[] = [
             "Farewell!",
         ],
     },
-    {
-        name: "Grace Rosenberg",
-        img: "/user_list-7.webp",
-        messages: [
-            "Hello there!",
-            "Good to see you!",
-            "What's going on?",
-            "Have a nice day!",
-            "Peace!",
-        ],
-    },
-    {
-        name: "Hank Hankulski",
-        img: "/user_list-8.webp",
-        messages: [
-            "Heya!",
-            "How's everything?",
-            "Any news?",
-            "Stay well!",
-            "Catch you later!",
-        ],
-    },
-    {
-        name: "Ivy Jones",
-        img: "/user_list-9.webp",
-        messages: [
-            "Hiya!",
-            "Hope all is good!",
-            "What's the latest?",
-            "Take it easy!",
-            "Bye now!",
-        ],
-    },
-    {
-        name: "Jack Sparrow",
-        img: "/user_list-10.webp",
-        messages: [
-            "Hey there!",
-            "What's up?",
-            "How have you been?",
-            "See you soon!",
-            "Adios!",
-        ],
-    },
 ];
 
 export default usersData;

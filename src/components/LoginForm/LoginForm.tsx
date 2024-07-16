@@ -2,6 +2,7 @@ import { MutableRefObject, useRef, useState } from "react";
 import "./loginForm.scss";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import NotificationMessage from "../NotificationMessage/NotificationMessage";
+import { useChatContext } from "../../contexts/ChatContext/ChatContext";
 
 function LoginForm() {
     const input1Ref = useRef() as MutableRefObject<HTMLInputElement>;
@@ -12,6 +13,8 @@ function LoginForm() {
     const [success, setSuccess] = useState(false);
     const [loading, setLoading] = useState(false);
 
+    const { dispatch } = useChatContext();
+
     async function logIn(e) {
         e.preventDefault();
         setLoading(true);
@@ -21,7 +24,10 @@ function LoginForm() {
         try {
             const res = await signInWithEmailAndPassword(auth, email, password);
 
-            if (res.user) setSuccess(true);
+            if (res.user) {
+                dispatch({ type: "registered", payload: false });
+                setSuccess(true);
+            }
         } catch (error) {
             console.error(error);
             setError([true, `${(error as Error).message}`]);
