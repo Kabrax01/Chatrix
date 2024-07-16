@@ -1,7 +1,78 @@
 @use "../../sass/abstracts" as a;
 
-.chat__main {
+.chat {
     grid-column: 2/3;
     border-top: a.$border-grey-light-small;
     border-bottom: a.$border-grey-light-small;
+    display: flex;
+    flex-direction: column;
+
+    &__user {
+        border-bottom: a.$border-grey-light-small;
+        display: flex;
+        padding: 1rem 1rem;
+
+        img {
+            height: 4rem;
+            width: 4rem;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        div {
+            @include a.flexbox(flex-start, center, column);
+            margin-left: 2rem;
+
+            p {
+                color: a.$color-grey-medium;
+                padding-top: 0.3rem;
+            }
+        }
+    }
+    &__messages {
+        flex: 2;
+
+        .message {
+            display: flex;
+            max-width: 70%;
+
+            img {
+                height: 2rem;
+                width: 2rem;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+        }
+    }
+    &__input {
+        display: flex;
+        gap: 1rem;
+        padding: 1rem 1rem;
+        border-top: a.$border-grey-light-small;
+
+        input {
+            flex: 1;
+            padding: 1rem 0.5rem;
+            background: a.$input;
+            border-radius: a.$border-radius-small;
+            border: none;
+            outline: none;
+            color: a.$color-white;
+            font-size: 1rem;
+        }
+
+        .icons {
+            @include a.flexboxCenter;
+            gap: 1rem;
+        }
+
+        button {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: a.$border-radius-medium;
+            font-size: 1rem;
+            font-weight: 700;
+            background-color: a.$color-blue;
+        }
+    }
 }
