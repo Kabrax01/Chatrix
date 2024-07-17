@@ -13,7 +13,7 @@ export const ListContext = createContext<ListContextProps | null>(null);
 
 function ChatsList() {
     const [chats, setChats] = useState<undefined | ChatsType>();
-    const [isOpenSearch, setIsOpenSearch] = useState(true);
+    const [isOpenSearch, setIsOpenSearch] = useState(false);
 
     const { state } = useChatContext();
     const { uid } = state;
