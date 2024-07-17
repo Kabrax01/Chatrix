@@ -32,3 +32,12 @@ main {
     @include a.flexboxCenter;
     color: a.$color-white;
 }
+
+button {
+    cursor: pointer;
+
+    &:active {
+        transform: translateY(2px);
+        cursor: pointer;
+    }
+}

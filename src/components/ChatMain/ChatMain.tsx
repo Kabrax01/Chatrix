@@ -25,7 +25,21 @@ function ChatMain() {
                             Voluptatum provident quae molestiae quia inventore
                             corporis nobis facilis.
                         </p>
-                        <p>sent 1 day ago</p>
+                        <span>1 min ago</span>
+                    </div>
+                </div>
+                <div className="message own">
+                    <div className="content">
+                        <p>
+                            Lorem ipsum dolor, sit amet consectetur adipisicing
+                            elit. Deleniti rerum nostrum mollitia perspiciatis
+                            asperiores, modi debitis? Officiis laboriosam, rerum
+                            libero et vero dolore dolorem voluptatum, pariatur
+                            praesentium ab facilis, reprehenderit nostrum?
+                            Voluptatum provident quae molestiae quia inventore
+                            corporis nobis facilis.
+                        </p>
+                        <span>1 min ago</span>
                     </div>
                 </div>
             </div>

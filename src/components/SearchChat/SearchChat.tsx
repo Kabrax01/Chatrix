@@ -1,10 +1,19 @@
 import { IconContext } from "react-icons";
-import { FaPlus } from "react-icons/fa6";
+import { FaMinus, FaPlus } from "react-icons/fa6";
 import "./searchChat.scss";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { ListContext } from "../ChatsList/ChatsList";
 
 function UserSearch() {
     const [inputValue, setInputValue] = useState<string>("");
+
+    const context = useContext(ListContext);
+
+    if (!context) {
+        throw new Error("MyComponent must be used within a ListProvider");
+    }
+
+    const { isOpenSearch, setIsOpenSearch } = context;
 
     return (
         <div className="search">
@@ -14,9 +23,11 @@ function UserSearch() {
                 placeholder="Search"
                 onChange={(e) => setInputValue(e.target.value)}
             />
-            <button className="search__btn">
+            <button
+                className="search__btn"
+                onClick={() => setIsOpenSearch((prev) => !prev)}>
                 <IconContext.Provider value={{ size: "1.5rem" }}>
-                    <FaPlus />
+                    {isOpenSearch ? <FaMinus /> : <FaPlus />}
                 </IconContext.Provider>
             </button>
         </div>

@@ -43,6 +43,10 @@ function RegisterForm() {
                 userName,
                 email,
             });
+
+            await setDoc(doc(db, "userchats", `${uid}`), {
+                chats: [],
+            });
         } catch (error) {
             console.error(error);
             setError([true, `${(error as Error).message}`]);

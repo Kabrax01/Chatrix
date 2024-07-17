@@ -112,8 +112,6 @@ function ChatContextProvider({ children }: ChatContextProps) {
                 const docSnap = await getDoc(docRef);
 
                 if (docSnap.exists()) {
-                    // TODO: remove before release
-                    console.log("Document data:", docSnap.data());
                     const { email, id: uid, userName } = docSnap.data();
                     dispatch({
                         type: "userDataReceived",

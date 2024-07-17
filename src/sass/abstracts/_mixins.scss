@@ -22,3 +22,12 @@
     -o-#{$property}: $value;
     -webkit-#{$property}: $value;
 }
+
+// USER IMG
+
+@mixin userPicture($size) {
+    height: $size;
+    width: $size;
+    border-radius: 50%;
+    object-fit: cover;
+}
