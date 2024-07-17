@@ -1,0 +1,45 @@
+@use "../../sass/abstracts/" as a;
+
+.add_user {
+    position: absolute;
+    background-color: rgba(a.$color-grey-dark, 0.6);
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    border-radius: a.$border-radius-medium;
+    height: max-content;
+    width: max-content;
+    z-index: 100;
+    padding: 1rem 1rem;
+
+    form {
+        input {
+            padding: 0.5rem;
+            outline: none;
+            border: none;
+            border-radius: a.$border-radius-small;
+
+            &:focus {
+                outline: 4px solid a.$color-blue;
+            }
+        }
+
+        button {
+            padding: 0.53rem 0.8rem;
+            background-color: a.$color-blue;
+            border: none;
+            border-radius: a.$border-radius-small;
+            margin-left: 1rem;
+            cursor: pointer;
+        }
+    }
+
+    .user {
+        border: a.$border-grey-light-small;
+        padding: 0.5rem;
+
+        img {
+            @include a.userPicture(4rem);
+        }
+    }
+}

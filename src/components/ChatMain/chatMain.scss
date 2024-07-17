@@ -29,21 +29,56 @@
             }
         }
     }
+
     &__messages {
+        display: flex;
+        flex-direction: column;
         flex: 2;
+        overflow-y: scroll;
 
         .message {
             display: flex;
-            max-width: 70%;
+            width: 75%;
+            margin-left: 0.5rem;
+            margin-top: 1rem;
+
+            .content {
+                p {
+                    padding: 1rem 1rem;
+                    border-radius: a.$border-radius-medium;
+                    background-color: a.$input;
+                    font-size: 0.9rem;
+                }
+
+                span {
+                    margin-left: 5%;
+                    font-size: 0.7rem;
+                    color: a.$color-grey-medium;
+                }
+            }
+
+            &.own {
+                align-self: flex-end;
+                margin-right: 0.5rem;
+
+                .content {
+                    p {
+                        background-color: a.$color-blue !important;
+                    }
+                }
+            }
 
             img {
+                margin: 0 0.5rem;
                 height: 2rem;
                 width: 2rem;
                 border-radius: 50%;
                 object-fit: cover;
+                flex-shrink: 0;
             }
         }
     }
+
     &__input {
         display: flex;
         gap: 1rem;
