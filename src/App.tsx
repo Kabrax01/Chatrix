@@ -1,14 +1,14 @@
 import "./app.scss";
-import ChatsList from "./components/ChatsList/ChatsList";
-import ChatMain from "./components/ChatMain/ChatMain";
-import ChatCurrent from "./components/ChatDetails/ChatDetails";
-import MainChatView from "./components/MainChatView/MainChatView";
-import LoginForm from "./components/LoginForm/LoginForm";
-import RegisterForm from "./components/RegisterForm/RegisterForm";
+import ChatsList from "./components/chatsList/ChatsList";
+import ChatMain from "./components/chatMain/ChatMain";
+import ChatCurrent from "./components/chatDetails/ChatDetails";
+import MainChatView from "./components/mainChatView/MainChatView";
+import LoginForm from "./components/loginForm/LoginForm";
+import RegisterForm from "./components/registerForm/RegisterForm";
 
-import { ThemeContextProvider } from "./contexts/ThemeContext/ThemeContext";
-import { useChatContext } from "./contexts/ChatContext/ChatContext";
-import Loading from "./components/Loading/Loading";
+import { ThemeContextProvider } from "./contexts/themeContext/ThemeContext";
+import { useChatContext } from "./contexts/chatContext/ChatContext";
+import Loading from "./components/loading/Loading";
 
 function App() {
     const { state } = useChatContext();
