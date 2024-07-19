@@ -6,8 +6,8 @@ import { MutableRefObject, useRef, useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../../firebase/firebase.js";
 import { doc, setDoc } from "firebase/firestore";
-import NotificationMessage from "../NotificationMessage/NotificationMessage.js";
-import { useChatContext } from "../../contexts/ChatContext/ChatContext.js";
+import NotificationMessage from "../notificationMessage/NotificationMessage.js";
+import { useChatContext } from "../../contexts/chatContext/ChatContext.js";
 
 function RegisterForm() {
     const input1Ref = useRef() as MutableRefObject<HTMLInputElement>;

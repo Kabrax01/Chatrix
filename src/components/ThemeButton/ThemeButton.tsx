@@ -1,4 +1,4 @@
-import { useThemeContext } from "../../contexts/ThemeContext/ThemeContext";
+import { useThemeContext } from "../../contexts/themeContext/ThemeContext";
 import "./themeButton.scss";
 
 function ThemeButton() {

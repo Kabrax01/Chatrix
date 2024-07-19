@@ -1,6 +1,6 @@
 import "./list.scss";
 import usersData from "../../assets/users";
-import ChatListItem from "../ChatListItem/ChatListItem";
+import ChatListItem from "../chatListItem/ChatListItem";
 
 function List() {
     return (

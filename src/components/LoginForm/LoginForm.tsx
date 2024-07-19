@@ -1,8 +1,8 @@
 import { MutableRefObject, useRef, useState } from "react";
 import "./loginForm.scss";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import NotificationMessage from "../NotificationMessage/NotificationMessage";
-import { useChatContext } from "../../contexts/ChatContext/ChatContext";
+import NotificationMessage from "../notificationMessage/NotificationMessage";
+import { useChatContext } from "../../contexts/chatContext/ChatContext";
 
 function LoginForm() {
     const input1Ref = useRef() as MutableRefObject<HTMLInputElement>;
