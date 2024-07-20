@@ -2,15 +2,16 @@
 
 .add_user {
     position: absolute;
-    background-color: rgba(a.$color-grey-dark, 0.6);
+    background-color: rgba(a.$color-grey-dark, 0.9);
     top: 50%;
     left: 50%;
     transform: translateY(-50%) translateX(-50%);
     border-radius: a.$border-radius-medium;
-    height: max-content;
+    max-height: 60vh;
     width: max-content;
     z-index: 100;
     padding: 1rem 1rem;
+    overflow-y: scroll;
 
     form {
         input {
@@ -40,6 +41,11 @@
 
         img {
             @include a.userPicture(4rem);
+        }
+
+        &__empty {
+            margin: 2rem 0;
+            @include a.flexboxCenter;
         }
     }
 }
