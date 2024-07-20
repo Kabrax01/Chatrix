@@ -11,6 +11,8 @@ interface User {
 
 function AddUser() {
     const [user, setUser] = useState<null | User>(null);
+    const [users, setUsers] = useState<null | User[]>(null);
+    const [usersQueryEmpty, setUsersQueryEmpty] = useState(false);
 
     async function handleSearchUser(e) {
         e.preventDefault();
@@ -25,10 +27,24 @@ function AddUser() {
 
             const querySnapShot = await getDocs(q);
 
-            console.log(querySnapShot.docs[0].data());
-
             if (!querySnapShot.empty) {
-                setUser(querySnapShot.docs[0].data() as User);
+                setUsersQueryEmpty(false);
+                if (querySnapShot.docs.length === 1) {
+                    setUser(querySnapShot.docs[0].data() as User);
+                    setUsers(null);
+                } else if (querySnapShot.docs.length > 1) {
+                    const users: User[] = [];
+
+                    querySnapShot.forEach((doc) => {
+                        users.push(doc.data() as User);
+                    });
+                    setUsers(users);
+                    setUser(null);
+                }
+            } else {
+                setUsers(null);
+                setUser(null);
+                setUsersQueryEmpty(true);
             }
         } catch (error) {
             console.error(`${(error as Error).message}`);
@@ -46,10 +62,30 @@ function AddUser() {
                 />
                 <button>Search</button>
             </form>
+            {users &&
+                users.map((user, i) => {
+                    return (
+                        <div className="user" key={i}>
+                            <div className="user__credentials">
+                                <p>{user.userName}</p>
+                                <p>{user.email}</p>
+                            </div>
+                            <img src="user_list-8.webp" alt="User picture" />
+                        </div>
+                    );
+                })}
             {user && (
                 <div className="user">
-                    <span>{user.userName}</span>
-                    <img src="user_list-8.webp" alt="" />
+                    <div className="user__credentials">
+                        <p>{user.userName}</p>
+                        <p>{user.email}</p>
+                    </div>
+                    <img src="user_list-8.webp" alt="User picture" />
+                </div>
+            )}
+            {usersQueryEmpty && (
+                <div className="user__empty">
+                    <p>No users found</p>
                 </div>
             )}
         </div>
