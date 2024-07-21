@@ -2,11 +2,13 @@ import "./addUser.scss";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../../firebase/firebase.js";
 import { useState } from "react";
+import SearchedUser from "./searchedUser/SearchedUser.js";
 
-interface User {
+export interface User {
     email: string;
     id: string;
     userName: string;
+    avatar?: string;
 }
 
 function AddUser() {
@@ -58,31 +60,13 @@ function AddUser() {
                     type="text"
                     placeholder="Username"
                     name="username"
-                    maxLength={20}
+                    maxLength={25}
                 />
                 <button>Search</button>
             </form>
             {users &&
-                users.map((user, i) => {
-                    return (
-                        <div className="user" key={i}>
-                            <div className="user__credentials">
-                                <p>{user.userName}</p>
-                                <p>{user.email}</p>
-                            </div>
-                            <img src="user_list-8.webp" alt="User picture" />
-                        </div>
-                    );
-                })}
-            {user && (
-                <div className="user">
-                    <div className="user__credentials">
-                        <p>{user.userName}</p>
-                        <p>{user.email}</p>
-                    </div>
-                    <img src="user_list-8.webp" alt="User picture" />
-                </div>
-            )}
+                users.map((user, i) => <SearchedUser user={user} key={i} />)}
+            {user && <SearchedUser user={user} />}
             {usersQueryEmpty && (
                 <div className="user__empty">
                     <p>No users found</p>
