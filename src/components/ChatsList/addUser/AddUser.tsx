@@ -1,15 +1,10 @@
 import "./addUser.scss";
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { db } from "../../firebase/firebase.js";
+import { db } from "../../../firebase/firebase.js";
 import { useState } from "react";
 import SearchedUser from "./searchedUser/SearchedUser.js";
 
-export interface User {
-    email: string;
-    id: string;
-    userName: string;
-    avatar?: string;
-}
+import { User } from "../types.js";
 
 function AddUser() {
     const [user, setUser] = useState<null | User>(null);

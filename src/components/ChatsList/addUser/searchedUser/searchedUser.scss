@@ -1,4 +1,4 @@
-@use "../../../sass/abstracts/" as a;
+@use "../../../../sass/abstracts/" as a;
 
 .search__user {
     @include a.flexboxCenter;
