@@ -1,0 +1,24 @@
+@use "../../../sass/abstracts/" as a;
+
+.search__user {
+    @include a.flexboxCenter;
+    border: a.$border-grey-light-small;
+    padding: 0.5rem;
+
+    img {
+        @include a.userPicture(4rem);
+    }
+
+    button {
+        margin-left: auto;
+    }
+
+    &__credentials {
+        @include a.flexboxCenter;
+        gap: 1rem;
+
+        div > p:first-of-type {
+            margin-bottom: 0.5rem;
+        }
+    }
+}

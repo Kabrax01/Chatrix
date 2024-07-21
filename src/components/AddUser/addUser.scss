@@ -15,10 +15,12 @@
 
     form {
         input {
+            width: 20rem;
             padding: 0.5rem;
             outline: none;
             border: none;
             border-radius: a.$border-radius-small;
+            margin-bottom: 1rem;
 
             &:focus {
                 outline: 4px solid a.$color-blue;
@@ -35,17 +37,8 @@
         }
     }
 
-    .user {
-        border: a.$border-grey-light-small;
-        padding: 0.5rem;
-
-        img {
-            @include a.userPicture(4rem);
-        }
-
-        &__empty {
-            margin: 2rem 0;
-            @include a.flexboxCenter;
-        }
+    .user__empty {
+        margin: 2rem 0;
+        @include a.flexboxCenter;
     }
 }

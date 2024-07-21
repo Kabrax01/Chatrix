@@ -35,6 +35,10 @@ main {
 
 button {
     cursor: pointer;
+    background-color: a.$color-blue;
+    border: none;
+    border-radius: a.$border-radius-small;
+    padding: 0.5rem 1rem;
 
     &:active {
         transform: translateY(2px);
