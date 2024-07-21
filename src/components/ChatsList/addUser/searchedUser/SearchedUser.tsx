@@ -1,13 +1,24 @@
 import "./searchedUser.scss";
-import { User } from "../AddUser";
-import { db } from "../../../firebase/firebase.js";
-import { collection, doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { User } from "../../types.js";
+import { db } from "../../../../firebase/firebase.js";
+import {
+    arrayUnion,
+    collection,
+    doc,
+    serverTimestamp,
+    setDoc,
+    updateDoc,
+} from "firebase/firestore";
+import { useChatContext } from "../../../../contexts/chatContext/ChatContext.js";
 
 interface UserProps {
     user: User;
 }
 
 function SearchedUser({ user }: UserProps) {
+    const { state } = useChatContext();
+    const { user: currentUser } = state;
+
     async function handleAddUser() {
         const chatRef = collection(db, "chats");
         const userChatsRef = collection(db, "userchats");
@@ -19,6 +30,26 @@ function SearchedUser({ user }: UserProps) {
                 createdAt: serverTimestamp(),
                 messages: [],
             });
+
+            if (currentUser) {
+                await updateDoc(doc(userChatsRef, user.id), {
+                    chats: arrayUnion({
+                        chatId: newChatRef.id,
+                        lastMessage: "",
+                        receiverId: currentUser.uid,
+                        updatedAt: Date.now(),
+                    }),
+                });
+
+                await updateDoc(doc(userChatsRef, currentUser.uid), {
+                    chats: arrayUnion({
+                        chatId: newChatRef.id,
+                        lastMessage: "",
+                        receiverId: user.id,
+                        updatedAt: Date.now(),
+                    }),
+                });
+            }
 
             console.log(newChatRef.id);
         } catch (error) {
