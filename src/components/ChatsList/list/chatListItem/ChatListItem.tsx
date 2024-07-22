@@ -6,19 +6,13 @@ interface ListItemProps {
 }
 
 function ChatListItem({ user }: ListItemProps) {
-    // const lastMessage = messages.at(-1);
-    const { email, id, userName, avatar } = user;
+    const { userName, avatar } = user;
 
     return (
         <li className="item">
-            {/* <div
-                className="item__img"
-                style={{ backgroundImage: `url(${img})` }}>
-
-                </div> */}
+            <img src={avatar ? `${avatar}` : "avatar.png"} alt="User picture" />
             <div className="item__text">
-                <h3>{user.userName}</h3>
-                {/* <p>{lastMessage}</p> */}
+                <h3>{userName}</h3>
             </div>
         </li>
     );
