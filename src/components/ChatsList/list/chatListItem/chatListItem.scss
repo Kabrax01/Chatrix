@@ -13,12 +13,8 @@
         border-bottom: none;
     }
 
-    &__img {
-        height: 4rem;
-        width: 4rem;
-        background-position: center;
-        background-size: cover;
-        border-radius: 50%;
+    img {
+        @include a.userPicture(3rem);
     }
 
     &__text {

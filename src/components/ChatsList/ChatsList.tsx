@@ -1,7 +1,7 @@
 import "./chatsList.scss";
 import { createContext, useState } from "react";
-import User from "../user/User.js";
-import SearchChat from "../searchChat/SearchChat.js";
+import User from "./currentUser/CurrentUser.js";
+import SearchChat from "./searchChat/SearchChat.js";
 import List from "./list/List.js";
 import { ListContextProps } from "./types.ts";
 

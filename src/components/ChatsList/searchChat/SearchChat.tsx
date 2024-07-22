@@ -2,7 +2,7 @@ import { IconContext } from "react-icons";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import "./searchChat.scss";
 import { useContext, useState } from "react";
-import { ListContext } from "../chatsList/ChatsList";
+import { ListContext } from "../ChatsList";
 
 function UserSearch() {
     const [inputValue, setInputValue] = useState<string>("");

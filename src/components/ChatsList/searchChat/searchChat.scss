@@ -1,9 +1,9 @@
-@use "../../sass/abstracts" as a;
+@use "../../../sass/abstracts/" as a;
 
 .search {
     width: 100%;
-    @include a.flexboxCenter();
-    margin-bottom: a.$margin-medium;
+    @include a.flexbox(center, space-between);
+    padding: 0 a.$margin-medium a.$margin-medium a.$margin-medium;
 
     &__input {
         background: a.$input;
@@ -11,8 +11,8 @@
         outline: none;
         border-radius: a.$border-radius-small;
         padding: 0.4rem;
-        margin-right: 2rem;
         color: inherit;
+        width: 80%;
     }
 
     &__btn {
