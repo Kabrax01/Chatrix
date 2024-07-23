@@ -33,7 +33,6 @@ function List() {
                 if (!chatData) throw new Error("Something went wrong");
 
                 setChats(chatData.sort((a, b) => b.updatedAt - a.updatedAt));
-                console.log(chats);
             } catch (error) {
                 console.error(`${(error as Error).message}`);
             }

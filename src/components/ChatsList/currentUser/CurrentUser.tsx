@@ -1,15 +1,29 @@
+import { useContext } from "react";
+import { useChatContext } from "../../../contexts/chatContext/ChatContext";
 import "./currentUser.scss";
+import { FaRegEdit } from "react-icons/fa";
+import { ListContext } from "../ChatsList";
 
 function User() {
-    const avatar = null;
+    const { state } = useChatContext();
+    const { user } = state;
+    const context = useContext(ListContext);
+
+    if (!context) {
+        throw new Error("MyComponent must be used within a ListProvider");
+    }
+    const { setIsOpenCurrentUserEdit } = context;
 
     return (
         <div className="user">
             <img
-                src={avatar ? `${avatar}` : "avatar.png"}
+                src={user?.avatar ? `${user.avatar}` : "avatar.png"}
                 alt="Current user picture"
             />
             <p className="user__name">Arnold Rogalski</p>
+            <span onClick={() => setIsOpenCurrentUserEdit((prev) => !prev)}>
+                <FaRegEdit />
+            </span>
         </div>
     );
 }

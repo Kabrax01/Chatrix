@@ -25,6 +25,7 @@ type UserObject = {
     email: string;
     uid: string;
     userName: string;
+    avatar: string;
 };
 
 type CounterAction =
@@ -112,10 +113,10 @@ function ChatContextProvider({ children }: ChatContextProps) {
                 const docSnap = await getDoc(docRef);
 
                 if (docSnap.exists()) {
-                    const { email, id: uid, userName } = docSnap.data();
+                    const { email, id: uid, userName, avatar } = docSnap.data();
                     dispatch({
                         type: "userDataReceived",
-                        payload: { email, uid, userName },
+                        payload: { email, uid, userName, avatar },
                     });
                 } else {
                     throw new Error("no document data");
