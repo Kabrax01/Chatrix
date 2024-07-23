@@ -13,6 +13,7 @@ export type ChatsType = {
 export interface ListContextProps {
     isOpenSearch: boolean;
     setIsOpenSearch: React.Dispatch<React.SetStateAction<boolean>>;
+    setIsOpenCurrentUserEdit: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface User {

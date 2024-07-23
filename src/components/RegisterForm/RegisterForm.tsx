@@ -42,6 +42,7 @@ function RegisterForm() {
                 id: uid,
                 userName,
                 email,
+                avatar: null,
             });
 
             await setDoc(doc(db, "userchats", `${uid}`), {
