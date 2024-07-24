@@ -1,3 +1,15 @@
+@use "../../../sass/abstracts/" as a;
+
 .user__edit {
     width: 100%;
+
+    form {
+        @include a.flexbox(flex-start, center, column);
+        gap: 1rem;
+        margin-left: a.$margin-medium;
+
+        input[type="file"] {
+            max-width: 90%;
+        }
+    }
 }

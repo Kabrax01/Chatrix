@@ -26,7 +26,7 @@ function UserSearch() {
             <button
                 className="search__btn"
                 onClick={() => setIsOpenSearch((prev) => !prev)}>
-                <IconContext.Provider value={{ size: "1.5rem" }}>
+                <IconContext.Provider value={{ size: "1.3rem" }}>
                     {isOpenSearch ? <FaMinus /> : <FaPlus />}
                 </IconContext.Provider>
             </button>
