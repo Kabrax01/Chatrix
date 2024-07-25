@@ -17,7 +17,7 @@ type StateTypes = {
     loading: boolean;
     registration: boolean;
     uid: string;
-    user: null | object;
+    user: null | UserObject;
     isLoggedIn: boolean;
 };
 
@@ -38,7 +38,8 @@ type CounterAction =
           type: "userDataReceived";
           payload: UserObject;
       }
-    | { type: "userAvatarChange"; payload: string };
+    | { type: "userAvatarChange"; payload: string }
+    | { type: "userNameChange"; payload: string };
 
 const ChatContext = createContext<{
     state: StateTypes;
@@ -82,6 +83,15 @@ function reducer(state: StateTypes, action: CounterAction): StateTypes {
                 return {
                     ...state,
                     user: { ...state.user, avatar: action.payload },
+                };
+            }
+            return state;
+        }
+        case "userNameChange": {
+            if (state.user) {
+                return {
+                    ...state,
+                    user: { ...state.user, userName: action.payload },
                 };
             }
             return state;

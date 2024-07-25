@@ -20,7 +20,12 @@ function App() {
             <MainChatView>
                 <div className="main_container">
                     {loading ? (
-                        <Loading />
+                        <Loading
+                            width={25}
+                            height={50}
+                            unit={"px"}
+                            text={"Loading..."}
+                        />
                     ) : (
                         <>
                             {isLoggedIn ? (

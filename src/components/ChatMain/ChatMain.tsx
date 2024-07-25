@@ -44,7 +44,11 @@ function ChatMain() {
                 </div>
             </div>
             <div className="chat__input">
-                <input type="text" placeholder="Type a message..." />
+                <input
+                    type="text"
+                    name="type message"
+                    placeholder="Type a message..."
+                />
                 <IconContext.Provider value={{ size: "1.5rem" }}>
                     <div className="icons">
                         <SlPicture />

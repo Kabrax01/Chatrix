@@ -20,6 +20,7 @@ function UserSearch() {
             <input
                 type="text"
                 className="search__input"
+                name="active chats search"
                 placeholder="Search"
                 onChange={(e) => setInputValue(e.target.value)}
             />

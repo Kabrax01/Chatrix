@@ -1,7 +1,7 @@
 @use "../../../sass/abstracts" as a;
 
 .user {
-    @include a.flexbox(center, space-between);
+    @include a.flexbox(center, center);
     width: 100%;
     padding: a.$margin-medium;
 
@@ -14,6 +14,9 @@
         @include a.flexbox;
         font-size: 1.2rem;
         cursor: pointer;
+        flex: 1;
+        display: flex;
+        justify-self: flex-end;
 
         &:active {
             transform: translateY(2px);
