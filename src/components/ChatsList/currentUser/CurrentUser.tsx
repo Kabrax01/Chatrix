@@ -20,7 +20,7 @@ function User() {
                 src={user?.avatar ? `${user.avatar}` : "avatar.png"}
                 alt="Current user picture"
             />
-            <p className="user__name">Arnold Rogalski</p>
+            <p className="user__name">{user?.userName}</p>
             <span onClick={() => setIsOpenCurrentUserEdit((prev) => !prev)}>
                 <FaRegEdit />
             </span>

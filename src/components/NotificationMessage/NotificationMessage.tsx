@@ -18,10 +18,13 @@ function NotificationMessage({
 
     useEffect(() => {
         const init = setTimeout(() => setShow(true), 10);
-        const time = setTimeout(() => setShow(false), displayPeriod * 1000);
+        const disappearAfterXAmountOfTime = setTimeout(
+            () => setShow(false),
+            displayPeriod * 1000
+        );
 
         return () => {
-            clearTimeout(time);
+            clearTimeout(disappearAfterXAmountOfTime);
             clearTimeout(init);
         };
     }, [displayPeriod]);

@@ -1,44 +1,12 @@
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase/firebase.js";
+import { useReducer, createContext, useContext, useEffect } from "react";
 import {
-    ReactNode,
-    useReducer,
-    createContext,
-    useContext,
-    useEffect,
-} from "react";
-
-type ChatContextProps = {
-    children: ReactNode;
-};
-
-type StateTypes = {
-    loading: boolean;
-    registration: boolean;
-    uid: string;
-    user: null | object;
-    isLoggedIn: boolean;
-};
-
-type UserObject = {
-    email: string;
-    uid: string;
-    userName: string;
-    avatar: string;
-};
-
-type CounterAction =
-    | { type: "loading" }
-    | { type: "loadingEnd" }
-    | { type: "registered"; payload: boolean }
-    | { type: "loggedIn"; payload: string }
-    | { type: "loggedOut" }
-    | {
-          type: "userDataReceived";
-          payload: UserObject;
-      }
-    | { type: "userAvatarChange"; payload: string };
+    ChatContextProps,
+    StateTypes,
+    CounterAction,
+} from "./chatContextTypes.js";
 
 const ChatContext = createContext<{
     state: StateTypes;
@@ -82,6 +50,15 @@ function reducer(state: StateTypes, action: CounterAction): StateTypes {
                 return {
                     ...state,
                     user: { ...state.user, avatar: action.payload },
+                };
+            }
+            return state;
+        }
+        case "userNameChange": {
+            if (state.user) {
+                return {
+                    ...state,
+                    user: { ...state.user, userName: action.payload },
                 };
             }
             return state;

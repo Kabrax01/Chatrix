@@ -1,10 +1,22 @@
 import "./loading.scss";
 
-function Loading() {
+interface LoadingProps {
+    width: number;
+    height: number;
+    unit: string;
+    text: string;
+}
+
+function Loading({ width, height, unit, text }: LoadingProps) {
     return (
         <div className="loading">
-            <p>LOADING....</p>
-            <div className="loader"></div>
+            <p>{text}</p>
+            <div
+                className="loader"
+                style={{
+                    width: `${width + unit}`,
+                    height: `${height + unit}`,
+                }}></div>
         </div>
     );
 }
