@@ -28,10 +28,7 @@ function EditCurrentUser() {
         const formData = new FormData(e.target);
         const file = formData.get("avatar") as File;
         const userName = formData.get("userName") as string;
-
         const userDocRef = doc(db, "users", uid);
-
-        console.log(file);
 
         try {
             setError(null);
