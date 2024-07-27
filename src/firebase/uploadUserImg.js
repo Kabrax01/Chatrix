@@ -8,23 +8,16 @@ async function uploadUserImg(file) {
     );
     const uploadTask = uploadBytesResumable(storageRef, file);
 
-    return new Promise((resolve, reject) => {
-        uploadTask.on(
-            "state_changed",
-            (snapshot) => {
-                if (snapshot.bytesTransferred === snapshot.totalBytes)
-                    console.log("Upload successful");
-            },
-            (error) => {
-                reject(error.message);
-            },
-            () => {
-                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) =>
-                    resolve(downloadURL)
-                );
-            }
-        );
-    });
+    try {
+        const res = await uploadTask;
+
+        if (res.state === "success") {
+            const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+            return downloadURL;
+        }
+    } catch (error) {
+        return error;
+    }
 }
 
 export default uploadUserImg;
