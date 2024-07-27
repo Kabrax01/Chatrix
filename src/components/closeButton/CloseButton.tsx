@@ -15,6 +15,7 @@ function CloseButton({ callback, height, width, unit }: CloseButtonProps) {
         height: `${height + unit}`,
         width: `${width + unit}`,
     };
+
     return (
         <span>
             <CgCloseR

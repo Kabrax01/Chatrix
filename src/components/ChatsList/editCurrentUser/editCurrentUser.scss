@@ -36,6 +36,23 @@
             width: 90%;
         }
     }
+
+    &--error,
+    &--success {
+        color: a.$color-white;
+        margin: a.$margin-medium 0.5rem 0 0.5rem;
+        text-align: center;
+        padding: 1rem 0;
+        border-radius: a.$border-radius-small;
+    }
+
+    &--error {
+        outline: 1px solid a.$color-red;
+    }
+
+    &--success {
+        outline: 1px solid a.$color-green;
+    }
 }
 
 .upload__indicator {

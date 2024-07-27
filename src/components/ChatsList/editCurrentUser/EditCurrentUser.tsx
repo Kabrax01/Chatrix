@@ -1,6 +1,5 @@
 import "./editCurrentUser.scss";
 import uploadUserImg from "../../../firebase/uploadUserImg.js";
-
 import { useChatContext } from "../../../contexts/chatContext/ChatContext.js";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../../firebase/firebase.js";
@@ -11,6 +10,8 @@ import CloseButton from "../../closeButton/CloseButton.js";
 
 function EditCurrentUser() {
     const [uploading, setUploading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+    const [success, setSuccess] = useState(false);
     const { state, dispatch } = useChatContext();
     const { uid } = state;
 
@@ -33,13 +34,19 @@ function EditCurrentUser() {
         console.log(file);
 
         try {
+            setError(null);
+            setSuccess(false);
             setUploading(true);
-            if (file.name !== "") {
+            if (file.size > 1000000) {
+                throw new Error("Max file size: 1MB");
+            } else if (file.name !== "") {
                 const imgURL = await uploadUserImg(file);
                 dispatch({ type: "userAvatarChange", payload: imgURL });
                 await updateDoc(userDocRef, {
                     avatar: imgURL,
                 });
+                setUploading(false);
+                setSuccess(true);
             }
 
             if (userName.length > 3) {
@@ -47,9 +54,12 @@ function EditCurrentUser() {
                     userName: userName,
                 });
                 dispatch({ type: "userNameChange", payload: userName });
+                setUploading(false);
+                setSuccess(true);
             }
         } catch (error) {
             console.error(`${(error as Error).message}`);
+            setError(`${(error as Error).message}`);
         } finally {
             setUploading(false);
         }
@@ -92,6 +102,11 @@ function EditCurrentUser() {
                     />
                 </div>
             ) : null}
+            <p className="error">{error}</p>
+            {error && <p className="user__edit--error">{error}</p>}
+            {success && (
+                <p className="user__edit--success">Upload successful !</p>
+            )}
         </div>
     );
 }
