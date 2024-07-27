@@ -21,8 +21,10 @@ function User() {
                 alt="Current user picture"
             />
             <p className="user__name">{user?.userName}</p>
-            <span onClick={() => setIsOpenCurrentUserEdit((prev) => !prev)}>
-                <FaRegEdit />
+            <span>
+                <FaRegEdit
+                    onClick={() => setIsOpenCurrentUserEdit((prev) => !prev)}
+                />
             </span>
         </div>
     );

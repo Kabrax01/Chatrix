@@ -3,19 +3,6 @@
 .user__edit {
     width: 100%;
 
-    &-close {
-        display: block;
-        height: 2rem;
-        width: 2rem;
-        margin: 1rem 1rem 2rem 1rem;
-        color: white;
-        cursor: pointer;
-
-        &:active {
-            transform: translateY(2px);
-        }
-    }
-
     form {
         @include a.flexbox(flex-start, center, column);
         gap: 1rem;
