@@ -1,12 +1,13 @@
 import "./editCurrentUser.scss";
 import uploadUserImg from "../../../firebase/uploadUserImg.js";
-import { CgCloseR } from "react-icons/cg";
+
 import { useChatContext } from "../../../contexts/chatContext/ChatContext.js";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../../firebase/firebase.js";
 import { useContext, useState } from "react";
 import Loading from "../../loading/Loading.js";
 import { ListContext } from "../ChatsList.js";
+import CloseButton from "../../closeButton/CloseButton.js";
 
 function EditCurrentUser() {
     const [uploading, setUploading] = useState(false);
@@ -56,12 +57,12 @@ function EditCurrentUser() {
 
     return (
         <div className="user__edit">
-            <span
-                role="button"
-                onClick={() => setIsOpenCurrentUserEdit((prev) => !prev)}>
-                <CgCloseR className="user__edit-close" />
-            </span>
-
+            <CloseButton
+                callback={setIsOpenCurrentUserEdit}
+                height={1.3}
+                width={1.3}
+                unit={"rem"}
+            />
             <form onSubmit={handleEditUser}>
                 <button disabled className="upload__btn">
                     <label htmlFor="avatar">Change user picture</label>

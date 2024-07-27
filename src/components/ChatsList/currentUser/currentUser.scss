@@ -1,22 +1,24 @@
 @use "../../../sass/abstracts" as a;
 
 .user {
-    @include a.flexbox(center, center);
+    @include a.flexbox;
     width: 100%;
     padding: a.$margin-medium;
 
     img {
         @include a.userPicture(4rem);
         flex-shrink: 0;
+        margin-right: a.$margin-medium;
+    }
+
+    p {
+        flex: 1;
     }
 
     span {
-        @include a.flexbox;
+        display: inline-block;
         font-size: 1.2rem;
         cursor: pointer;
-        flex: 1;
-        display: flex;
-        justify-self: flex-end;
 
         &:active {
             transform: translateY(2px);
