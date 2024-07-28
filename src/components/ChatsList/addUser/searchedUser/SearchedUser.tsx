@@ -51,10 +51,10 @@ function SearchedUser({ user }: UserProps) {
                         currentUserChatsArray.push(chat.receiverId)
                     );
 
-                    const checkIfChatAlredayExists =
+                    const checkIfChatAlreadyExists =
                         currentUserChatsArray.includes(user.id);
 
-                    if (checkIfChatAlredayExists) return;
+                    if (checkIfChatAlreadyExists) return;
                 }
 
                 await updateDoc(doc(userChatsRef, user.id), {
