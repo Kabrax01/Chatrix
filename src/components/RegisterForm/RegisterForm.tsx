@@ -13,9 +13,11 @@ function RegisterForm() {
     const input1Ref = useRef() as MutableRefObject<HTMLInputElement>;
     const input2Ref = useRef() as MutableRefObject<HTMLInputElement>;
     const input3Ref = useRef() as MutableRefObject<HTMLInputElement>;
+    const input4Ref = useRef() as MutableRefObject<HTMLInputElement>;
     const [userName, setUserName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
     const [error, setError] = useState<[boolean, string]>([false, ""]);
     const [success, setSuccess] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -24,6 +26,12 @@ function RegisterForm() {
 
     async function signIn(e) {
         e.preventDefault();
+
+        if (password !== confirmPassword) {
+            setError([true, "Password doesn't match"]);
+            return;
+        }
+
         setLoading(true);
 
         try {
@@ -56,6 +64,7 @@ function RegisterForm() {
             input1Ref.current.value = "";
             input2Ref.current.value = "";
             input3Ref.current.value = "";
+            input4Ref.current.value = "";
         }
     }
 
@@ -73,6 +82,7 @@ function RegisterForm() {
                         ref={input1Ref}
                         type="text"
                         placeholder="user name"
+                        name="user name"
                         required
                         onChange={(e) => setUserName(e.target.value)}
                     />
@@ -80,6 +90,7 @@ function RegisterForm() {
                         ref={input2Ref}
                         type="email"
                         placeholder="email"
+                        name="email"
                         required
                         onChange={(e) => setEmail(e.target.value)}
                     />
@@ -87,8 +98,17 @@ function RegisterForm() {
                         ref={input3Ref}
                         type="password"
                         placeholder="password"
+                        name="password"
                         required
                         onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <input
+                        ref={input4Ref}
+                        type="password"
+                        placeholder="confirm password"
+                        name="confirm password"
+                        required
+                        onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                 </div>
                 <button type="submit" disabled={loading} onClick={handleClick}>
