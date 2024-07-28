@@ -1,15 +1,23 @@
 import "./addUser.scss";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../../../firebase/firebase.js";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import SearchedUser from "./searchedUser/SearchedUser.js";
-
 import { User } from "../types.js";
+import { ListContext } from "../ChatsList.js";
+import CloseButton from "../../closeButton/CloseButton.js";
 
 function AddUser() {
     const [user, setUser] = useState<null | User>(null);
     const [users, setUsers] = useState<null | User[]>(null);
     const [usersQueryEmpty, setUsersQueryEmpty] = useState(false);
+
+    const context = useContext(ListContext);
+
+    if (!context) {
+        throw new Error("ListContext was used outside of context provider");
+    }
+    const { setIsOpenSearch } = context;
 
     async function handleSearchUser(e) {
         e.preventDefault();
@@ -50,6 +58,13 @@ function AddUser() {
 
     return (
         <div className="add_user">
+            <CloseButton
+                callback={setIsOpenSearch}
+                height={1.4}
+                width={1.4}
+                unit={"rem"}
+                margin={"0 0 .5rem 0"}
+            />
             <form onSubmit={handleSearchUser}>
                 <input
                     type="text"

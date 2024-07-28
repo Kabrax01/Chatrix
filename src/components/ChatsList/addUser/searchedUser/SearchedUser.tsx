@@ -5,17 +5,20 @@ import {
     arrayUnion,
     collection,
     doc,
+    getDoc,
     serverTimestamp,
     setDoc,
     updateDoc,
 } from "firebase/firestore";
 import { useChatContext } from "../../../../contexts/chatContext/ChatContext.js";
+import { useState } from "react";
 
 interface UserProps {
     user: User;
 }
 
 function SearchedUser({ user }: UserProps) {
+    const [chatId, setChatId] = useState<string | null>(null);
     const { state } = useChatContext();
     const { user: currentUser } = state;
 
@@ -25,6 +28,7 @@ function SearchedUser({ user }: UserProps) {
 
         try {
             const newChatRef = doc(chatRef);
+            setChatId(newChatRef.id);
 
             await setDoc(newChatRef, {
                 createdAt: serverTimestamp(),
@@ -32,6 +36,27 @@ function SearchedUser({ user }: UserProps) {
             });
 
             if (currentUser) {
+                if (chatId) {
+                    const userChatDocRef = doc(
+                        db,
+                        `userchats/${currentUser.uid}`
+                    );
+                    const userChatDoc = await getDoc(userChatDocRef);
+                    const userChatData = userChatDoc.data();
+                    const chats = userChatData?.chats || [];
+
+                    const currentUserChatsArray: string[] = [];
+
+                    chats.forEach((chat) =>
+                        currentUserChatsArray.push(chat.receiverId)
+                    );
+
+                    const checkIfChatAlredayExists =
+                        currentUserChatsArray.includes(user.id);
+
+                    if (checkIfChatAlredayExists) return;
+                }
+
                 await updateDoc(doc(userChatsRef, user.id), {
                     chats: arrayUnion({
                         chatId: newChatRef.id,
@@ -50,8 +75,6 @@ function SearchedUser({ user }: UserProps) {
                     }),
                 });
             }
-
-            console.log(newChatRef.id);
         } catch (error) {
             console.error(`${(error as Error).message}`);
         }
