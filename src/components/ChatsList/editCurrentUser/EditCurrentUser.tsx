@@ -3,10 +3,10 @@ import uploadUserImg from "../../../firebase/uploadUserImg.js";
 import { useChatContext } from "../../../contexts/chatContext/ChatContext.js";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../../firebase/firebase.js";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import Loading from "../../loading/Loading.js";
-import { ListContext } from "../ChatsList.js";
 import CloseButton from "../../closeButton/CloseButton.js";
+import { useListContext } from "../../../contexts/listContext/ListContext.js";
 
 function EditCurrentUser() {
     const [uploading, setUploading] = useState(false);
@@ -14,13 +14,7 @@ function EditCurrentUser() {
     const [success, setSuccess] = useState(false);
     const { state, dispatch } = useChatContext();
     const { uid } = state;
-
-    const context = useContext(ListContext);
-
-    if (!context) {
-        throw new Error("MyComponent must be used within a ListProvider");
-    }
-    const { setIsOpenCurrentUserEdit } = context;
+    const { setIsOpenCurrentUserEdit } = useListContext();
 
     async function handleEditUser(e) {
         e.preventDefault();

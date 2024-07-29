@@ -1,19 +1,12 @@
 import { IconContext } from "react-icons";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import "./searchChat.scss";
-import { useContext, useState } from "react";
-import { ListContext } from "../ChatsList";
+import { useState } from "react";
+import { useListContext } from "../../../contexts/listContext/ListContext";
 
 function UserSearch() {
     const [inputValue, setInputValue] = useState<string>("");
-
-    const context = useContext(ListContext);
-
-    if (!context) {
-        throw new Error("MyComponent must be used within a ListProvider");
-    }
-
-    const { isOpenSearch, setIsOpenSearch } = context;
+    const { isOpenSearch, setIsOpenSearch } = useListContext();
 
     return (
         <div className="search">
