@@ -5,57 +5,52 @@ import {
     arrayUnion,
     collection,
     doc,
-    getDoc,
     serverTimestamp,
     setDoc,
     updateDoc,
 } from "firebase/firestore";
 import { useChatContext } from "../../../../contexts/chatContext/ChatContext.js";
-import { useState } from "react";
+import { useRef } from "react";
+import getChatsArray from "../../../../firebase/getChatsArray.js";
 
 interface UserProps {
     user: User;
 }
 
 function SearchedUser({ user }: UserProps) {
-    const [chatId, setChatId] = useState<string | null>(null);
+    const chatIdRef = useRef<string | null>(null);
     const { state } = useChatContext();
     const { user: currentUser } = state;
 
     async function handleAddUser() {
-        const chatRef = collection(db, "chats");
-        const userChatsRef = collection(db, "userchats");
-
         try {
+            const chatRef = collection(db, "chats");
+            const userChatsRef = collection(db, "userchats");
             const newChatRef = doc(chatRef);
-            setChatId(newChatRef.id);
-
-            await setDoc(newChatRef, {
-                createdAt: serverTimestamp(),
-                messages: [],
-            });
+            chatIdRef.current = newChatRef.id;
 
             if (currentUser) {
-                if (chatId) {
-                    const userChatDocRef = doc(
-                        db,
-                        `userchats/${currentUser.uid}`
-                    );
-                    const userChatDoc = await getDoc(userChatDocRef);
-                    const userChatData = userChatDoc.data();
-                    const chats = userChatData?.chats || [];
+                if (!chatIdRef) return;
+                const userChatData = await getChatsArray(currentUser.uid);
 
-                    const currentUserChatsArray: string[] = [];
+                const chats = userChatData?.chats || [];
 
-                    chats.forEach((chat) =>
-                        currentUserChatsArray.push(chat.receiverId)
-                    );
+                const currentUserChatsArray: string[] = [];
 
-                    const checkIfChatAlreadyExists =
-                        currentUserChatsArray.includes(user.id);
+                chats.forEach((chat) =>
+                    currentUserChatsArray.push(chat.receiverId)
+                );
 
-                    if (checkIfChatAlreadyExists) return;
-                }
+                const checkIfChatAlreadyExists = currentUserChatsArray.includes(
+                    user.id
+                );
+
+                if (checkIfChatAlreadyExists) return;
+
+                await setDoc(newChatRef, {
+                    createdAt: serverTimestamp(),
+                    messages: [],
+                });
 
                 await updateDoc(doc(userChatsRef, user.id), {
                     chats: arrayUnion({
