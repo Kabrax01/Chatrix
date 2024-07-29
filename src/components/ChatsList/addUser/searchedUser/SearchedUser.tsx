@@ -35,10 +35,8 @@ function SearchedUser({ user }: UserProps) {
 
                 const chats = userChatData?.chats || [];
 
-                const currentUserChatsArray: string[] = [];
-
-                chats.forEach((chat) =>
-                    currentUserChatsArray.push(chat.receiverId)
+                const currentUserChatsArray: string[] = chats.map(
+                    (chat) => chat.receiverId
                 );
 
                 const checkIfChatAlreadyExists = currentUserChatsArray.includes(
