@@ -42,7 +42,14 @@ function reducer(state: StateTypes, action: CounterAction): StateTypes {
             };
         }
         case "loggedOut": {
-            return { ...state, isLoggedIn: false, user: null, uid: "" };
+            return {
+                ...state,
+                isLoggedIn: false,
+                user: null,
+                uid: "",
+                activeChat: null,
+                activeChatUser: null,
+            };
         }
         case "userDataReceived": {
             return { ...state, user: action.payload };
