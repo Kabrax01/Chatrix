@@ -6,6 +6,7 @@
     border-bottom: a.$border-grey-light-small;
     display: flex;
     flex-direction: column;
+    overflow-y: scroll;
 
     &__user {
         border-bottom: a.$border-grey-light-small;
@@ -38,7 +39,7 @@
 
         .message {
             display: flex;
-            width: 75%;
+            max-width: 75%;
             margin-left: 0.5rem;
             margin-top: 1rem;
 
