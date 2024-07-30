@@ -7,7 +7,7 @@ function ListContextProvider({ children }: ListProviderProps) {
     const [isOpenSearch, setIsOpenSearch] = useState(false);
     const [isOpenCurrentUserEdit, setIsOpenCurrentUserEdit] = useState(false);
 
-    const contextValue: ListContextTypes = {
+    const contextValue = {
         isOpenSearch,
         setIsOpenSearch,
         setIsOpenCurrentUserEdit,

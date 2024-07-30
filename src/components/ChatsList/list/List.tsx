@@ -46,7 +46,11 @@ function List() {
             <ul>
                 {chats &&
                     chats.map((chat, i) => (
-                        <ChatListItem user={chat.user} key={i} />
+                        <ChatListItem
+                            user={chat.user}
+                            chat={chat[i]}
+                            key={chat[i].chatId}
+                        />
                     ))}
             </ul>
         </div>
