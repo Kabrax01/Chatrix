@@ -4,20 +4,36 @@ export type ChatContextProps = {
     children: ReactNode;
 };
 
-export type StateTypes = {
+export interface Chat {
+    chatId: string;
+    lastMessage: string;
+    receiverId: string;
+    updatedAt: number;
+}
+
+export interface StateTypes {
     loading: boolean;
     registration: boolean;
     uid: string;
     user: null | UserObject;
     isLoggedIn: boolean;
-};
+    activeChatUser: null | ActiveChatUserObject;
+    activeChat: null | Chat;
+}
 
-export type UserObject = {
+export interface UserObject {
     email: string;
     uid: string;
     userName: string;
-    avatar: string;
-};
+    avatar?: string;
+}
+
+export interface ActiveChatUserObject {
+    email: string;
+    id: string;
+    userName: string;
+    avatar?: string;
+}
 
 export type CounterAction =
     | { type: "loading" }
@@ -30,4 +46,8 @@ export type CounterAction =
           payload: UserObject;
       }
     | { type: "userAvatarChange"; payload: string }
-    | { type: "userNameChange"; payload: string };
+    | { type: "userNameChange"; payload: string }
+    | {
+          type: "activeChatSelect";
+          payload: { activeUser: ActiveChatUserObject; activeChat: Chat };
+      };

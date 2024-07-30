@@ -1,7 +1,7 @@
-export interface Chat {
-    receiverId: string;
+interface Chat {
     chatId: string;
     lastMessage: string;
+    receiverId: string;
     updatedAt: number;
 }
 
