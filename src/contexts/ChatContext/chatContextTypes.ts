@@ -9,6 +9,7 @@ export interface Chat {
     lastMessage: string;
     receiverId: string;
     updatedAt: number;
+    hasBeenOpened: boolean;
 }
 
 export interface StateTypes {

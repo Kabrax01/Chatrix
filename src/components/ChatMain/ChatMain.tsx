@@ -5,6 +5,7 @@ import { SlPicture, SlEmotsmile } from "react-icons/sl";
 import { useChatContext } from "../../contexts/chatContext/ChatContext";
 import { arrayUnion, doc, onSnapshot, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase/firebase";
+import updateUsersChats from "../../firebase/updateUserChats";
 
 interface Message {
     senderId: string;
@@ -20,7 +21,6 @@ function ChatMain() {
     const { activeChat, activeChatUser, user } = state;
 
     useEffect(() => {
-        console.log("activechat log");
         const unsub = onSnapshot(
             doc(db, "chats", `${activeChat?.chatId}`),
 
@@ -47,9 +47,18 @@ function ChatMain() {
                 messages: arrayUnion({
                     senderId: user?.uid,
                     text,
-                    createdAt: new Date(),
+                    createdAt: Date.now(),
                 }),
             });
+
+            if (activeChat && user && activeChatUser) {
+                await updateUsersChats(
+                    text,
+                    activeChatUser.id,
+                    user.uid,
+                    activeChat.chatId
+                );
+            }
         } catch (error) {
             console.error(`${(error as Error).message}`);
         } finally {
@@ -76,11 +85,12 @@ function ChatMain() {
                 {messages.map((message) => {
                     return (
                         <div
-                            className={
-                                message.senderId === user?.uid
-                                    ? "message own"
-                                    : "message"
-                            }
+                            className={`message
+                                ${
+                                    message.senderId === user?.uid
+                                        ? "own"
+                                        : null
+                                }`}
                             key={message.createdAt}>
                             <div className="content">
                                 <p>{message.text}</p>

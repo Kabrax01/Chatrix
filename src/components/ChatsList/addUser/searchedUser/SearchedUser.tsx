@@ -56,6 +56,7 @@ function SearchedUser({ user }: UserProps) {
                         lastMessage: "",
                         receiverId: currentUser.uid,
                         updatedAt: Date.now(),
+                        hasBeenOpened: true,
                     }),
                 });
 
@@ -65,6 +66,7 @@ function SearchedUser({ user }: UserProps) {
                         lastMessage: "",
                         receiverId: user.id,
                         updatedAt: Date.now(),
+                        hasBeenOpened: true,
                     }),
                 });
             }
