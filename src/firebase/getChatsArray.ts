@@ -6,7 +6,6 @@ async function getChatsArray(currentUserId: string) {
     try {
         const docSnap = await getDoc(currentUserChatsRef);
         if (docSnap.exists()) {
-            console.log(docSnap.data());
             return docSnap.data();
         }
     } catch (error) {

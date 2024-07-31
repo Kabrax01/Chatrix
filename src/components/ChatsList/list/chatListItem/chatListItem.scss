@@ -9,10 +9,6 @@
         border-top: a.$border-grey-light-small;
     }
 
-    &:last-of-type {
-        border-bottom: none;
-    }
-
     img {
         @include a.userPicture(3rem);
     }
