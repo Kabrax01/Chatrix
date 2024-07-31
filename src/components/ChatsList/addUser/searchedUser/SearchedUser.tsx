@@ -12,6 +12,7 @@ import {
 import { useChatContext } from "../../../../contexts/chatContext/ChatContext.js";
 import { useRef } from "react";
 import getChatsArray from "../../../../firebase/getChatsArray.js";
+import { useListContext } from "../../../../contexts/listContext/ListContext.js";
 
 interface UserProps {
     user: User;
@@ -21,6 +22,7 @@ function SearchedUser({ user }: UserProps) {
     const chatIdRef = useRef<string | null>(null);
     const { state } = useChatContext();
     const { user: currentUser } = state;
+    const { setIsOpenSearch } = useListContext();
 
     async function handleAddUser() {
         try {
@@ -69,6 +71,8 @@ function SearchedUser({ user }: UserProps) {
                         hasBeenOpened: true,
                     }),
                 });
+
+                setIsOpenSearch((prev) => !prev);
             }
         } catch (error) {
             console.error(`${(error as Error).message}`);

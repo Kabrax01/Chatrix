@@ -57,6 +57,7 @@ function AddUser() {
                 unit={"rem"}
                 margin={"0 0 .5rem 0"}
             />
+            <h2>Search user</h2>
             <form onSubmit={handleSearchUser}>
                 <input
                     type="text"
