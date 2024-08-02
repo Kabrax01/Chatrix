@@ -32,10 +32,12 @@
     }
 
     &__messages {
+        position: relative;
         display: flex;
         flex-direction: column;
         flex: 2;
         overflow-y: scroll;
+        padding-bottom: 1rem;
 
         .message {
             display: flex;
@@ -81,6 +83,7 @@
     }
 
     &__input {
+        position: relative;
         display: flex;
         gap: 1rem;
         padding: 1rem 1rem;
@@ -102,13 +105,24 @@
             gap: 1rem;
         }
 
-        button {
+        .send.btn {
             padding: 1rem 2rem;
             border: none;
             border-radius: a.$border-radius-medium;
             font-size: 1rem;
             font-weight: 700;
             background-color: a.$color-blue;
+        }
+
+        .emoji {
+            position: absolute;
+            bottom: 6rem;
+            right: 10%;
+
+            input {
+                padding-left: 2rem;
+                max-width: 90%;
+            }
         }
     }
 }

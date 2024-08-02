@@ -6,6 +6,7 @@ import { useChatContext } from "../../contexts/chatContext/ChatContext";
 import { arrayUnion, doc, onSnapshot, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase/firebase";
 import updateUsersChats from "../../firebase/updateUserChats";
+import EmojiPicker, { Theme } from "emoji-picker-react";
 
 interface Message {
     senderId: string;
@@ -15,10 +16,23 @@ interface Message {
 
 function ChatMain() {
     const [messages, setMessages] = useState<Message[]>([]);
+    const [openEmojiPicker, setOpenEmojiPicker] = useState(false);
     const [text, setText] = useState("");
+    const endRef = useRef() as MutableRefObject<HTMLDivElement>;
     const inputRef = useRef() as MutableRefObject<HTMLInputElement>;
     const { state } = useChatContext();
     const { activeChat, activeChatUser, user } = state;
+
+    function handleAddEmoji(obj) {
+        setText((cur) => cur + obj.emoji);
+    }
+
+    useEffect(() => {
+        if (endRef.current)
+            endRef.current.scrollIntoView({
+                behavior: "smooth",
+            });
+    });
 
     useEffect(() => {
         const unsub = onSnapshot(
@@ -64,6 +78,9 @@ function ChatMain() {
         } finally {
             inputRef.current.value = "";
         }
+
+        if (endRef.current)
+            endRef.current.scrollIntoView({ behavior: "smooth" });
     }
 
     return (
@@ -99,12 +116,21 @@ function ChatMain() {
                         </div>
                     );
                 })}
+                <div ref={endRef}></div>
             </div>
             <div className="chat__input">
+                <div className="emoji">
+                    <EmojiPicker
+                        open={openEmojiPicker}
+                        theme={Theme.AUTO}
+                        onEmojiClick={handleAddEmoji}
+                    />
+                </div>
                 <input
                     type="text"
                     name="type message"
                     placeholder="Type a message..."
+                    value={text}
                     onChange={(e) => setText(e.target.value)}
                     ref={inputRef}
                     onKeyDown={handleKeyPress}
@@ -112,10 +138,14 @@ function ChatMain() {
                 <IconContext.Provider value={{ size: "1.5rem" }}>
                     <div className="icons">
                         <SlPicture />
-                        <SlEmotsmile />
+                        <SlEmotsmile
+                            onClick={() => setOpenEmojiPicker((prev) => !prev)}
+                        />
                     </div>
                 </IconContext.Provider>
-                <button onClick={handleSendMessage}>Send</button>
+                <button className="send btn" onClick={handleSendMessage}>
+                    Send
+                </button>
             </div>
         </div>
     );
