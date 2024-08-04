@@ -6,18 +6,23 @@ import { useChatContext } from "../../contexts/chatContext/ChatContext";
 import { arrayUnion, doc, onSnapshot, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase/firebase";
 import updateUsersChats from "../../firebase/updateUserChats";
+import uploadUserImg from "../../firebase/uploadUserImg";
 import EmojiPicker, { Theme } from "emoji-picker-react";
+import Loading from "../loading/Loading";
 
 interface Message {
     senderId: string;
     text: string;
     createdAt: number;
+    img: string;
 }
 
 function ChatMain() {
     const [messages, setMessages] = useState<Message[]>([]);
     const [openEmojiPicker, setOpenEmojiPicker] = useState(false);
     const [text, setText] = useState("");
+    const [image, setImage] = useState<string | null>(null);
+    const [loading, setLoading] = useState(false);
     const endRef = useRef() as MutableRefObject<HTMLDivElement>;
     const inputRef = useRef() as MutableRefObject<HTMLInputElement>;
     const { state } = useChatContext();
@@ -25,6 +30,21 @@ function ChatMain() {
 
     function handleAddEmoji(obj) {
         setText((cur) => cur + obj.emoji);
+    }
+
+    async function handleAddImage(e) {
+        if (!e.target.files[0]) return;
+
+        try {
+            setLoading(true);
+            const imageUrl = await uploadUserImg(e.target.files[0]);
+
+            setImage(imageUrl);
+        } catch (error) {
+            console.error(`${(error as Error).message}`);
+        } finally {
+            setLoading(false);
+        }
     }
 
     useEffect(() => {
@@ -55,13 +75,15 @@ function ChatMain() {
 
     async function handleSendMessage() {
         const chatRef = doc(db, "chats", `${activeChat?.chatId}`);
-        if (text === "") return;
+        if (text === "" && image === null) return;
+
         try {
             await updateDoc(chatRef, {
                 messages: arrayUnion({
                     senderId: user?.uid,
                     text,
                     createdAt: Date.now(),
+                    img: image ? image : null,
                 }),
             });
 
@@ -76,11 +98,13 @@ function ChatMain() {
         } catch (error) {
             console.error(`${(error as Error).message}`);
         } finally {
+            setText("");
+            setImage(null);
             inputRef.current.value = "";
+            setOpenEmojiPicker(false);
+            if (endRef.current)
+                endRef.current.scrollIntoView({ behavior: "smooth" });
         }
-
-        if (endRef.current)
-            endRef.current.scrollIntoView({ behavior: "smooth" });
     }
 
     return (
@@ -102,15 +126,19 @@ function ChatMain() {
                 {messages.map((message) => {
                     return (
                         <div
-                            className={`message
-                                ${
-                                    message.senderId === user?.uid
-                                        ? "own"
-                                        : null
-                                }`}
+                            className={`message ${
+                                message.senderId === user?.uid ? "own" : ""
+                            }`}
                             key={message.createdAt}>
                             <div className="content">
-                                <p>{message.text}</p>
+                                {message.img && (
+                                    <img
+                                        src={message.img}
+                                        className="sended__img"
+                                    />
+                                )}
+                                {message.text && <p>{message.text}</p>}
+
                                 {/* <span>1 min ago</span> */}
                             </div>
                         </div>
@@ -119,7 +147,7 @@ function ChatMain() {
                 <div ref={endRef}></div>
             </div>
             <div className="chat__input">
-                <div className="emoji">
+                <div className="emoji" role="button">
                     <EmojiPicker
                         open={openEmojiPicker}
                         theme={Theme.AUTO}
@@ -137,14 +165,37 @@ function ChatMain() {
                 />
                 <IconContext.Provider value={{ size: "1.5rem" }}>
                     <div className="icons">
-                        <SlPicture />
+                        <label htmlFor="icons__file__input">
+                            <SlPicture className="icons__image" />
+                        </label>
+                        <input
+                            type="file"
+                            id="icons__file__input"
+                            name="user image"
+                            accept="image/jpeg image/webp"
+                            onChange={handleAddImage}
+                        />
                         <SlEmotsmile
+                            className="icons__emoji"
                             onClick={() => setOpenEmojiPicker((prev) => !prev)}
                         />
                     </div>
                 </IconContext.Provider>
-                <button className="send btn" onClick={handleSendMessage}>
-                    Send
+                <button
+                    className="send btn"
+                    onClick={handleSendMessage}
+                    disabled={loading}>
+                    {loading ? (
+                        <Loading
+                            width={1}
+                            height={1}
+                            unit="rem"
+                            margin="0 0.75rem"
+                            color="black"
+                        />
+                    ) : (
+                        "Send"
+                    )}
                 </button>
             </div>
         </div>
