@@ -1,5 +1,5 @@
 import { IconContext } from "react-icons";
-import { FaMinus, FaPlus } from "react-icons/fa6";
+import { FiUserMinus, FiUserPlus } from "react-icons/fi";
 import "./searchChat.scss";
 import { useState } from "react";
 import { useListContext } from "../../../contexts/listContext/ListContext";
@@ -21,7 +21,7 @@ function UserSearch() {
                 className="search__btn"
                 onClick={() => setIsOpenSearch((prev) => !prev)}>
                 <IconContext.Provider value={{ size: "1.3rem" }}>
-                    {isOpenSearch ? <FaMinus /> : <FaPlus />}
+                    {isOpenSearch ? <FiUserMinus /> : <FiUserPlus />}
                 </IconContext.Provider>
             </button>
         </div>
