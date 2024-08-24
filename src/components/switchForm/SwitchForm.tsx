@@ -1,4 +1,11 @@
-function SwitchForm({ setFormType, formType }) {
+import { FormTypes } from "../../App";
+
+interface SwitchFormProps {
+    setFormType: React.Dispatch<React.SetStateAction<FormTypes>>;
+    formType: FormTypes;
+}
+
+function SwitchForm({ setFormType, formType }: SwitchFormProps) {
     return (
         <div className="form__switch">
             <button

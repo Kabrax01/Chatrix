@@ -12,8 +12,10 @@ import { ListContextProvider } from "./contexts/listContext/ListContext";
 import { useState } from "react";
 import SwitchForm from "./components/switchForm/SwitchForm";
 
+export type FormTypes = "login" | "register";
+
 function App() {
-    const [formType, setFormType] = useState("register");
+    const [formType, setFormType] = useState<FormTypes>("register");
     const { state } = useChatContext();
 
     const { loading, isLoggedIn } = state;
