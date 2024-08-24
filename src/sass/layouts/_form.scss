@@ -8,10 +8,11 @@
         @include a.flexboxCenter(column);
         text-align: center;
         padding: 9rem;
+        flex-grow: 1;
 
         .register,
         .login {
-            width: 100%;
+            width: 25rem;
         }
 
         .register__inputs,
