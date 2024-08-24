@@ -2,9 +2,6 @@
 
 .form__container {
     position: relative;
-    &--register {
-        border-left: a.$border-grey-light-medium;
-    }
 
     &--register,
     &--login {
@@ -12,14 +9,9 @@
         text-align: center;
         padding: 9rem;
 
+        .register,
         .login {
-            width: 70%;
-            grid-column: 1/2;
-        }
-
-        .register {
-            width: 70%;
-            grid-column: 2/3;
+            width: 100%;
         }
 
         .register__inputs,
