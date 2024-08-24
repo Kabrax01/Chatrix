@@ -9,8 +9,10 @@ import { ThemeContextProvider } from "./contexts/themeContext/ThemeContext";
 import { useChatContext } from "./contexts/chatContext/ChatContext";
 import Loading from "./components/loading/Loading";
 import { ListContextProvider } from "./contexts/listContext/ListContext";
+import { useState } from "react";
 
 function App() {
+    const [formType, setFormType] = useState("register");
     const { state } = useChatContext();
 
     const { loading, isLoggedIn } = state;
@@ -38,8 +40,39 @@ function App() {
                                 </ListContextProvider>
                             ) : (
                                 <div className="login__container">
-                                    {/* <LoginForm /> */}
-                                    <RegisterForm />
+                                    <div className="form__switch">
+                                        <button
+                                            style={{
+                                                background: `${
+                                                    formType === "login"
+                                                        ? "hsl(226, 66%, 70%)"
+                                                        : "transparent"
+                                                }`,
+                                            }}
+                                            onClick={() =>
+                                                setFormType("login")
+                                            }>
+                                            Log in
+                                        </button>
+                                        <button
+                                            style={{
+                                                background: `${
+                                                    formType === "register"
+                                                        ? "hsl(226, 66%, 70%)"
+                                                        : "transparent"
+                                                }`,
+                                            }}
+                                            onClick={() =>
+                                                setFormType("register")
+                                            }>
+                                            Register
+                                        </button>
+                                    </div>
+                                    {formType === "login" ? (
+                                        <LoginForm />
+                                    ) : (
+                                        <RegisterForm />
+                                    )}
                                 </div>
                             )}
                         </>

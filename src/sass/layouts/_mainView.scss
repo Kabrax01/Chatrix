@@ -20,7 +20,26 @@
 }
 
 .login__container {
-    @include a.flexboxCenter;
+    @include a.flexboxCenter(column);
     height: 100%;
     width: 100%;
+
+    .form__switch {
+        border: 1px solid a.$color-blue;
+        border-radius: a.$border-radius-medium;
+        margin-top: 4rem;
+
+        button {
+            background-color: transparent;
+            color: white;
+            padding: 1rem 2rem;
+            margin: 1rem 1rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+
+            &:hover {
+                background-color: a.$color-grey-medium;
+            }
+        }
+    }
 }
