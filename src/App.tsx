@@ -38,7 +38,7 @@ function App() {
                                 </ListContextProvider>
                             ) : (
                                 <div className="login__container">
-                                    <LoginForm />
+                                    {/* <LoginForm /> */}
                                     <RegisterForm />
                                 </div>
                             )}
