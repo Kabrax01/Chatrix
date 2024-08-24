@@ -10,6 +10,7 @@ import { useChatContext } from "./contexts/chatContext/ChatContext";
 import Loading from "./components/loading/Loading";
 import { ListContextProvider } from "./contexts/listContext/ListContext";
 import { useState } from "react";
+import SwitchForm from "./components/switchForm/SwitchForm";
 
 function App() {
     const [formType, setFormType] = useState("register");
@@ -40,34 +41,10 @@ function App() {
                                 </ListContextProvider>
                             ) : (
                                 <div className="login__container">
-                                    <div className="form__switch">
-                                        <button
-                                            style={{
-                                                background: `${
-                                                    formType === "login"
-                                                        ? "hsl(226, 66%, 70%)"
-                                                        : "transparent"
-                                                }`,
-                                            }}
-                                            onClick={() =>
-                                                setFormType("login")
-                                            }>
-                                            Log in
-                                        </button>
-                                        <button
-                                            style={{
-                                                background: `${
-                                                    formType === "register"
-                                                        ? "hsl(226, 66%, 70%)"
-                                                        : "transparent"
-                                                }`,
-                                            }}
-                                            onClick={() =>
-                                                setFormType("register")
-                                            }>
-                                            Register
-                                        </button>
-                                    </div>
+                                    <SwitchForm
+                                        setFormType={setFormType}
+                                        formType={formType}
+                                    />
                                     {formType === "login" ? (
                                         <LoginForm />
                                     ) : (
