@@ -32,6 +32,10 @@
                 &:last-of-type {
                     margin-bottom: a.$margin-medium;
                 }
+
+                &:focus {
+                    outline: 1px solid a.$color-blue;
+                }
             }
         }
 

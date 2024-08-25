@@ -3,6 +3,8 @@ import "./loginForm.scss";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import NotificationMessage from "../notificationMessage/NotificationMessage";
 import { useChatContext } from "../../contexts/chatContext/ChatContext";
+import { motion } from "framer-motion";
+import { formVariants } from "../../App";
 
 function LoginForm() {
     const input1Ref = useRef() as MutableRefObject<HTMLInputElement>;
@@ -45,17 +47,24 @@ function LoginForm() {
 
     return (
         <div className="form__container--login">
-            <form className="login" onSubmit={(e) => logIn(e)}>
+            <motion.form
+                variants={formVariants}
+                initial="initial"
+                animate="animate"
+                className="login"
+                onSubmit={(e) => logIn(e)}>
                 <h1>Welcome back</h1>
                 <div className="login__inputs">
-                    <input
+                    <motion.input
+                        variants={formVariants}
                         ref={input1Ref}
                         type="email"
                         placeholder="email"
                         onChange={(e) => setEmail(e.target.value)}
                         required
                     />
-                    <input
+                    <motion.input
+                        variants={formVariants}
                         ref={input2Ref}
                         type="password"
                         placeholder="password"
@@ -63,10 +72,14 @@ function LoginForm() {
                         required
                     />
                 </div>
-                <button type="submit" onClick={handleClick} disabled={loading}>
+                <motion.button
+                    variants={formVariants}
+                    type="submit"
+                    onClick={handleClick}
+                    disabled={loading}>
                     Log in
-                </button>
-            </form>
+                </motion.button>
+            </motion.form>
             {error[0] && (
                 <NotificationMessage
                     message={error[1]}
