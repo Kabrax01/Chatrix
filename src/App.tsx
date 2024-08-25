@@ -12,6 +12,18 @@ import { ListContextProvider } from "./contexts/listContext/ListContext";
 import { useState } from "react";
 import SwitchForm from "./components/switchForm/SwitchForm";
 
+export const formVariants = {
+    initial: {
+        opacity: 0,
+        rotateY: "90deg",
+    },
+    animate: {
+        opacity: 1,
+        rotateY: 0,
+        transition: { duration: 0.5, staggerChildren: 0.2 },
+    },
+};
+
 export type FormTypes = "Login" | "Register";
 
 function App() {

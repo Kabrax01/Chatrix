@@ -67,7 +67,7 @@ function Cursor({ position }) {
     return (
         <motion.div
             animate={position}
-            transition={{ type: "spring", duration: 0.8, damping: 12 }}
+            transition={{ type: "spring", duration: 0.3, damping: 14 }}
             className="cursor"></motion.div>
     );
 }

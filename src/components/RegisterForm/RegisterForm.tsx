@@ -8,6 +8,9 @@ import { auth, db } from "../../firebase/firebase.js";
 import { doc, setDoc } from "firebase/firestore";
 import NotificationMessage from "../notificationMessage/NotificationMessage.js";
 import { useChatContext } from "../../contexts/chatContext/ChatContext.js";
+import { motion } from "framer-motion";
+
+import { formVariants } from "../../App";
 
 function RegisterForm() {
     const input1Ref = useRef() as MutableRefObject<HTMLInputElement>;
@@ -75,10 +78,16 @@ function RegisterForm() {
 
     return (
         <div className="form__container--register">
-            <form className="register" onSubmit={(e) => signIn(e)}>
+            <motion.form
+                variants={formVariants}
+                initial="initial"
+                animate="animate"
+                className="register"
+                onSubmit={(e) => signIn(e)}>
                 <h1>Register</h1>
                 <div className="register__inputs">
-                    <input
+                    <motion.input
+                        variants={formVariants}
                         ref={input1Ref}
                         type="text"
                         placeholder="user name"
@@ -86,7 +95,8 @@ function RegisterForm() {
                         required
                         onChange={(e) => setUserName(e.target.value)}
                     />
-                    <input
+                    <motion.input
+                        variants={formVariants}
                         ref={input2Ref}
                         type="email"
                         placeholder="email"
@@ -94,7 +104,8 @@ function RegisterForm() {
                         required
                         onChange={(e) => setEmail(e.target.value)}
                     />
-                    <input
+                    <motion.input
+                        variants={formVariants}
                         ref={input3Ref}
                         type="password"
                         placeholder="password"
@@ -102,7 +113,8 @@ function RegisterForm() {
                         required
                         onChange={(e) => setPassword(e.target.value)}
                     />
-                    <input
+                    <motion.input
+                        variants={formVariants}
                         ref={input4Ref}
                         type="password"
                         placeholder="confirm password"
@@ -111,21 +123,25 @@ function RegisterForm() {
                         onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                 </div>
-                <button type="submit" disabled={loading} onClick={handleClick}>
+                <motion.button
+                    variants={formVariants}
+                    type="submit"
+                    disabled={loading}
+                    onClick={handleClick}>
                     Sign in
-                </button>
+                </motion.button>
                 {/* <button className="google__btn">
                     Sign in with
                     <span>
-                        <IconContext.Provider
-                            value={{
-                                size: "1.5rem",
-                            }}>
-                            <FcGoogle />
+                    <IconContext.Provider
+                    value={{
+                        size: "1.5rem",
+                        }}>
+                        <FcGoogle />
                         </IconContext.Provider>
                     </span>
-                </button> */}
-            </form>
+                    </button> */}
+            </motion.form>
             {error[0] && (
                 <NotificationMessage
                     message={error[1]}
