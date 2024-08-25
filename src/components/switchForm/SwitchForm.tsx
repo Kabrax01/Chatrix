@@ -1,4 +1,7 @@
+import "./switchForm.scss";
 import { FormTypes } from "../../App";
+import { MutableRefObject, useRef, useState } from "react";
+import { motion } from "framer-motion";
 
 interface SwitchFormProps {
     setFormType: React.Dispatch<React.SetStateAction<FormTypes>>;
@@ -6,31 +9,66 @@ interface SwitchFormProps {
 }
 
 function SwitchForm({ setFormType, formType }: SwitchFormProps) {
+    const [position, setPosition] = useState({
+        height: 55,
+        left: 167,
+        width: 146.03125,
+    });
+
+    function changePosition(ref) {
+        if (!ref.current) return;
+
+        const { height, width } = ref.current.getBoundingClientRect();
+
+        setPosition({
+            height,
+            width,
+            left: ref.current.offsetLeft,
+        });
+    }
+
     return (
         <div className="form__switch">
-            <button
-                style={{
-                    background: `${
-                        formType === "login"
-                            ? "hsl(226, 66%, 70%)"
-                            : "transparent"
-                    }`,
-                }}
-                onClick={() => setFormType("login")}>
-                Log in
-            </button>
-            <button
-                style={{
-                    background: `${
-                        formType === "register"
-                            ? "hsl(226, 66%, 70%)"
-                            : "transparent"
-                    }`,
-                }}
-                onClick={() => setFormType("register")}>
+            <Button
+                formType={formType}
+                changePosition={changePosition}
+                setFormType={setFormType}>
+                Login
+            </Button>
+            <Button
+                formType={formType}
+                changePosition={changePosition}
+                setFormType={setFormType}>
                 Register
-            </button>
+            </Button>
+            <Cursor position={position} />
         </div>
+    );
+}
+
+function Button({ formType, children, changePosition, setFormType }) {
+    const ref = useRef() as MutableRefObject<HTMLButtonElement>;
+    return (
+        <button
+            ref={ref}
+            style={{
+                color: `${formType === `${children}` ? "black" : "white"}`,
+            }}
+            onClick={() => {
+                setFormType(`${children}`);
+                changePosition(ref);
+            }}>
+            {children}
+        </button>
+    );
+}
+
+function Cursor({ position }) {
+    return (
+        <motion.div
+            animate={position}
+            transition={{ type: "spring", duration: 0.8, damping: 12 }}
+            className="cursor"></motion.div>
     );
 }
 
