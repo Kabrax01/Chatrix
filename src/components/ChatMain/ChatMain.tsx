@@ -25,6 +25,7 @@ function ChatMain() {
     const [loading, setLoading] = useState(false);
     const endRef = useRef() as MutableRefObject<HTMLDivElement>;
     const inputRef = useRef() as MutableRefObject<HTMLInputElement>;
+
     const { state } = useChatContext();
     const { activeChat, activeChatUser, user } = state;
 
@@ -49,9 +50,11 @@ function ChatMain() {
 
     useEffect(() => {
         if (endRef.current)
-            endRef.current.scrollIntoView({
-                behavior: "smooth",
-            });
+            setTimeout(() => {
+                endRef.current.scrollIntoView({
+                    behavior: "smooth",
+                });
+            }, 300);
     });
 
     useEffect(() => {
@@ -125,23 +128,23 @@ function ChatMain() {
             <div className="chat__messages">
                 {messages.map((message) => {
                     return (
-                        <div
-                            className={`message ${
-                                message.senderId === user?.uid ? "own" : ""
-                            }`}
-                            key={message.createdAt}>
-                            <div className="content">
-                                {message.img && (
-                                    <img
-                                        src={message.img}
-                                        className="sended__img"
-                                    />
-                                )}
-                                {message.text && <p>{message.text}</p>}
-
-                                {/* <span>1 min ago</span> */}
+                        <>
+                            <div
+                                className={`message ${
+                                    message.senderId === user?.uid ? "own" : ""
+                                }`}
+                                key={message.createdAt}>
+                                <div className="content">
+                                    {message.img && (
+                                        <img
+                                            src={message.img}
+                                            className="sended__img"
+                                        />
+                                    )}
+                                    {message.text && <p>{message.text}</p>}
+                                </div>
                             </div>
-                        </div>
+                        </>
                     );
                 })}
                 <div ref={endRef}></div>
@@ -172,7 +175,7 @@ function ChatMain() {
                             type="file"
                             id="icons__file__input"
                             name="user image"
-                            accept="image/jpeg image/webp"
+                            accept="image/jpeg, image/webp"
                             onChange={handleAddImage}
                         />
                         <SlEmotsmile
