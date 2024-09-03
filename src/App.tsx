@@ -1,7 +1,6 @@
 import "./app.scss";
 import ChatsList from "./components/chatsList/ChatsList";
 import ChatMain from "./components/chatMain/ChatMain";
-import ChatCurrent from "./components/chatDetails/ChatDetails";
 import MainChatView from "./components/mainChatView/MainChatView";
 import LoginForm from "./components/loginForm/LoginForm";
 import RegisterForm from "./components/registerForm/RegisterForm";
@@ -34,42 +33,41 @@ function App() {
 
     return (
         <ThemeContextProvider>
-            <MainChatView>
-                <div className="main_container">
-                    {loading ? (
-                        <Loading
-                            width={25}
-                            height={50}
-                            unit={"px"}
-                            text={"Loading..."}
-                        />
-                    ) : (
-                        <>
-                            {isLoggedIn ? (
-                                <ListContextProvider>
+            <ListContextProvider>
+                <MainChatView>
+                    <div className="main_container">
+                        {loading ? (
+                            <Loading
+                                width={25}
+                                height={50}
+                                unit={"px"}
+                                text={"Loading..."}
+                            />
+                        ) : (
+                            <>
+                                {isLoggedIn ? (
                                     <div className="chat__container">
                                         <ChatsList />
                                         <ChatMain />
-                                        <ChatCurrent />
                                     </div>
-                                </ListContextProvider>
-                            ) : (
-                                <div className="login__container">
-                                    <SwitchForm
-                                        setFormType={setFormType}
-                                        formType={formType}
-                                    />
-                                    {formType === "Login" ? (
-                                        <LoginForm />
-                                    ) : (
-                                        <RegisterForm />
-                                    )}
-                                </div>
-                            )}
-                        </>
-                    )}
-                </div>
-            </MainChatView>
+                                ) : (
+                                    <div className="login__container">
+                                        <SwitchForm
+                                            setFormType={setFormType}
+                                            formType={formType}
+                                        />
+                                        {formType === "Login" ? (
+                                            <LoginForm />
+                                        ) : (
+                                            <RegisterForm />
+                                        )}
+                                    </div>
+                                )}
+                            </>
+                        )}
+                    </div>
+                </MainChatView>
+            </ListContextProvider>
         </ThemeContextProvider>
     );
 }
