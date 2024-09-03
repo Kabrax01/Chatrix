@@ -1,6 +1,7 @@
 @use "../../../sass/abstracts/" as a;
 
 .add_user {
+    border: a.$border-grey-light-small;
     position: absolute;
     background-color: rgba(a.$color-grey-dark, 0.9);
     top: 50%;
@@ -40,6 +41,10 @@
             border-radius: a.$border-radius-small;
             margin-left: 1rem;
             cursor: pointer;
+
+            &:active {
+                transform: translateY(2px);
+            }
         }
     }
 
