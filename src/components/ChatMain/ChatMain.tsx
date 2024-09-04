@@ -49,12 +49,12 @@ function ChatMain() {
     }
 
     useEffect(() => {
-        if (endRef.current)
-            setTimeout(() => {
-                endRef.current.scrollIntoView({
-                    behavior: "smooth",
-                });
-            }, 300);
+        if (!endRef.current) return;
+        setTimeout(() => {
+            endRef.current.scrollIntoView({
+                behavior: "smooth",
+            });
+        }, 300);
     });
 
     useEffect(() => {
@@ -128,23 +128,21 @@ function ChatMain() {
             <div className="chat__messages">
                 {messages.map((message) => {
                     return (
-                        <>
-                            <div
-                                className={`message ${
-                                    message.senderId === user?.uid ? "own" : ""
-                                }`}
-                                key={message.createdAt}>
-                                <div className="content">
-                                    {message.img && (
-                                        <img
-                                            src={message.img}
-                                            className="sended__img"
-                                        />
-                                    )}
-                                    {message.text && <p>{message.text}</p>}
-                                </div>
+                        <div
+                            className={`message ${
+                                message.senderId === user?.uid ? "own" : ""
+                            }`}
+                            key={message.createdAt}>
+                            <div className="content">
+                                {message.img && (
+                                    <img
+                                        src={message.img}
+                                        className="sended__img"
+                                    />
+                                )}
+                                {message.text && <p>{message.text}</p>}
                             </div>
-                        </>
+                        </div>
                     );
                 })}
                 <div ref={endRef}></div>

@@ -2,8 +2,8 @@
 
 .search {
     width: 100%;
-    @include a.flexbox(center, space-between);
-    padding: 0 a.$margin-medium a.$margin-medium a.$margin-medium;
+    @include a.flexbox(center, center);
+    padding: 0 a.$margin-small a.$margin-medium a.$margin-small;
 
     &__input {
         background: a.$input;
@@ -13,6 +13,7 @@
         padding: 0.4rem;
         color: inherit;
         width: 80%;
+        margin-right: 1rem;
     }
 
     &__btn {
