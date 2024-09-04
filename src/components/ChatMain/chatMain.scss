@@ -9,16 +9,39 @@
     overflow-y: scroll;
     border-right: a.$border-grey-light-small;
 
+    @include a.responsive(smallScreen) {
+        grid-column: 1/3;
+        border-left: a.$border-grey-light-small;
+        display: none;
+
+        &.active {
+            display: flex;
+        }
+    }
+
     &__user {
         border-bottom: a.$border-grey-light-small;
         display: flex;
         padding: 1rem 1rem;
+
+        span {
+            @include a.flexboxCenter;
+            font-size: 2rem;
+            cursor: pointer;
+            margin: 0 a.$margin-medium;
+            display: none;
+
+            @include a.responsive(smallScreen) {
+                display: flex;
+            }
+        }
 
         img {
             height: 4rem;
             width: 4rem;
             border-radius: 50%;
             object-fit: cover;
+            margin-left: a.$margin-medium;
         }
 
         div {
@@ -67,6 +90,10 @@
                     max-width: 60%;
                     border-radius: 10px;
                     margin-bottom: 1rem;
+
+                    @include a.responsive(largeScreen) {
+                        max-width: 90%;
+                    }
                 }
             }
 

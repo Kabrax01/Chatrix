@@ -5,6 +5,10 @@
     width: 90vw;
     background-color: rgba(a.$color-black, 0.35);
     backdrop-filter: blur(7px);
+
+    @include a.responsive(XLScreen) {
+        max-width: 1800px;
+    }
 }
 
 .chat__container {
@@ -17,6 +21,10 @@
 
 .chat__container {
     grid-template-columns: 1fr 4fr;
+
+    @include a.responsive(largeScreen) {
+        grid-template-columns: 1.2fr 3fr;
+    }
 }
 
 .login__container {

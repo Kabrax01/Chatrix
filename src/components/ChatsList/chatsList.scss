@@ -9,10 +9,21 @@
     overflow: hidden;
     height: 100%;
 
+    @include a.responsive(smallScreen) {
+        display: none;
+    }
+
+    &.active {
+        @include a.responsive(smallScreen) {
+            grid-column: 1/3;
+            display: flex;
+        }
+    }
+
     .logout {
         margin-top: auto;
         border-top: a.$border-grey-light-small;
-        padding-top: 1.08rem;
+        padding-top: 1.1rem;
         width: 100%;
         display: flex;
         justify-content: center;

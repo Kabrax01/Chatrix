@@ -2,6 +2,7 @@ import "./chatMain.scss";
 import { MutableRefObject, useEffect, useRef, useState } from "react";
 import { IconContext } from "react-icons";
 import { SlPicture, SlEmotsmile } from "react-icons/sl";
+import { IoMdReturnLeft } from "react-icons/io";
 import { useChatContext } from "../../contexts/chatContext/ChatContext";
 import { arrayUnion, doc, onSnapshot, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase/firebase";
@@ -9,6 +10,7 @@ import updateUsersChats from "../../firebase/updateUserChats";
 import uploadUserImg from "../../firebase/uploadUserImg";
 import EmojiPicker, { Theme } from "emoji-picker-react";
 import Loading from "../loading/Loading";
+import { useListContext } from "../../contexts/listContext/ListContext";
 
 interface Message {
     senderId: string;
@@ -26,6 +28,7 @@ function ChatMain() {
     const endRef = useRef() as MutableRefObject<HTMLDivElement>;
     const inputRef = useRef() as MutableRefObject<HTMLInputElement>;
 
+    const { isMenuOpen, setIsMenuOpen } = useListContext();
     const { state } = useChatContext();
     const { activeChat, activeChatUser, user } = state;
 
@@ -49,12 +52,12 @@ function ChatMain() {
     }
 
     useEffect(() => {
-        if (endRef.current)
-            setTimeout(() => {
-                endRef.current.scrollIntoView({
-                    behavior: "smooth",
-                });
-            }, 300);
+        if (!endRef.current) return;
+        setTimeout(() => {
+            endRef.current.scrollIntoView({
+                behavior: "smooth",
+            });
+        }, 300);
     });
 
     useEffect(() => {
@@ -111,8 +114,11 @@ function ChatMain() {
     }
 
     return (
-        <div className="chat">
+        <div className={`chat ${isMenuOpen ? "" : "active"}`}>
             <div className="chat__user">
+                <span className="return">
+                    <IoMdReturnLeft onClick={() => setIsMenuOpen(true)} />
+                </span>
                 <img
                     src={
                         activeChatUser?.avatar
@@ -128,23 +134,21 @@ function ChatMain() {
             <div className="chat__messages">
                 {messages.map((message) => {
                     return (
-                        <>
-                            <div
-                                className={`message ${
-                                    message.senderId === user?.uid ? "own" : ""
-                                }`}
-                                key={message.createdAt}>
-                                <div className="content">
-                                    {message.img && (
-                                        <img
-                                            src={message.img}
-                                            className="sended__img"
-                                        />
-                                    )}
-                                    {message.text && <p>{message.text}</p>}
-                                </div>
+                        <div
+                            className={`message ${
+                                message.senderId === user?.uid ? "own" : ""
+                            }`}
+                            key={message.createdAt}>
+                            <div className="content">
+                                {message.img && (
+                                    <img
+                                        src={message.img}
+                                        className="sended__img"
+                                    />
+                                )}
+                                {message.text && <p>{message.text}</p>}
                             </div>
-                        </>
+                        </div>
                     );
                 })}
                 <div ref={endRef}></div>

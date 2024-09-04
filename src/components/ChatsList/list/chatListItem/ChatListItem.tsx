@@ -5,6 +5,7 @@ import {
 } from "../../../../contexts/chatContext/chatContextTypes";
 import { useChatContext } from "../../../../contexts/chatContext/ChatContext";
 import updateUsersChats from "../../../../firebase/updateUserChats";
+import { useListContext } from "../../../../contexts/listContext/ListContext";
 
 interface ListItemProps {
     user: ActiveChatUserObject;
@@ -16,6 +17,8 @@ function ChatListItem({ user, chat }: ListItemProps) {
     const { state, dispatch } = useChatContext();
     const { user: currentUser } = state;
 
+    const { setIsMenuOpen } = useListContext();
+
     function handleSelectActiveChatUser() {
         dispatch({
             type: "activeChatSelect",
@@ -26,6 +29,8 @@ function ChatListItem({ user, chat }: ListItemProps) {
             if (currentUser)
                 updateUsersChats(null, user.id, currentUser?.uid, chat.chatId);
         }
+
+        setIsMenuOpen(false);
 
         updateChats();
     }
