@@ -8,7 +8,8 @@ import { useListContext } from "../../contexts/listContext/ListContext.tsx";
 import { getAuth, signOut } from "firebase/auth";
 
 function ChatsList() {
-    const { isOpenCurrentUserEdit, isOpenSearch } = useListContext();
+    const { isOpenCurrentUserEdit, isOpenSearch, isMenuOpen } =
+        useListContext();
 
     function logOut() {
         const auth = getAuth();
@@ -16,7 +17,7 @@ function ChatsList() {
     }
 
     return (
-        <section className="chat__list">
+        <section className={`chat__list ${isMenuOpen ? "active" : ""}`}>
             <User />
             <SearchChat />
             {isOpenCurrentUserEdit ? <EditCurrentUser /> : <List />}

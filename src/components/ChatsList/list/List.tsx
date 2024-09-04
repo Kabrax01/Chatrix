@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 
 function List() {
     const [chats, setChats] = useState<undefined | ChatsType[]>();
+
     const { state } = useChatContext();
     const { uid } = state;
 

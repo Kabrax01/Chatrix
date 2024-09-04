@@ -10,7 +10,14 @@
     height: 100%;
 
     @include a.responsive(smallScreen) {
-        // grid-column: 1/3;
+        display: none;
+    }
+
+    &.active {
+        @include a.responsive(smallScreen) {
+            grid-column: 1/3;
+            display: flex;
+        }
     }
 
     .logout {

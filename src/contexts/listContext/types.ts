@@ -9,4 +9,6 @@ export interface ListContextTypes {
     setIsOpenSearch: React.Dispatch<React.SetStateAction<boolean>>;
     setIsOpenCurrentUserEdit: React.Dispatch<React.SetStateAction<boolean>>;
     isOpenCurrentUserEdit: boolean;
+    isMenuOpen: boolean;
+    setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
