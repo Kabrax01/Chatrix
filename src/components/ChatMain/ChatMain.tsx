@@ -26,7 +26,7 @@ function ChatMain() {
     const [image, setImage] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
     const endRef = useRef() as MutableRefObject<HTMLDivElement>;
-    const inputRef = useRef() as MutableRefObject<HTMLInputElement>;
+    const inputRef = useRef() as MutableRefObject<HTMLTextAreaElement>;
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
     const { isMenuOpen, setIsMenuOpen } = useListContext();
@@ -172,8 +172,7 @@ function ChatMain() {
                         width={`${screenWidth < 400 ? "270px" : ""}`}
                     />
                 </div>
-                <input
-                    type="text"
+                <textarea
                     name="type message"
                     placeholder="Type a message..."
                     value={text}
