@@ -28,6 +28,10 @@
         align-items: center;
         padding: 1rem 1rem;
 
+        @include a.responsive(tablets) {
+            padding: 0.5rem 0.5rem;
+        }
+
         span {
             @include a.flexboxCenter;
             font-size: 2rem;
@@ -47,15 +51,18 @@
 
             @include a.responsive(smallScreen) {
                 display: flex;
+                height: 2.5rem;
+                width: 2.5rem;
             }
         }
 
         img {
-            height: 4rem;
-            width: 4rem;
-            border-radius: 50%;
-            object-fit: cover;
+            @include a.userPicture(4rem);
             margin-left: a.$margin-medium;
+
+            @include a.responsive(smallScreen) {
+                @include a.userPicture(3rem);
+            }
         }
 
         div {
@@ -83,6 +90,9 @@
             margin-left: 0.5rem;
             margin-top: 1rem;
 
+            @include a.responsive(tablets) {
+                max-width: 90%;
+            }
             .content {
                 p {
                     padding: 1rem 1rem;
@@ -107,6 +117,10 @@
 
                     @include a.responsive(largeScreen) {
                         max-width: 90%;
+                    }
+
+                    @include a.responsive(tablets) {
+                        max-width: 100%;
                     }
                 }
             }
@@ -140,6 +154,11 @@
         gap: 1rem;
         padding: 1rem 1rem;
         border-top: a.$border-grey-light-small;
+
+        @include a.responsive(tablets) {
+            padding: 0.5rem 0.5rem;
+            gap: 0.7rem;
+        }
 
         input {
             flex: 1;
@@ -175,12 +194,20 @@
             font-size: 1rem;
             font-weight: 700;
             background-color: a.$color-blue;
+
+            @include a.responsive(tablets) {
+                padding: 0.5rem 1rem;
+            }
         }
 
         .emoji {
             position: absolute;
             bottom: 6rem;
             right: 10%;
+
+            @include a.responsive(tablets) {
+                right: 0;
+            }
 
             input {
                 padding-left: 2rem;

@@ -27,14 +27,11 @@ function ChatMain() {
     const [loading, setLoading] = useState(false);
     const endRef = useRef() as MutableRefObject<HTMLDivElement>;
     const inputRef = useRef() as MutableRefObject<HTMLInputElement>;
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
     const { isMenuOpen, setIsMenuOpen } = useListContext();
     const { state } = useChatContext();
     const { activeChat, activeChatUser, user } = state;
-
-    function handleAddEmoji(obj) {
-        setText((cur) => cur + obj.emoji);
-    }
 
     async function handleAddImage(e) {
         if (!e.target.files[0]) return;
@@ -49,6 +46,19 @@ function ChatMain() {
         } finally {
             setLoading(false);
         }
+    }
+
+    function handleAddEmoji(obj) {
+        setText((cur) => cur + obj.emoji);
+    }
+
+    function openEmojiWidow() {
+        function handleResize() {
+            setScreenWidth(window.innerWidth);
+        }
+        console.log(screenWidth);
+        window.addEventListener("resize", handleResize);
+        setOpenEmojiPicker((prev) => !prev);
     }
 
     useEffect(() => {
@@ -159,6 +169,7 @@ function ChatMain() {
                         open={openEmojiPicker}
                         theme={Theme.AUTO}
                         onEmojiClick={handleAddEmoji}
+                        width={`${screenWidth < 400 ? "270px" : ""}`}
                     />
                 </div>
                 <input
@@ -184,7 +195,7 @@ function ChatMain() {
                         />
                         <SlEmotsmile
                             className="icons__emoji"
-                            onClick={() => setOpenEmojiPicker((prev) => !prev)}
+                            onClick={openEmojiWidow}
                         />
                     </div>
                 </IconContext.Provider>
