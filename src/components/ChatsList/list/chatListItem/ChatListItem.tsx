@@ -30,9 +30,8 @@ function ChatListItem({ user, chat }: ListItemProps) {
                 updateUsersChats(null, user.id, currentUser?.uid, chat.chatId);
         }
 
-        setIsMenuOpen(false);
-
         updateChats();
+        setIsMenuOpen(false);
     }
 
     return (

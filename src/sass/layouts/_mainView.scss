@@ -5,9 +5,15 @@
     width: 90vw;
     background-color: rgba(a.$color-black, 0.35);
     backdrop-filter: blur(7px);
+    overflow: hidden;
 
     @include a.responsive(XLScreen) {
         max-width: 1800px;
+    }
+
+    @include a.responsive(mobile) {
+        width: 100%;
+        height: 100%;
     }
 }
 
