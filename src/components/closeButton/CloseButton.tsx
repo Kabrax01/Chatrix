@@ -13,7 +13,7 @@ function CloseButton({
     height = 1.3,
     width = 1.3,
     unit = "rem",
-    margin = "1rem 1rem 2rem 1rem",
+    margin = "1rem 1rem 1rem 1rem",
 }: CloseButtonProps) {
     const style = {
         display: "block",

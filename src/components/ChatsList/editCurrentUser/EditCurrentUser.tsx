@@ -53,6 +53,10 @@ function EditCurrentUser() {
             setError(`${(error as Error).message}`);
         } finally {
             setUploading(false);
+            setTimeout(() => {
+                setError(null);
+                setSuccess(false);
+            }, 3000);
         }
     }
 
@@ -62,8 +66,10 @@ function EditCurrentUser() {
                 callback={setIsOpenCurrentUserEdit}
                 height={1.3}
                 width={1.3}
+                margin="0 1rem 1rem 1rem"
                 unit={"rem"}
             />
+            <h1>Settings</h1>
             <form onSubmit={handleEditUser}>
                 <button disabled className="upload__btn">
                     <label htmlFor="avatar">Change user picture</label>
@@ -93,7 +99,7 @@ function EditCurrentUser() {
                     />
                 </div>
             ) : null}
-            <p className="error">{error}</p>
+            {/* <p className="error">{error}</p> */}
             {error && <p className="user__edit--error">{error}</p>}
             {success && (
                 <p className="user__edit--success">Upload successful !</p>
