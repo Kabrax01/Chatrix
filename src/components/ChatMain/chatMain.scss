@@ -12,16 +12,20 @@
     @include a.responsive(smallScreen) {
         grid-column: 1/3;
         border-left: a.$border-grey-light-small;
-        display: none;
+        opacity: 0;
+        transition: opacity 0.2s;
 
         &.active {
             display: flex;
+            opacity: 1;
+            transition: opacity 0.2s 0.2s;
         }
     }
 
     &__user {
         border-bottom: a.$border-grey-light-small;
         display: flex;
+        align-items: center;
         padding: 1rem 1rem;
 
         span {
@@ -30,6 +34,16 @@
             cursor: pointer;
             margin: 0 a.$margin-medium;
             display: none;
+            background-color: a.$color-blue;
+            height: 3rem;
+            width: 3rem;
+            color: black;
+            border-radius: a.$border-radius-medium;
+            margin-left: auto;
+
+            &:active {
+                transform: translateY(2px);
+            }
 
             @include a.responsive(smallScreen) {
                 display: flex;

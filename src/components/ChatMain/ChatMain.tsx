@@ -116,9 +116,6 @@ function ChatMain() {
     return (
         <div className={`chat ${isMenuOpen ? "" : "active"}`}>
             <div className="chat__user">
-                <span className="return">
-                    <IoMdReturnLeft onClick={() => setIsMenuOpen(true)} />
-                </span>
                 <img
                     src={
                         activeChatUser?.avatar
@@ -130,6 +127,9 @@ function ChatMain() {
                 <div>
                     <h3>{activeChatUser?.userName}</h3>
                 </div>
+                <span className="return">
+                    <IoMdReturnLeft onClick={() => setIsMenuOpen(true)} />
+                </span>
             </div>
             <div className="chat__messages">
                 {messages.map((message) => {
