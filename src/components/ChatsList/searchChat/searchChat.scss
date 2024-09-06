@@ -5,6 +5,10 @@
     @include a.flexbox(center, center);
     padding: 0 a.$margin-small a.$margin-medium a.$margin-small;
 
+    @include a.responsive(smallScreen) {
+        justify-content: space-between;
+    }
+
     &__input {
         background: a.$input;
         border: none;
@@ -25,5 +29,9 @@
         text-align: center;
         padding: 0.2rem;
         cursor: pointer;
+
+        @include a.responsive(smallScreen) {
+            margin-right: 1rem;
+        }
     }
 }

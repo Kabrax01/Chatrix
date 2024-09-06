@@ -14,7 +14,7 @@ function UserSearch() {
                 type="text"
                 className="search__input"
                 name="active chats search"
-                placeholder="Search"
+                placeholder="Search in your chats"
                 onChange={(e) => setInputValue(e.target.value)}
             />
             <button
