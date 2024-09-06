@@ -7,6 +7,10 @@
 
     img {
         @include a.userPicture(4rem);
+
+        @include a.responsive(mobile) {
+            @include a.userPicture(2.5rem);
+        }
     }
 
     button {
@@ -16,6 +20,10 @@
     &__credentials {
         @include a.flexboxCenter;
         gap: 1rem;
+
+        @include a.responsive(mobile) {
+            font-size: 0.8rem;
+        }
 
         div > p:first-of-type {
             margin-bottom: 0.5rem;

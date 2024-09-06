@@ -14,6 +14,10 @@
     padding: 1rem 1rem;
     overflow-y: scroll;
 
+    @include a.responsive(tablets) {
+        max-width: 80vw;
+    }
+
     h2 {
         display: block;
         text-align: center;
@@ -21,6 +25,7 @@
     }
 
     form {
+        display: flex;
         input {
             width: 20rem;
             padding: 0.5rem;
@@ -28,6 +33,14 @@
             border: none;
             border-radius: a.$border-radius-small;
             margin-bottom: 1rem;
+
+            @include a.responsive(tablets) {
+                max-width: 78%;
+            }
+
+            @include a.responsive(mobile) {
+                max-width: calc(80% - 1rem);
+            }
 
             &:focus {
                 outline: 4px solid a.$color-blue;
@@ -40,7 +53,12 @@
             border: none;
             border-radius: a.$border-radius-small;
             margin-left: 1rem;
+            margin-bottom: 1rem;
             cursor: pointer;
+
+            @include a.responsive(mobile) {
+                margin-left: 0.5rem;
+            }
 
             &:active {
                 transform: translateY(2px);
