@@ -10,6 +10,7 @@ import Loading from "./components/loading/Loading";
 import { ListContextProvider } from "./contexts/listContext/ListContext";
 import { useState } from "react";
 import SwitchForm from "./components/switchForm/SwitchForm";
+import Placeholder from "./components/placeholder/Placeholder";
 
 export const formVariants = {
     initial: {
@@ -48,7 +49,8 @@ function App() {
                                 {isLoggedIn ? (
                                     <div className="chat__container">
                                         <ChatsList />
-                                        <ChatMain />
+                                        {/* <ChatMain /> */}
+                                        <Placeholder />
                                     </div>
                                 ) : (
                                     <div className="login__container">
