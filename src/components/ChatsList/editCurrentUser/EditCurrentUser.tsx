@@ -7,6 +7,28 @@ import { useState } from "react";
 import Loading from "../../loading/Loading.js";
 import CloseButton from "../../closeButton/CloseButton.js";
 import { useListContext } from "../../../contexts/listContext/ListContext.js";
+import { AnimatePresence, motion } from "framer-motion";
+
+const notificationVariants = {
+    hidden: {
+        opacity: 0,
+        x: "-100%",
+    },
+    visible: {
+        opacity: 1,
+        x: 0,
+        transition: {
+            duration: 0.5,
+        },
+    },
+    exit: {
+        opacity: 0,
+        x: "100%",
+        transition: {
+            duration: 0.5,
+        },
+    },
+};
 
 function EditCurrentUser() {
     const [uploading, setUploading] = useState(false);
@@ -99,11 +121,30 @@ function EditCurrentUser() {
                     />
                 </div>
             ) : null}
-            {/* <p className="error">{error}</p> */}
-            {error && <p className="user__edit--error">{error}</p>}
-            {success && (
-                <p className="user__edit--success">Upload successful !</p>
-            )}
+            <AnimatePresence>
+                {error && (
+                    <motion.p
+                        variants={notificationVariants}
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
+                        key={"error"}
+                        className="user__edit--error">
+                        {error}
+                    </motion.p>
+                )}
+                {success && (
+                    <motion.p
+                        variants={notificationVariants}
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
+                        key={"success"}
+                        className="user__edit--success">
+                        Upload successful !
+                    </motion.p>
+                )}
+            </AnimatePresence>
         </div>
     );
 }
