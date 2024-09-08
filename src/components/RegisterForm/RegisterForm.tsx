@@ -10,7 +10,17 @@ import NotificationMessage from "../notificationMessage/NotificationMessage.js";
 import { useChatContext } from "../../contexts/chatContext/ChatContext.js";
 import { motion } from "framer-motion";
 
-import { formVariants } from "../../App";
+const formVariants = {
+    initial: {
+        opacity: 0,
+        rotateY: "90deg",
+    },
+    animate: {
+        opacity: 1,
+        rotateY: 0,
+        transition: { duration: 0.5, staggerChildren: 0.2 },
+    },
+};
 
 function RegisterForm() {
     const input1Ref = useRef() as MutableRefObject<HTMLInputElement>;
