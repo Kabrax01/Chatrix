@@ -1,4 +1,4 @@
-import "./placeholder.scss";
+import "./logo.scss";
 
 import { motion } from "framer-motion";
 
@@ -17,18 +17,13 @@ const pathVariants = {
     },
 };
 
-function Placeholder() {
+function Logo() {
     return (
-        <div className="placeholder">
-            <div className="text">
-                <h2>Welcome to Chatrix !</h2>
-                <p>Select new chat</p>
-            </div>
-
+        <div className="logo">
             <motion.svg
                 version="1.0"
-                xmlns="http://www.w3.org/2000/motion.svg"
-                viewBox="0 0 300.000000 297.000000"
+                xmlns="../../../public/logo-cropped.svg"
+                viewBox="45.45 41.14 224.16 205.69"
                 preserveAspectRatio="xMidYMid meet">
                 <metadata>
                     Created by potrace 1.10, written by Peter Selinger 2001-2011
@@ -297,4 +292,4 @@ c-3 -8 -9 -14 -15 -14 -5 0 -6 6 -2 13 4 6 -2 4 -14 -6 -11 -11 -26 -16 -32
     );
 }
 
-export default Placeholder;
+export default Logo;

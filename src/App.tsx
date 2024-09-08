@@ -10,19 +10,7 @@ import Loading from "./components/loading/Loading";
 import { ListContextProvider } from "./contexts/listContext/ListContext";
 import { useState } from "react";
 import SwitchForm from "./components/switchForm/SwitchForm";
-import Placeholder from "./components/placeholder/Placeholder";
-
-export const formVariants = {
-    initial: {
-        opacity: 0,
-        rotateY: "90deg",
-    },
-    animate: {
-        opacity: 1,
-        rotateY: 0,
-        transition: { duration: 0.5, staggerChildren: 0.2 },
-    },
-};
+import Logo from "./components/logo/Logo";
 
 export type FormTypes = "Login" | "Register";
 
@@ -30,7 +18,7 @@ function App() {
     const [formType, setFormType] = useState<FormTypes>("Register");
     const { state } = useChatContext();
 
-    const { loading, isLoggedIn } = state;
+    const { loading, isLoggedIn, activeChat } = state;
 
     return (
         <ThemeContextProvider>
@@ -49,8 +37,11 @@ function App() {
                                 {isLoggedIn ? (
                                     <div className="chat__container">
                                         <ChatsList />
-                                        {/* <ChatMain /> */}
-                                        <Placeholder />
+                                        {activeChat === null ? (
+                                            <Logo />
+                                        ) : (
+                                            <ChatMain />
+                                        )}
                                     </div>
                                 ) : (
                                     <div className="login__container">
