@@ -21,6 +21,7 @@ function ChatsList() {
             <User />
             <SearchChat />
             {isOpenCurrentUserEdit ? <EditCurrentUser /> : <List />}
+
             {isOpenSearch && <AddUser />}
             <div className="logout btn">
                 <button onClick={logOut}>Sign Out</button>
