@@ -21,6 +21,10 @@
 
         .upload__btn,
         input {
+            &:focus {
+                outline: 1px solid a.$color-blue;
+            }
+
             @include a.responsive(smallScreen) {
                 max-width: 70%;
             }

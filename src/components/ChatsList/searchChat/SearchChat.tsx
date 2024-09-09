@@ -4,6 +4,7 @@ import "./searchChat.scss";
 import { useState } from "react";
 import { useListContext } from "../../../contexts/listContext/ListContext";
 import { motion } from "framer-motion";
+import { useChatContext } from "../../../contexts/chatContext/ChatContext";
 
 const buttonVariants = {
     animate: {
@@ -16,9 +17,18 @@ const buttonVariants = {
     },
 };
 
+const stopVariants = {
+    animate: {
+        scale: 1,
+        boxShadow: "none",
+    },
+};
+
 function UserSearch() {
     const [inputValue, setInputValue] = useState<string>("");
     const { isOpenSearch, setIsOpenSearch } = useListContext();
+    const { state } = useChatContext();
+    const { activeChat } = state;
 
     return (
         <div className="search">
@@ -30,7 +40,7 @@ function UserSearch() {
                 onChange={(e) => setInputValue(e.target.value)}
             />
             <motion.button
-                variants={buttonVariants}
+                variants={activeChat ? stopVariants : buttonVariants}
                 animate="animate"
                 className="search__btn"
                 onClick={() => setIsOpenSearch((prev) => !prev)}>

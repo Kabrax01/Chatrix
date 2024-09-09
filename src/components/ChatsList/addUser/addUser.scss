@@ -13,6 +13,7 @@
     z-index: 100;
     padding: 1rem 1rem;
     overflow-y: scroll;
+    transition: all 1s;
 
     @include a.responsive(tablets) {
         max-width: 80vw;
