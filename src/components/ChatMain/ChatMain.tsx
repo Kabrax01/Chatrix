@@ -131,14 +131,14 @@ function ChatMain() {
                     src={
                         activeChatUser?.avatar
                             ? activeChatUser.avatar
-                            : "/avatar.png"
+                            : "./avatar.png"
                     }
                     alt="active chat user picture"
                 />
                 <div>
                     <h3>{activeChatUser?.userName}</h3>
                 </div>
-                <img className="logo--small" src="/logo-small.svg" alt="" />
+                <img className="logo--small" src="./logo-small.svg" alt="" />
                 <span className="return">
                     <IoMdReturnLeft onClick={() => setIsMenuOpen(true)} />
                 </span>

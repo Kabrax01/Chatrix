@@ -44,7 +44,7 @@ function ChatListItem({ user, chat }: ListItemProps) {
                 }`,
             }}>
             <img
-                src={avatar ? `${avatar}` : "/avatar.png"}
+                src={avatar ? `${avatar}` : "./avatar.png"}
                 alt="User picture"
             />
             <div className="item__text">
