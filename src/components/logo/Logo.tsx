@@ -1,5 +1,3 @@
-import "./logo.scss";
-
 import { motion } from "framer-motion";
 
 const pathVariants = {
@@ -16,16 +14,16 @@ const pathVariants = {
     },
 };
 
-function Logo() {
+function Logo({ header = "", text = "" }) {
     return (
         <div className="logo">
             <motion.div
                 initial={{ opacity: 0, y: -200 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1 }}>
-                <h1>Welcome to Chatrix !</h1>
+                <h1>{header}</h1>
                 <br />
-                <p>Add new chat or select one from your list</p>
+                <p>{text}</p>
             </motion.div>
             <motion.svg
                 version="1.0"

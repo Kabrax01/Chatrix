@@ -36,11 +36,26 @@ function App() {
                         {isLoggedIn && (
                             <div className="chat__container">
                                 <ChatsList />
-                                {activeChat === null ? <Logo /> : <ChatMain />}
+                                {activeChat === null ? (
+                                    <Logo
+                                        header={"Welcome to Chatrix"}
+                                        text={
+                                            "Add new user or select chat from your list"
+                                        }
+                                    />
+                                ) : (
+                                    <ChatMain />
+                                )}
                             </div>
                         )}
                         {isLoggedIn || (
                             <div className="login__container">
+                                <Logo header="Chatrix" />
+                                <img
+                                    className="logo--small"
+                                    src="/public/logo-small.svg"
+                                    alt=""
+                                />
                                 <SwitchForm
                                     setFormType={setFormType}
                                     formType={formType}
