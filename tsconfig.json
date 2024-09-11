@@ -6,6 +6,10 @@
         "module": "ESNext",
         "skipLibCheck": true,
         "noImplicitAny": false,
+        "baseUrl": "./",
+        "paths": {
+            "@/*": ["./src/*"]
+        },
 
         /* Bundler mode */
         "moduleResolution": "bundler",
@@ -21,6 +25,6 @@
         "noUnusedParameters": true,
         "noFallthroughCasesInSwitch": true
     },
-    "include": ["src", "src/firebase/firebase.js"],
+    "include": ["src", "src/firebase/firebase.js", "vite.config.ts"],
     "references": [{ "path": "./tsconfig.node.json" }]
 }
