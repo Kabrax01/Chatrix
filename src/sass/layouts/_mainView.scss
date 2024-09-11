@@ -11,9 +11,12 @@
         max-width: 1800px;
     }
 
+    @include a.responsive(tablets) {
+        height: 100%;
+    }
+
     @include a.responsive(mobile) {
         width: 100%;
-        height: 100%;
     }
 }
 
@@ -23,6 +26,34 @@
     display: grid;
     grid-template-rows: auto;
     border-radius: a.$border-radius-small;
+
+    .logo {
+        position: relative;
+        max-width: 100%;
+        max-height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        @include a.responsive(smallScreen) {
+            display: none;
+        }
+
+        div {
+            position: absolute;
+            top: 2rem;
+        }
+
+        svg {
+            @include a.responsive(largeScreen) {
+                width: 60%;
+            }
+
+            width: 40%;
+            height: auto;
+        }
+    }
 }
 
 .chat__container {
@@ -37,4 +68,51 @@
     @include a.flexboxCenter(column);
     height: 100%;
     width: 100%;
+
+    .logo {
+        position: absolute;
+        left: 4%;
+        height: auto;
+        width: 25vw;
+        z-index: -1;
+
+        @include a.responsive(largeScreen) {
+            width: 20vw;
+            top: 5%;
+        }
+
+        @include a.responsive(smallScreen) {
+            display: none;
+        }
+
+        h1 {
+            font-family: "Dela Gothic One", sans-serif;
+            text-align: center;
+            color: a.$color-blue;
+            text-transform: uppercase;
+        }
+    }
+
+    .logo--small {
+        position: absolute;
+        width: 15vw;
+        top: 2rem;
+        left: 2rem;
+
+        @media screen and (min-width: 1024px) {
+            display: none;
+        }
+
+        @include a.responsive(tablets) {
+            width: 7rem;
+            left: 0;
+            top: 0;
+        }
+
+        @include a.responsive(mobile) {
+            width: 7rem;
+            left: -1rem;
+            top: -1rem;
+        }
+    }
 }

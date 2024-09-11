@@ -19,20 +19,23 @@ function SwitchForm({ setFormType, formType }: SwitchFormProps) {
         function setSizeOfBackgroundElement() {
             const size = window.innerWidth;
             if (size < 480) {
+                setFormType("Register");
                 setPosition({
                     height: 35,
                     width: 100,
                     left: 102,
                 });
             } else {
+                setFormType("Register");
                 setPosition({
                     height: 55,
-                    left: 167,
                     width: 146.03125,
+                    left: 167,
                 });
             }
         }
         window.addEventListener("resize", setSizeOfBackgroundElement);
+        setSizeOfBackgroundElement();
 
         return () =>
             window.removeEventListener("resize", setSizeOfBackgroundElement);
@@ -71,10 +74,6 @@ function SwitchForm({ setFormType, formType }: SwitchFormProps) {
 
 function Button({ formType, children, changePosition, setFormType }) {
     const ref = useRef() as MutableRefObject<HTMLButtonElement>;
-
-    useEffect(() => {
-        changePosition(ref);
-    }, []);
 
     return (
         <button

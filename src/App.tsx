@@ -25,38 +25,47 @@ function App() {
             <ListContextProvider>
                 <MainChatView>
                     <div className="main_container">
-                        {loading ? (
+                        {loading && (
                             <Loading
                                 width={25}
                                 height={50}
                                 unit={"px"}
                                 text={"Loading..."}
                             />
-                        ) : (
-                            <>
-                                {isLoggedIn ? (
-                                    <div className="chat__container">
-                                        <ChatsList />
-                                        {activeChat === null ? (
-                                            <Logo />
-                                        ) : (
-                                            <ChatMain />
-                                        )}
-                                    </div>
+                        )}
+                        {isLoggedIn && (
+                            <div className="chat__container">
+                                <ChatsList />
+                                {activeChat === null ? (
+                                    <Logo
+                                        header={"Welcome to Chatrix"}
+                                        text={
+                                            "Add new user or select chat from your list"
+                                        }
+                                    />
                                 ) : (
-                                    <div className="login__container">
-                                        <SwitchForm
-                                            setFormType={setFormType}
-                                            formType={formType}
-                                        />
-                                        {formType === "Login" ? (
-                                            <LoginForm />
-                                        ) : (
-                                            <RegisterForm />
-                                        )}
-                                    </div>
+                                    <ChatMain />
                                 )}
-                            </>
+                            </div>
+                        )}
+                        {isLoggedIn || (
+                            <div className="login__container">
+                                <Logo header="Chatrix" />
+                                <img
+                                    className="logo--small"
+                                    src="/public/logo-small.svg"
+                                    alt=""
+                                />
+                                <SwitchForm
+                                    setFormType={setFormType}
+                                    formType={formType}
+                                />
+                                {formType === "Login" ? (
+                                    <LoginForm />
+                                ) : (
+                                    <RegisterForm />
+                                )}
+                            </div>
                         )}
                     </div>
                 </MainChatView>
