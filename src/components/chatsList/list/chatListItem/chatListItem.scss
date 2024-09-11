@@ -1,0 +1,29 @@
+@use "../../../../sass/abstracts/" as a;
+
+.item {
+    @include a.flexbox(center, flex-start, row);
+    padding: a.$margin-medium;
+    border-bottom: a.$border-grey-light-small;
+
+    &:first-of-type {
+        border-top: a.$border-grey-light-small;
+    }
+
+    img {
+        @include a.userPicture(3rem);
+    }
+
+    &__text {
+        margin-left: a.$margin-medium;
+
+        h3 {
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        p {
+            font-size: 0.9rem;
+            margin-top: a.$margin-small;
+        }
+    }
+}

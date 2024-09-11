@@ -1,0 +1,75 @@
+@use "../../../sass/abstracts/" as a;
+
+.add_user {
+    border: a.$border-grey-light-small;
+    position: absolute;
+    background-color: rgba(a.$color-grey-dark, 0.9);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: a.$border-radius-medium;
+    height: unset;
+    max-height: 40vh;
+    width: max-content;
+    z-index: 100;
+    padding: 1rem 1rem;
+    overflow-y: scroll;
+    transition: all 1s;
+
+    @include a.responsive(tablets) {
+        max-width: 80vw;
+    }
+
+    h2 {
+        display: block;
+        text-align: center;
+        margin-bottom: a.$margin-medium;
+    }
+
+    form {
+        display: flex;
+        input {
+            width: 20rem;
+            padding: 0.5rem;
+            outline: none;
+            border: none;
+            border-radius: a.$border-radius-small;
+            margin-bottom: 1rem;
+
+            @include a.responsive(tablets) {
+                max-width: 78%;
+            }
+
+            @include a.responsive(mobile) {
+                max-width: calc(80% - 1rem);
+            }
+
+            &:focus {
+                outline: 4px solid a.$color-blue;
+            }
+        }
+
+        button {
+            padding: 0.53rem 0.8rem;
+            background-color: a.$color-blue;
+            border: none;
+            border-radius: a.$border-radius-small;
+            margin-left: 1rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+
+            @include a.responsive(mobile) {
+                margin-left: 0.5rem;
+            }
+
+            &:active {
+                transform: translateY(2px);
+            }
+        }
+    }
+
+    .user__empty {
+        margin: 2rem 0;
+        @include a.flexboxCenter;
+    }
+}

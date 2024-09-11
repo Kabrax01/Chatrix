@@ -1,0 +1,44 @@
+@use "../../sass/abstracts" as a;
+
+.chat__list {
+    grid-column: 1/2;
+    @include a.flexbox(center, flex-start, column);
+    border: a.$border-grey-light-small;
+    border-top-left-radius: a.$border-radius-small;
+    border-bottom-left-radius: a.$border-radius-small;
+    overflow: hidden;
+    height: 100%;
+    transition: all 0.5s;
+
+    @include a.responsive(smallScreen) {
+        position: absolute;
+        z-index: 1;
+        transform: translateX(-100%);
+        width: 100%;
+    }
+
+    &.active {
+        @include a.responsive(smallScreen) {
+            grid-column: 1/3;
+            display: flex;
+            width: 100%;
+            transform: translateX(0);
+        }
+    }
+
+    .logout {
+        margin-top: auto;
+        border-top: a.$border-grey-light-small;
+        padding-top: 1.1rem;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        button {
+            width: 95%;
+            margin-bottom: 1.08rem;
+            font-size: 1.2rem;
+            height: 3rem;
+        }
+    }
+}
