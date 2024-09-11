@@ -12,7 +12,9 @@ function MainChatView({ children }: MainProps) {
             className="main"
             style={{
                 backgroundImage: `${
-                    theme === "dark" ? "url(bg_dark.jpg)" : "url(bg_light.jpg)"
+                    theme === "dark"
+                        ? "url(/bg_dark.jpg)"
+                        : "url(/bg_light.jpg)"
                 }`,
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
