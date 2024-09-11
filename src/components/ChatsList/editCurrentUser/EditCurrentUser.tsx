@@ -83,7 +83,12 @@ function EditCurrentUser() {
     }
 
     return (
-        <div className="user__edit">
+        <motion.div
+            className="user__edit"
+            key="editUser"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, transition: { duration: 0.5 } }}>
             <CloseButton
                 callback={setIsOpenCurrentUserEdit}
                 height={1.3}
@@ -145,7 +150,7 @@ function EditCurrentUser() {
                     </motion.p>
                 )}
             </AnimatePresence>
-        </div>
+        </motion.div>
     );
 }
 

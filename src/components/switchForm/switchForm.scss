@@ -6,6 +6,10 @@
     border-radius: a.$border-radius-medium;
     margin-top: 4rem;
 
+    @include a.responsive(mobile) {
+        max-width: 95%;
+    }
+
     button {
         background-color: transparent;
         color: white;
@@ -14,6 +18,12 @@
         font-size: 1.2rem;
         font-weight: bold;
         cursor: pointer;
+
+        @include a.responsive(mobile) {
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem 0.5rem;
+        }
     }
 }
 

@@ -11,7 +11,7 @@ const buttonVariants = {
         scale: [1, 1.2, 1],
         boxShadow: ["none", "0 0 15px rgba(255,255,255,0.8)", "none"],
         transition: {
-            repeat: Infinity,
+            repeat: 10,
             duration: 1.5,
         },
     },

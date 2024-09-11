@@ -9,9 +9,17 @@
         text-align: center;
         flex-grow: 1;
 
+        @include a.responsive(mobile) {
+            width: 95%;
+        }
+
         .register,
         .login {
             width: 25rem;
+
+            @include a.responsive(mobile) {
+                width: 95%;
+            }
         }
 
         .register__inputs,

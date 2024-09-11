@@ -1,6 +1,6 @@
 import "./switchForm.scss";
 import { FormTypes } from "../../App";
-import { MutableRefObject, useRef, useState } from "react";
+import { MutableRefObject, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 interface SwitchFormProps {
@@ -14,6 +14,29 @@ function SwitchForm({ setFormType, formType }: SwitchFormProps) {
         left: 167,
         width: 146.03125,
     });
+
+    useEffect(() => {
+        function setSizeOfBackgroundElement() {
+            const size = window.innerWidth;
+            if (size < 480) {
+                setPosition({
+                    height: 35,
+                    width: 100,
+                    left: 102,
+                });
+            } else {
+                setPosition({
+                    height: 55,
+                    left: 167,
+                    width: 146.03125,
+                });
+            }
+        }
+        window.addEventListener("resize", setSizeOfBackgroundElement);
+
+        return () =>
+            window.removeEventListener("resize", setSizeOfBackgroundElement);
+    }, []);
 
     function changePosition(ref) {
         if (!ref.current) return;
@@ -48,6 +71,11 @@ function SwitchForm({ setFormType, formType }: SwitchFormProps) {
 
 function Button({ formType, children, changePosition, setFormType }) {
     const ref = useRef() as MutableRefObject<HTMLButtonElement>;
+
+    useEffect(() => {
+        changePosition(ref);
+    }, []);
+
     return (
         <button
             ref={ref}

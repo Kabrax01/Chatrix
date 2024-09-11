@@ -5,6 +5,7 @@ import { db } from "../../../firebase/firebase.js";
 import { useChatContext } from "../../../contexts/chatContext/ChatContext.js";
 import { ChatsType } from "../types.js";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 function List() {
     const [chats, setChats] = useState<undefined | ChatsType[]>();
@@ -43,7 +44,12 @@ function List() {
     }, [uid]);
 
     return (
-        <div className="list">
+        <motion.div
+            className="list"
+            key="list"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { duration: 0.5 } }}
+            exit={{ opacity: 0, transition: { duration: 0.5 } }}>
             <ul>
                 {chats &&
                     chats.map((chat, i) => (
@@ -54,7 +60,7 @@ function List() {
                         />
                     ))}
             </ul>
-        </div>
+        </motion.div>
     );
 }
 
