@@ -6,6 +6,7 @@ import SearchedUser from "./searchedUser/SearchedUser.js";
 import { User } from "../types.js";
 import CloseButton from "../../closeButton/CloseButton.js";
 import { useListContext } from "../../../contexts/listContext/ListContext.js";
+import { motion } from "framer-motion";
 
 function AddUser() {
     const [user, setUser] = useState<null | User>(null);
@@ -49,7 +50,15 @@ function AddUser() {
     }
 
     return (
-        <div className="add_user">
+        <motion.div
+            className="add_user"
+            initial={{
+                opacity: 0,
+            }}
+            animate={{
+                opacity: 1,
+            }}
+            exit={{ opacity: 0, transition: { duration: 0.5 } }}>
             <CloseButton
                 callback={setIsOpenSearch}
                 height={1.4}
@@ -71,11 +80,14 @@ function AddUser() {
                 users.map((user, i) => <SearchedUser user={user} key={i} />)}
             {user && <SearchedUser user={user} />}
             {usersQueryEmpty && (
-                <div className="user__empty">
+                <motion.div
+                    className="user__empty"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}>
                     <p>No users found</p>
-                </div>
+                </motion.div>
             )}
-        </div>
+        </motion.div>
     );
 }
 

@@ -6,9 +6,10 @@
     background-color: rgba(a.$color-grey-dark, 0.9);
     top: 50%;
     left: 50%;
-    transform: translateY(-50%) translateX(-50%);
+    transform: translate(-50%, -50%);
     border-radius: a.$border-radius-medium;
-    max-height: 60vh;
+    height: unset;
+    max-height: 40vh;
     width: max-content;
     z-index: 100;
     padding: 1rem 1rem;
