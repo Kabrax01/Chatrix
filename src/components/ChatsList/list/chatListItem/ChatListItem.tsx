@@ -43,7 +43,10 @@ function ChatListItem({ user, chat }: ListItemProps) {
                     chat.hasBeenOpened ? "transparent" : "hsl(226, 66%, 70%)"
                 }`,
             }}>
-            <img src={avatar ? `${avatar}` : "avatar.png"} alt="User picture" />
+            <img
+                src={avatar ? `${avatar}` : "/avatar.png"}
+                alt="User picture"
+            />
             <div className="item__text">
                 <h3>{userName}</h3>
                 <p>{chat.lastMessage}</p>

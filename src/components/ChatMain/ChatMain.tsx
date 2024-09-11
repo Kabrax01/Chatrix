@@ -131,7 +131,7 @@ function ChatMain() {
                     src={
                         activeChatUser?.avatar
                             ? activeChatUser.avatar
-                            : "avatar.png"
+                            : "/avatar.png"
                     }
                     alt="active chat user picture"
                 />

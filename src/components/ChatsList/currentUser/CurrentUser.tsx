@@ -11,7 +11,7 @@ function User() {
     return (
         <div className="user">
             <img
-                src={user?.avatar ? `${user.avatar}` : "avatar.png"}
+                src={user?.avatar ? `${user.avatar}` : "/avatar.png"}
                 alt="Current user picture"
             />
             <p className="user__name">{user?.userName}</p>
