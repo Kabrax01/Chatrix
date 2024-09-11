@@ -25,38 +25,32 @@ function App() {
             <ListContextProvider>
                 <MainChatView>
                     <div className="main_container">
-                        {loading ? (
+                        {loading && (
                             <Loading
                                 width={25}
                                 height={50}
                                 unit={"px"}
                                 text={"Loading..."}
                             />
-                        ) : (
-                            <>
-                                {isLoggedIn ? (
-                                    <div className="chat__container">
-                                        <ChatsList />
-                                        {activeChat === null ? (
-                                            <Logo />
-                                        ) : (
-                                            <ChatMain />
-                                        )}
-                                    </div>
+                        )}
+                        {isLoggedIn && (
+                            <div className="chat__container">
+                                <ChatsList />
+                                {activeChat === null ? <Logo /> : <ChatMain />}
+                            </div>
+                        )}
+                        {isLoggedIn || (
+                            <div className="login__container">
+                                <SwitchForm
+                                    setFormType={setFormType}
+                                    formType={formType}
+                                />
+                                {formType === "Login" ? (
+                                    <LoginForm />
                                 ) : (
-                                    <div className="login__container">
-                                        <SwitchForm
-                                            setFormType={setFormType}
-                                            formType={formType}
-                                        />
-                                        {formType === "Login" ? (
-                                            <LoginForm />
-                                        ) : (
-                                            <RegisterForm />
-                                        )}
-                                    </div>
+                                    <RegisterForm />
                                 )}
-                            </>
+                            </div>
                         )}
                     </div>
                 </MainChatView>

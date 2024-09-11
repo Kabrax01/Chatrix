@@ -11,9 +11,12 @@
         max-width: 1800px;
     }
 
+    @include a.responsive(tablets) {
+        height: 100%;
+    }
+
     @include a.responsive(mobile) {
         width: 100%;
-        height: 100%;
     }
 }
 
