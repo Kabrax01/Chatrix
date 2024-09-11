@@ -1,6 +1,6 @@
 import "./app.scss";
-import ChatsList from "./components/chatsList/ChatsList";
-import ChatMain from "./components/chatMain/ChatMain";
+import ChatsList from "./components/chatsList/ChatsList.tsx";
+import ChatMain from "./components/chatMain/ChatMain.tsx";
 import MainChatView from "./components/mainChatView/MainChatView";
 import LoginForm from "./components/loginForm/LoginForm";
 import RegisterForm from "./components/registerForm/RegisterForm";
