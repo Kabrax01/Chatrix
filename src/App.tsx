@@ -53,7 +53,7 @@ function App() {
                                 <Logo header="Chatrix" />
                                 <img
                                     className="logo--small"
-                                    src="/public/logo-small.svg"
+                                    src="/logo-small.svg"
                                     alt=""
                                 />
                                 <SwitchForm
