@@ -19,14 +19,14 @@ function SwitchForm({ setFormType, formType }: SwitchFormProps) {
         function setSizeOfBackgroundElement() {
             const size = window.innerWidth;
             if (size < 480) {
-                setFormType("Register");
+                // setFormType("Register");
                 setPosition({
                     height: 35,
                     width: 100,
                     left: 102,
                 });
             } else {
-                setFormType("Register");
+                // setFormType("Register");
                 setPosition({
                     height: 55,
                     width: 146.03125,
