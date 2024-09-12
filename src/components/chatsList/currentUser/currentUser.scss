@@ -1,0 +1,27 @@
+@use "../../../sass/abstracts" as a;
+
+.user {
+    @include a.flexbox;
+    width: 100%;
+    padding: a.$margin-medium;
+
+    img {
+        @include a.userPicture(4rem);
+        flex-shrink: 0;
+        margin-right: a.$margin-medium;
+    }
+
+    p {
+        flex: 1;
+    }
+
+    span {
+        display: inline-block;
+        font-size: 1.2rem;
+        cursor: pointer;
+
+        &:active {
+            transform: translateY(2px);
+        }
+    }
+}
