@@ -1,4 +1,4 @@
-import { useThemeContext } from "../../contexts/themeContext/ThemeContext";
+import { useThemeContext } from "../../contexts/temp/themeContext/ThemeContext";
 
 type MainProps = {
     children: React.ReactNode;

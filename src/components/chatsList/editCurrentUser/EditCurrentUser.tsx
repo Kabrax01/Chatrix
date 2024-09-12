@@ -1,12 +1,12 @@
 import "./editCurrentUser.scss";
 import uploadUserImg from "../../../firebase/uploadUserImg.js";
-import { useChatContext } from "../../../contexts/chatContext/ChatContext.js";
+import { useChatContext } from "../../../contexts/temp/chatContext/ChatContext.js";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../../firebase/firebase.js";
 import { useState } from "react";
 import Loading from "../../loading/Loading.js";
 import CloseButton from "../../closeButton/CloseButton.js";
-import { useListContext } from "../../../contexts/listContext/ListContext.js";
+import { useListContext } from "../../../contexts/temp/listContext/ListContext.js";
 import { AnimatePresence, motion } from "framer-motion";
 
 const notificationVariants = {
@@ -54,7 +54,10 @@ function EditCurrentUser() {
                 throw new Error("Max file size: 1MB");
             } else if (file.name !== "") {
                 const imgURL = await uploadUserImg(file);
-                dispatch({ type: "userAvatarChange", payload: imgURL });
+                dispatch({
+                    type: "userAvatarChange",
+                    payload: imgURL as string,
+                });
                 await updateDoc(userDocRef, {
                     avatar: imgURL,
                 });

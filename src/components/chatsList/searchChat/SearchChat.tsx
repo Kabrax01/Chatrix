@@ -2,9 +2,9 @@ import { IconContext } from "react-icons";
 import { FiUserMinus, FiUserPlus } from "react-icons/fi";
 import "./searchChat.scss";
 // import { useState } from "react";
-import { useListContext } from "../../../contexts/listContext/ListContext";
+import { useListContext } from "../../../contexts/temp/listContext/ListContext";
 import { motion } from "framer-motion";
-import { useChatContext } from "../../../contexts/chatContext/ChatContext";
+import { useChatContext } from "../../../contexts/temp/chatContext/ChatContext";
 
 const buttonVariants = {
     animate: {
