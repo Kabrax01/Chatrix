@@ -1,6 +1,6 @@
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "../../../firebase/firebase.js";
+import { db } from "../../firebase/firebase.js";
 import { useReducer, createContext, useContext, useEffect } from "react";
 import {
     ChatContextProps,

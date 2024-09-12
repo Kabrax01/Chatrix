@@ -3,7 +3,7 @@ import { MutableRefObject, useEffect, useRef, useState } from "react";
 import { IconContext } from "react-icons";
 import { SlPicture, SlEmotsmile } from "react-icons/sl";
 import { IoMdReturnLeft } from "react-icons/io";
-import { useChatContext } from "../../contexts/temp/chatContext/ChatContext";
+import { useChatContext } from "../../contexts/chatContext/ChatContext";
 import { arrayUnion, doc, onSnapshot, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase/firebase";
 import updateUsersChats from "../../firebase/updateUserChats";

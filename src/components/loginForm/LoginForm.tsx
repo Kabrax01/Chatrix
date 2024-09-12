@@ -2,7 +2,7 @@ import { MutableRefObject, useRef, useState } from "react";
 import "./loginForm.scss";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import NotificationMessage from "../notificationMessage/NotificationMessage";
-import { useChatContext } from "../../contexts/temp/chatContext/ChatContext";
+import { useChatContext } from "../../contexts/chatContext/ChatContext";
 import { motion } from "framer-motion";
 
 const formVariants = {

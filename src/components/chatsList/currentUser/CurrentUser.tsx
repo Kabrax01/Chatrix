@@ -1,4 +1,4 @@
-import { useChatContext } from "../../../contexts/temp/chatContext/ChatContext";
+import { useChatContext } from "../../../contexts/chatContext/ChatContext";
 import "./currentUser.scss";
 import { FaRegEdit } from "react-icons/fa";
 import { useListContext } from "../../../contexts/temp/listContext/ListContext";
