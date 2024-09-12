@@ -1,9 +1,9 @@
 import "./app.scss";
-import ChatsList from "./components/chatsList/ChatsList";
-import ChatMain from "./components/chatMain/ChatMain";
+import ChatsList from "./components/ChatsList/ChatsList";
+import ChatMain from "./components/ChatMain/ChatMain";
 import MainChatView from "./components/mainChatView/MainChatView";
-import LoginForm from "./components/loginForm/LoginForm";
-import RegisterForm from "./components/registerForm/RegisterForm";
+import LoginForm from "./components/LoginForm/LoginForm";
+import RegisterForm from "./components/RegisterForm/RegisterForm";
 import { ThemeContextProvider } from "./contexts/themeContext/ThemeContext";
 import { useChatContext } from "./contexts/chatContext/ChatContext";
 import Loading from "./components/loading/Loading";

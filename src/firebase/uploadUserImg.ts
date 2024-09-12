@@ -13,7 +13,7 @@ async function uploadUserImg(file) {
 
         if (res.state === "success") {
             const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-            return downloadURL;
+            return downloadURL as string;
         }
     } catch (error) {
         return error;
