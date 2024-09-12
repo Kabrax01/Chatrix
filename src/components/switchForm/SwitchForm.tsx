@@ -1,5 +1,5 @@
 import "./switchForm.scss";
-import { FormTypes } from "../../../App";
+import { FormTypes } from "../../App";
 import { MutableRefObject, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 

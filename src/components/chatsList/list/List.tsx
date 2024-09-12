@@ -1,8 +1,8 @@
 import "./list.scss";
 import ChatListItem from "./chatListItem/ChatListItem.js";
 import { doc, getDoc, onSnapshot } from "firebase/firestore";
-import { db } from "../../../../firebase/firebase.js";
-import { useChatContext } from "../../../../contexts/chatContext/ChatContext.js";
+import { db } from "../../../firebase/firebase.js";
+import { useChatContext } from "../../../contexts/chatContext/ChatContext.js";
 import { ChatsType } from "../types.js";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";

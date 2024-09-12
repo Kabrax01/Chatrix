@@ -3,14 +3,14 @@ import { MutableRefObject, useEffect, useRef, useState } from "react";
 import { IconContext } from "react-icons";
 import { SlPicture, SlEmotsmile } from "react-icons/sl";
 import { IoMdReturnLeft } from "react-icons/io";
-import { useChatContext } from "../../../contexts/chatContext/ChatContext";
+import { useChatContext } from "../../contexts/chatContext/ChatContext";
 import { arrayUnion, doc, onSnapshot, updateDoc } from "firebase/firestore";
-import { db } from "../../../firebase/firebase";
-import updateUsersChats from "../../../firebase/updateUserChats";
-import uploadUserImg from "../../../firebase/uploadUserImg";
+import { db } from "../../firebase/firebase";
+import updateUsersChats from "../../firebase/updateUserChats";
+import uploadUserImg from "../../firebase/uploadUserImg";
 import EmojiPicker, { Theme } from "emoji-picker-react";
 import Loading from "../loading/Loading";
-import { useListContext } from "../../../contexts/listContext/ListContext";
+import { useListContext } from "../../contexts/listContext/ListContext";
 
 interface Message {
     senderId: string;

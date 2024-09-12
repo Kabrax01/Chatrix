@@ -1,6 +1,6 @@
 import "./searchedUser.scss";
 import { User } from "../../types.js";
-import { db } from "../../../../../firebase/firebase.js";
+import { db } from "../../../../firebase/firebase.js";
 import {
     arrayUnion,
     collection,
@@ -9,10 +9,10 @@ import {
     setDoc,
     updateDoc,
 } from "firebase/firestore";
-import { useChatContext } from "../../../../../contexts/chatContext/ChatContext.js";
+import { useChatContext } from "../../../../contexts/chatContext/ChatContext.js";
 import { useRef } from "react";
-import getChatsArray from "../../../../../firebase/getChatsArray.js";
-import { useListContext } from "../../../../../contexts/listContext/ListContext.js";
+import getChatsArray from "../../../../firebase/getChatsArray.js";
+import { useListContext } from "../../../../contexts/listContext/ListContext.js";
 
 interface UserProps {
     user: User;
