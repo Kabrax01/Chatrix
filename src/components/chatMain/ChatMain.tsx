@@ -10,7 +10,7 @@ import updateUsersChats from "../../firebase/updateUserChats";
 import uploadUserImg from "../../firebase/uploadUserImg";
 import EmojiPicker, { Theme } from "emoji-picker-react";
 import Loading from "../loading/Loading";
-import { useListContext } from "../../contexts/temp/listContext/ListContext";
+import { useListContext } from "../../contexts/listContext/ListContext";
 
 interface Message {
     senderId: string;

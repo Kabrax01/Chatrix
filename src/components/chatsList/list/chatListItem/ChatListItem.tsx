@@ -5,7 +5,7 @@ import {
 } from "../../../../contexts/chatContext/chatContextTypes";
 import { useChatContext } from "../../../../contexts/chatContext/ChatContext";
 import updateUsersChats from "../../../../firebase/updateUserChats";
-import { useListContext } from "../../../../contexts/temp/listContext/ListContext";
+import { useListContext } from "../../../../contexts/listContext/ListContext";
 
 interface ListItemProps {
     user: ActiveChatUserObject;

@@ -5,7 +5,7 @@ import { useState } from "react";
 import SearchedUser from "./searchedUser/SearchedUser.js";
 import { User } from "../types.js";
 import CloseButton from "../../closeButton/CloseButton.js";
-import { useListContext } from "../../../contexts/temp/listContext/ListContext.js";
+import { useListContext } from "../../../contexts/listContext/ListContext.js";
 import { motion } from "framer-motion";
 
 function AddUser() {

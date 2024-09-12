@@ -12,7 +12,7 @@ import {
 import { useChatContext } from "../../../../contexts/chatContext/ChatContext.js";
 import { useRef } from "react";
 import getChatsArray from "../../../../firebase/getChatsArray.js";
-import { useListContext } from "../../../../contexts/temp/listContext/ListContext.js";
+import { useListContext } from "../../../../contexts/listContext/ListContext.js";
 
 interface UserProps {
     user: User;

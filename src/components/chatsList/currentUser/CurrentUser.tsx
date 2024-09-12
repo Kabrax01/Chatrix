@@ -1,7 +1,7 @@
 import { useChatContext } from "../../../contexts/chatContext/ChatContext";
 import "./currentUser.scss";
 import { FaRegEdit } from "react-icons/fa";
-import { useListContext } from "../../../contexts/temp/listContext/ListContext";
+import { useListContext } from "../../../contexts/listContext/ListContext";
 
 function User() {
     const { state } = useChatContext();
