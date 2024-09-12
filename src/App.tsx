@@ -1,15 +1,15 @@
 import "./app.scss";
-import ChatsList from "./components/ChatsList/ChatsList";
-import ChatMain from "./components/ChatMain/ChatMain";
-import MainChatView from "./components/mainChatView/MainChatView";
-import LoginForm from "./components/LoginForm/LoginForm";
-import RegisterForm from "./components/RegisterForm/RegisterForm";
+import ChatsList from "./components/temp/chatsList/ChatsList";
+import ChatMain from "./components/temp/chatMain/ChatMain";
+import MainChatView from "./components/temp/mainChatView/MainChatView";
+import LoginForm from "./components/temp/loginForm/LoginForm";
+import RegisterForm from "./components/temp/registerForm/RegisterForm";
 import { ThemeContextProvider } from "./contexts/themeContext/ThemeContext";
 import { useChatContext } from "./contexts/chatContext/ChatContext";
-import Loading from "./components/loading/Loading";
+import Loading from "./components/temp/loading/Loading";
 import { ListContextProvider } from "./contexts/listContext/ListContext";
 import { useState } from "react";
-import SwitchForm from "./components/switchForm/SwitchForm";
+import SwitchForm from "./components/temp/switchForm/SwitchForm";
 import Logo from "./components/logo/Logo";
 
 export type FormTypes = "Login" | "Register";
