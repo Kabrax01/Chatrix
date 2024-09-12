@@ -12,11 +12,11 @@
     }
 
     @include a.responsive(tablets) {
-        height: 100%;
+        height: 100dvh;
     }
 
     @include a.responsive(mobile) {
-        width: 100%;
+        width: 100vw;
     }
 }
 
