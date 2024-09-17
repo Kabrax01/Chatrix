@@ -20,6 +20,10 @@
         max-width: 80vw;
     }
 
+    @include a.responsive(mobile) {
+        max-width: 95vw;
+    }
+
     h2 {
         display: block;
         text-align: center;
