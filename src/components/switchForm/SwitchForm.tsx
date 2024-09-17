@@ -10,9 +10,9 @@ interface SwitchFormProps {
 
 function SwitchForm({ setFormType, formType }: SwitchFormProps) {
     const [position, setPosition] = useState({
-        height: 55,
-        left: 167,
-        width: 146.03125,
+        height: 0,
+        left: 0,
+        width: 0,
     });
 
     function changePosition(ref) {
@@ -56,8 +56,12 @@ function Button({ formType, children, changePosition, setFormType }) {
         }
 
         window.addEventListener("resize", resize);
+        window.addEventListener("load", resize);
 
-        return () => window.removeEventListener("resize", resize);
+        return () => {
+            window.removeEventListener("resize", resize);
+            window.addEventListener("load", resize);
+        };
     });
 
     return (
