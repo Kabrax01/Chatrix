@@ -44,9 +44,16 @@
                 color: black;
             }
 
-            label {
+            &--label {
                 cursor: pointer;
+                display: block;
+                width: 100%;
+                padding: 0.5rem 1rem;
             }
+        }
+
+        .submit__btn {
+            padding: 0.5rem 1rem;
         }
 
         input[type="file"] {

@@ -102,7 +102,9 @@ function EditCurrentUser() {
             <h1>Settings</h1>
             <form onSubmit={handleEditUser}>
                 <button disabled className="upload__btn">
-                    <label htmlFor="avatar">Change user picture</label>
+                    <label className="upload__btn--label" htmlFor="avatar">
+                        Change user picture
+                    </label>
                 </button>
                 <input
                     type="file"
@@ -117,7 +119,7 @@ function EditCurrentUser() {
                     name="userName"
                     id="userName"
                 />
-                <button>Submit</button>
+                <button className="submit__btn">Submit</button>
             </form>
             {uploading ? (
                 <div className="upload__indicator">
