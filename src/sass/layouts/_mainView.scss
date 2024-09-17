@@ -12,7 +12,7 @@
     }
 
     @include a.responsive(tablets) {
-        height: 100dvh;
+        height: 100lvh;
     }
 
     @include a.responsive(mobile) {

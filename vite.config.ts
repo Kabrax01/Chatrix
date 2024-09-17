@@ -5,4 +5,8 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
     plugins: [react()],
     base: "/Chatrix/",
+    server: {
+        host: true,
+        port: 5173,
+    },
 });

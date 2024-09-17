@@ -56,13 +56,15 @@ function Button({ formType, children, changePosition, setFormType }) {
         }
 
         window.addEventListener("resize", resize);
-        window.addEventListener("load", resize);
 
         return () => {
             window.removeEventListener("resize", resize);
-            window.addEventListener("load", resize);
         };
     });
+
+    useEffect(() => {
+        changePosition(ref);
+    }, []);
 
     return (
         <button
