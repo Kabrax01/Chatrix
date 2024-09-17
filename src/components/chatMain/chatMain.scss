@@ -111,7 +111,7 @@
             max-width: 75%;
             margin-left: 0.5rem;
             margin-top: 1rem;
-            word-break: break-all;
+            word-break: balance;
 
             @include a.responsive(tablets) {
                 max-width: 90%;

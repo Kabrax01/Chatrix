@@ -48,8 +48,8 @@ function List() {
             className="list"
             key="list"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1, transition: { duration: 0.5 } }}
-            exit={{ opacity: 0, transition: { duration: 0.5 } }}>
+            animate={{ opacity: 1, transition: { duration: 0.2 } }}
+            exit={{ opacity: 0, transition: { duration: 0.2 } }}>
             <ul>
                 {chats &&
                     chats.map((chat, i) => (
