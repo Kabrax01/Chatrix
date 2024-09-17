@@ -1,5 +1,5 @@
 import "./addUser.scss";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../../firebase/firebase.js";
 import { useState } from "react";
 import SearchedUser from "./searchedUser/SearchedUser.js";
@@ -14,35 +14,47 @@ function AddUser() {
     const [usersQueryEmpty, setUsersQueryEmpty] = useState(false);
     const { setIsOpenSearch } = useListContext();
 
-    async function handleSearchUser(e) {
+    async function handleSearchUser(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
-        const formData = new FormData(e.target);
-        const username = formData.get("username");
+        const formData = new FormData(e.currentTarget);
+        const username = formData.get("username")?.toString().toLowerCase();
+
+        if (username === "") {
+            setUsers(null);
+            setUser(null);
+            setUsersQueryEmpty(true);
+            return;
+        }
 
         try {
             const userRef = collection(db, "users");
-            const q = query(userRef, where("userName", "==", username));
-            const querySnapShot = await getDocs(q);
+            const querySnapShot = await getDocs(userRef);
 
             if (!querySnapShot.empty) {
-                setUsersQueryEmpty(false);
-                if (querySnapShot.docs.length === 1) {
-                    setUser(querySnapShot.docs[0].data() as User);
-                    setUsers(null);
-                } else if (querySnapShot.docs.length > 1) {
-                    const users: User[] = [];
+                const allUsers: User[] = [];
 
-                    querySnapShot.forEach((doc) => {
-                        users.push(doc.data() as User);
-                    });
-                    setUsers(users);
+                querySnapShot.forEach((doc) => {
+                    allUsers.push(doc.data() as User);
+                });
+
+                const filteredUsers = allUsers.filter((user) =>
+                    user.userName.toLowerCase().includes(username || "")
+                );
+
+                if (filteredUsers.length === 1) {
+                    setUser(filteredUsers[0]);
+                    setUsers(null);
+                    setUsersQueryEmpty(false);
+                } else if (filteredUsers.length > 1) {
+                    setUsers(filteredUsers);
                     setUser(null);
+                    setUsersQueryEmpty(false);
+                } else {
+                    setUsers(null);
+                    setUser(null);
+                    setUsersQueryEmpty(true);
                 }
-            } else {
-                setUsers(null);
-                setUser(null);
-                setUsersQueryEmpty(true);
             }
         } catch (error) {
             console.error(`${(error as Error).message}`);
