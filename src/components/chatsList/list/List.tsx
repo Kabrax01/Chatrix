@@ -66,7 +66,6 @@ function List() {
                     exit={{ opacity: 0, transition: { duration: 0.5 } }}>
                     {filteredChats?.length ? (
                         <ul>
-                            <li>Filter</li>
                             {filteredChats.map((chat) => (
                                 <ChatListItem
                                     user={chat.user}
