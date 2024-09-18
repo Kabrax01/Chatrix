@@ -42,11 +42,7 @@ function App() {
                         {!isLoggedIn && (
                             <div className="login__container">
                                 <Logo text={""} />
-                                <img
-                                    className="logo--small"
-                                    src="./logo-small.svg"
-                                    alt=""
-                                />
+
                                 <SwitchForm
                                     setFormType={setFormType}
                                     formType={formType}

@@ -3,6 +3,12 @@
 .form__container {
     position: relative;
 
+    &--register {
+        @include a.responsive(mobile) {
+            padding-bottom: 5rem;
+        }
+    }
+
     &--register,
     &--login {
         @include a.flexboxCenter(column);

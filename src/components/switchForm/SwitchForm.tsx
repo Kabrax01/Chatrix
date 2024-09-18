@@ -28,20 +28,30 @@ function SwitchForm({ setFormType, formType }: SwitchFormProps) {
     }
 
     return (
-        <div className="form__switch">
-            <Button
-                formType={formType}
-                changePosition={changePosition}
-                setFormType={setFormType}>
-                Login
-            </Button>
-            <Button
-                formType={formType}
-                changePosition={changePosition}
-                setFormType={setFormType}>
-                Register
-            </Button>
-            <Cursor position={position} />
+        <div className="switch__container">
+            <div className="switch--logo">
+                <img
+                    className="logo--small"
+                    src="./logo-small-cropped.svg"
+                    alt=""
+                />
+                <h1 className="logo__header">Chatrix</h1>
+            </div>
+            <div className="form__switch">
+                <Button
+                    formType={formType}
+                    changePosition={changePosition}
+                    setFormType={setFormType}>
+                    Login
+                </Button>
+                <Button
+                    formType={formType}
+                    changePosition={changePosition}
+                    setFormType={setFormType}>
+                    Register
+                </Button>
+                <Cursor position={position} />
+            </div>
         </div>
     );
 }

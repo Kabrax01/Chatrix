@@ -85,27 +85,4 @@
             display: none;
         }
     }
-
-    .logo--small {
-        position: absolute;
-        width: 15vw;
-        top: 2rem;
-        left: 2rem;
-
-        @media screen and (min-width: 1024px) {
-            display: none;
-        }
-
-        @include a.responsive(tablets) {
-            width: 7rem;
-            left: 0;
-            top: 0;
-        }
-
-        @include a.responsive(mobile) {
-            width: 7rem;
-            left: -1rem;
-            top: -1rem;
-        }
-    }
 }
