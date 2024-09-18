@@ -1,6 +1,6 @@
 import "./searchedUser.scss";
-import { User } from "../../types.js";
-import { db } from "../../../../firebase/firebase.js";
+import { User } from "../../../../contexts/chatContext/chatContextTypes.ts";
+import { db } from "../../../../firebase/firebase.ts";
 import {
     arrayUnion,
     collection,

@@ -3,7 +3,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../../firebase/firebase.js";
 import { useState } from "react";
 import SearchedUser from "./searchedUser/SearchedUser.js";
-import { User } from "../types.js";
+import { User } from "../../../contexts/chatContext/chatContextTypes.ts";
 import CloseButton from "../../closeButton/CloseButton.js";
 import { useListContext } from "../../../contexts/listContext/ListContext.js";
 import { motion } from "framer-motion";
