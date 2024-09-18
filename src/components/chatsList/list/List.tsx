@@ -55,7 +55,7 @@ function List() {
             <Loading width={25} height={50} unit={"px"} text={"Loading..."} />
         );
 
-    return (
+   return (
         <>
             {!!chats?.length && (
                 <motion.div
