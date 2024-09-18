@@ -28,7 +28,7 @@ function List() {
                         const userDocSnap = await getDoc(userDocRef);
 
                         const user = userDocSnap.data();
-                        return { ...items, user };
+                        return { ...item, user };
                     });
                 }
 
@@ -66,21 +66,22 @@ function List() {
                     exit={{ opacity: 0, transition: { duration: 0.5 } }}>
                     {filteredChats?.length ? (
                         <ul>
-                            {filteredChats.map((chat, i) => (
+                            <li>Filter</li>
+                            {filteredChats.map((chat) => (
                                 <ChatListItem
                                     user={chat.user}
-                                    chat={chat[i]}
-                                    key={chat[i].chatId}
+                                    chat={chat}
+                                    key={chat.chatId}
                                 />
                             ))}
                         </ul>
                     ) : (
                         <ul>
-                            {chats.map((chat, i) => (
+                            {chats?.map((chat) => (
                                 <ChatListItem
                                     user={chat.user}
-                                    chat={chat[i]}
-                                    key={chat[i].chatId}
+                                    chat={chat}
+                                    key={chat.chatId}
                                 />
                             ))}
                         </ul>
