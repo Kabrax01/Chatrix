@@ -78,7 +78,8 @@
 
         @include a.responsive(largeScreen) {
             width: 20vw;
-            top: 5%;
+            top: 50%;
+            transform: translateY(-50%);
         }
 
         @include a.responsive(smallScreen) {
