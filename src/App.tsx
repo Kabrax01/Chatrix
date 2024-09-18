@@ -36,21 +36,12 @@ function App() {
                         {isLoggedIn && (
                             <div className="chat__container">
                                 <ChatsList />
-                                {activeChat === null ? (
-                                    <Logo
-                                        header={"Welcome to Chatrix"}
-                                        text={
-                                            "Add new user or select chat from your list"
-                                        }
-                                    />
-                                ) : (
-                                    <ChatMain />
-                                )}
+                                {activeChat === null ? <Logo /> : <ChatMain />}
                             </div>
                         )}
-                        {isLoggedIn || (
+                        {!isLoggedIn && (
                             <div className="login__container">
-                                <Logo header="Chatrix" />
+                                <Logo text={""} />
                                 <img
                                     className="logo--small"
                                     src="./logo-small.svg"
