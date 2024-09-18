@@ -1,7 +1,7 @@
 import { IconContext } from "react-icons";
 import { FiUserMinus, FiUserPlus } from "react-icons/fi";
 import "./searchChat.scss";
-// import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useListContext } from "../../../contexts/listContext/ListContext";
 import { motion } from "framer-motion";
 import { useChatContext } from "../../../contexts/chatContext/ChatContext";
@@ -25,10 +25,28 @@ const stopVariants = {
 };
 
 function UserSearch() {
-    // const [inputValue, setInputValue] = useState<string>("");
+    const [inputValue, setInputValue] = useState<string>("");
     const { isOpenSearch, setIsOpenSearch } = useListContext();
-    const { state } = useChatContext();
-    const { activeChat } = state;
+    const { state, dispatch } = useChatContext();
+    const { chats, filteredChats } = state;
+
+    function filterChats(e) {
+        setInputValue(e.target.value);
+
+        const filtered = chats
+            ? chats.filter((chat) =>
+                  chat.user.userName
+                      .toLowerCase()
+                      .includes(e.target.value.toLowerCase())
+              )
+            : [];
+
+        dispatch({ type: "filterChats", payload: filtered });
+    }
+
+    useEffect(() => {
+        if (filteredChats === null) setInputValue("");
+    }, [filteredChats]);
 
     return (
         <div className="search">
@@ -37,10 +55,11 @@ function UserSearch() {
                 className="search__input"
                 name="active chats search"
                 placeholder="Search in your chats"
-                // onChange={(e) => setInputValue(e.target.value)}
+                onChange={filterChats}
+                value={inputValue}
             />
             <motion.button
-                variants={activeChat ? stopVariants : buttonVariants}
+                variants={chats?.length !== 0 ? stopVariants : buttonVariants}
                 animate="animate"
                 className="search__btn"
                 onClick={() => setIsOpenSearch((prev) => !prev)}>

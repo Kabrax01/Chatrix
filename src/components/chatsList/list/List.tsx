@@ -11,7 +11,7 @@ import Loading from "../../loading/Loading.tsx";
 function List() {
     const [loading, setIsLoading] = useState(true);
     const { state, dispatch } = useChatContext();
-    const { uid, chats } = state;
+    const { uid, chats, filteredChats } = state;
 
     useEffect(() => {
         setIsLoading(true);
@@ -55,7 +55,7 @@ function List() {
             <Loading width={25} height={50} unit={"px"} text={"Loading..."} />
         );
 
-   return (
+    return (
         <>
             {!!chats?.length && (
                 <motion.div
@@ -64,16 +64,27 @@ function List() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1, transition: { duration: 0.5 } }}
                     exit={{ opacity: 0, transition: { duration: 0.5 } }}>
-                    <ul>
-                        {chats &&
-                            chats.map((chat, i) => (
+                    {filteredChats?.length ? (
+                        <ul>
+                            {filteredChats.map((chat, i) => (
                                 <ChatListItem
                                     user={chat.user}
                                     chat={chat[i]}
                                     key={chat[i].chatId}
                                 />
                             ))}
-                    </ul>
+                        </ul>
+                    ) : (
+                        <ul>
+                            {chats.map((chat, i) => (
+                                <ChatListItem
+                                    user={chat.user}
+                                    chat={chat[i]}
+                                    key={chat[i].chatId}
+                                />
+                            ))}
+                        </ul>
+                    )}
                 </motion.div>
             )}
             {!chats?.length && <Logo className="logo__mobile" />}

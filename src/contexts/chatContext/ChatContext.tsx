@@ -22,6 +22,7 @@ const initialState: StateTypes = {
     activeChatUser: null,
     activeChat: null,
     chats: null,
+    filteredChats: null,
 };
 
 function reducer(state: StateTypes, action: CounterAction): StateTypes {
@@ -78,12 +79,19 @@ function reducer(state: StateTypes, action: CounterAction): StateTypes {
                 ...state,
                 activeChatUser: action.payload.activeUser,
                 activeChat: action.payload.activeChat,
+                filteredChats: null,
             };
         }
         case "userChatsChange": {
             return {
                 ...state,
                 chats: action.payload,
+            };
+        }
+        case "filterChats": {
+            return {
+                ...state,
+                filteredChats: action.payload,
             };
         }
         default: {

@@ -21,6 +21,7 @@ export interface StateTypes {
     activeChatUser: null | ActiveChatUserObject;
     activeChat: null | Chat;
     chats: null | ChatsType[];
+    filteredChats: null | ChatsType[];
 }
 
 export interface UserObject {
@@ -65,4 +66,5 @@ export type CounterAction =
           type: "activeChatSelect";
           payload: { activeUser: ActiveChatUserObject; activeChat: Chat };
       }
-    | { type: "userChatsChange"; payload: ChatsType[] };
+    | { type: "userChatsChange"; payload: ChatsType[] }
+    | { type: "filterChats"; payload: ChatsType[] };
