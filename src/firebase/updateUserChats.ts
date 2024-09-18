@@ -9,8 +9,6 @@ async function updateUsersChats(
 ) {
     const chatsIds = [activeChatUserId, userId];
 
-    // console.log(`activeUser ${activeChatId}`, `user  ${activeChatUserId}`);
-
     chatsIds.forEach(async (id) => {
         const currentUserChatRef = doc(db, "userchats", `${id}`);
         try {
