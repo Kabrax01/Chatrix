@@ -21,6 +21,7 @@ const initialState: StateTypes = {
     isLoggedIn: false,
     activeChatUser: null,
     activeChat: null,
+    chats: null,
 };
 
 function reducer(state: StateTypes, action: CounterAction): StateTypes {
@@ -77,6 +78,12 @@ function reducer(state: StateTypes, action: CounterAction): StateTypes {
                 ...state,
                 activeChatUser: action.payload.activeUser,
                 activeChat: action.payload.activeChat,
+            };
+        }
+        case "userChatsChange": {
+            return {
+                ...state,
+                chats: action.payload,
             };
         }
         default: {

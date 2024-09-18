@@ -20,6 +20,7 @@ export interface StateTypes {
     isLoggedIn: boolean;
     activeChatUser: null | ActiveChatUserObject;
     activeChat: null | Chat;
+    chats: null | ChatsType[];
 }
 
 export interface UserObject {
@@ -30,6 +31,18 @@ export interface UserObject {
 }
 
 export interface ActiveChatUserObject {
+    email: string;
+    id: string;
+    userName: string;
+    avatar?: string;
+}
+
+export type ChatsType = {
+    [key: number]: Chat;
+    user: User;
+};
+
+export interface User {
     email: string;
     id: string;
     userName: string;
@@ -51,4 +64,5 @@ export type CounterAction =
     | {
           type: "activeChatSelect";
           payload: { activeUser: ActiveChatUserObject; activeChat: Chat };
-      };
+      }
+    | { type: "userChatsChange"; payload: ChatsType[] };

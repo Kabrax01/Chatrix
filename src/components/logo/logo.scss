@@ -1,0 +1,32 @@
+@use "../../sass/abstracts" as a;
+
+.logo__header {
+    font-family: "Dela Gothic One", sans-serif;
+    text-align: center;
+    color: a.$color-blue;
+    text-transform: uppercase;
+}
+
+.logo__mobile {
+    display: none;
+    width: 50%;
+    height: auto;
+    margin: auto 0;
+    text-align: center;
+
+    @include a.responsive(smallScreen) {
+        display: block;
+    }
+
+    @include a.responsive(tablets) {
+        width: 80%;
+    }
+
+    @include a.responsive(mobile) {
+        width: 80%;
+    }
+
+    p {
+        margin-bottom: 2rem;
+    }
+}

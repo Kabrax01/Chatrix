@@ -84,13 +84,6 @@
         @include a.responsive(smallScreen) {
             display: none;
         }
-
-        h1 {
-            font-family: "Dela Gothic One", sans-serif;
-            text-align: center;
-            color: a.$color-blue;
-            text-transform: uppercase;
-        }
     }
 
     .logo--small {

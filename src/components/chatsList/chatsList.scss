@@ -26,6 +26,24 @@
         }
     }
 
+    .logo {
+        width: 90%;
+        text-align: center;
+        margin: 0 auto;
+
+        &__header {
+            display: none;
+
+            @include a.responsive(smallScreen) {
+                display: block;
+            }
+        }
+
+        svg {
+            display: none;
+        }
+    }
+
     .logout {
         margin-top: auto;
         border-top: a.$border-grey-light-small;

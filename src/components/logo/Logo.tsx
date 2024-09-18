@@ -1,3 +1,4 @@
+import "./logo.scss";
 import { motion } from "framer-motion";
 
 const pathVariants = {
@@ -14,16 +15,19 @@ const pathVariants = {
     },
 };
 
-function Logo({ header = "", text = "" }) {
+function Logo({
+    text = "Add new user or select chat from your list",
+    className = "logo",
+}) {
     return (
-        <div className="logo">
+        <div className={className}>
             <motion.div
                 initial={{ opacity: 0, y: -200 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1 }}>
-                <h1>{header}</h1>
+                <h1 className="logo__header">Chatrix</h1>
                 <br />
-                <p>{text}</p>
+                <p className="logo__text">{text}</p>
             </motion.div>
             <motion.svg
                 version="1.0"
