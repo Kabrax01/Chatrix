@@ -18,8 +18,6 @@ function SwitchForm({ setFormType, formType }: SwitchFormProps) {
     function changePosition(ref) {
         if (!ref.current) return;
 
-        setFormType(ref.current.innerText);
-
         const { height, width } = ref.current.getBoundingClientRect();
 
         setPosition({
@@ -52,7 +50,7 @@ function Button({ formType, children, changePosition, setFormType }) {
     const ref = useRef() as MutableRefObject<HTMLButtonElement>;
     useEffect(() => {
         function resize() {
-            changePosition(ref);
+            if (children === formType) changePosition(ref);
         }
 
         window.addEventListener("resize", resize);
