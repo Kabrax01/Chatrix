@@ -38,6 +38,10 @@
         }
 
         .user__name {
+            @include a.responsive(tablets) {
+                margin-left: 0.5rem;
+            }
+
             h3 {
                 @include a.responsive(tablets) {
                     min-width: min-content;
@@ -68,6 +72,10 @@
                 margin-left: 0;
             }
 
+            @include a.responsive(mobile) {
+                margin-right: 0.5rem;
+            }
+
             &:active {
                 transform: translateY(2px);
             }
@@ -94,6 +102,12 @@
 
             @include a.responsive(smallScreen) {
                 @include a.userPicture(4rem);
+            }
+
+            @include a.responsive(mobile) {
+                @include a.userPicture(3rem);
+                margin-left: 0.5rem;
+                flex-shrink: 0;
             }
         }
 
