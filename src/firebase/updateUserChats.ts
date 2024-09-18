@@ -9,6 +9,8 @@ async function updateUsersChats(
 ) {
     const chatsIds = [activeChatUserId, userId];
 
+    // console.log(`activeUser ${activeChatId}`, `user  ${activeChatUserId}`);
+
     chatsIds.forEach(async (id) => {
         const currentUserChatRef = doc(db, "userchats", `${id}`);
         try {
@@ -16,6 +18,8 @@ async function updateUsersChats(
             if (!docSnap.exists()) return;
 
             const userChatArray = docSnap.data();
+
+            // console.log(userChatArray.chats);
 
             const chatIndex = userChatArray.chats.findIndex(
                 (chat) => chat.chatId === activeChatId

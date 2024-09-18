@@ -4,14 +4,6 @@ export type ChatContextProps = {
     children: ReactNode;
 };
 
-export interface Chat {
-    chatId: string;
-    lastMessage: string;
-    receiverId: string;
-    updatedAt: number;
-    hasBeenOpened: boolean;
-}
-
 export interface StateTypes {
     loading: boolean;
     registration: boolean;
@@ -20,8 +12,8 @@ export interface StateTypes {
     isLoggedIn: boolean;
     activeChatUser: null | ActiveChatUserObject;
     activeChat: null | Chat;
-    chats: null | ChatsType[];
-    filteredChats: null | ChatsType[];
+    chats: null | Chat[];
+    filteredChats: null | Chat[];
 }
 
 export interface UserObject {
@@ -37,11 +29,14 @@ export interface ActiveChatUserObject {
     userName: string;
     avatar?: string;
 }
-
-export type ChatsType = {
-    [key: number]: Chat;
+export interface Chat {
+    chatId: string;
+    lastMessage: string;
+    receiverId: string;
+    updatedAt: number;
+    hasBeenOpened: boolean;
     user: User;
-};
+}
 
 export interface User {
     email: string;
@@ -66,5 +61,5 @@ export type CounterAction =
           type: "activeChatSelect";
           payload: { activeUser: ActiveChatUserObject; activeChat: Chat };
       }
-    | { type: "userChatsChange"; payload: ChatsType[] }
-    | { type: "filterChats"; payload: ChatsType[] };
+    | { type: "userChatsChange"; payload: Chat[] }
+    | { type: "filterChats"; payload: Chat[] | null };
