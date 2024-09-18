@@ -18,8 +18,6 @@ function SwitchForm({ setFormType, formType }: SwitchFormProps) {
     function changePosition(ref) {
         if (!ref.current) return;
 
-        // setFormType(ref.current.innerText);
-
         const { height, width } = ref.current.getBoundingClientRect();
 
         setPosition({
