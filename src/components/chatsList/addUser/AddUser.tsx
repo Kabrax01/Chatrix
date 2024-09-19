@@ -7,12 +7,15 @@ import { User } from "../../../contexts/chatContext/chatContextTypes.ts";
 import CloseButton from "../../closeButton/CloseButton.js";
 import { useListContext } from "../../../contexts/listContext/ListContext.js";
 import { motion } from "framer-motion";
+import { useChatContext } from "../../../contexts/chatContext/ChatContext.tsx";
 
 function AddUser() {
     const [user, setUser] = useState<null | User>(null);
     const [users, setUsers] = useState<null | User[]>(null);
     const [usersQueryEmpty, setUsersQueryEmpty] = useState(false);
     const { setIsOpenSearch } = useListContext();
+    const { state } = useChatContext();
+    const { uid } = state;
 
     async function handleSearchUser(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -20,10 +23,14 @@ function AddUser() {
         const formData = new FormData(e.currentTarget);
         const username = formData.get("username")?.toString().toLowerCase();
 
-        if (username === "") {
+        function reset() {
             setUsers(null);
             setUser(null);
             setUsersQueryEmpty(true);
+        }
+
+        if (username === "") {
+            reset();
             return;
         }
 
@@ -35,7 +42,8 @@ function AddUser() {
                 const allUsers: User[] = [];
 
                 querySnapShot.forEach((doc) => {
-                    allUsers.push(doc.data() as User);
+                    if (doc.data().id !== uid)
+                        allUsers.push(doc.data() as User);
                 });
 
                 const filteredUsers = allUsers.filter((user) =>
@@ -51,9 +59,7 @@ function AddUser() {
                     setUser(null);
                     setUsersQueryEmpty(false);
                 } else {
-                    setUsers(null);
-                    setUser(null);
-                    setUsersQueryEmpty(true);
+                    reset();
                 }
             }
         } catch (error) {
