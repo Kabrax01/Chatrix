@@ -26,7 +26,7 @@ It provides a simple interface with a chat list view, enabling users to easily s
 -   [SCSS](https://sass-lang.com/)
 -   [TypeScript](https://www.typescriptlang.org/)
 -   [React](https://reactjs.org/)
--   [Redux](https://redux.js.org/)
+-   Context API ([Redux](https://redux.js.org/) pattern)
 -   [Firebase](https://firebase.google.com/)
 -   [Framer Motion](https://www.framer.com/motion/)
 
