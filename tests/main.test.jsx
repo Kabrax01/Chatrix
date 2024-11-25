@@ -5,7 +5,5 @@ import { expect } from "vitest";
 describe("group", () => {
     it("should be truthy", () => {
         expect(4).toBeTruthy();
-
-        vi.fn();
     });
 });
