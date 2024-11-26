@@ -104,10 +104,10 @@ function ChatContextProvider({ children }: ChatContextProps) {
     const [state, dispatch] = useReducer(reducer, initialState);
     const contextValue = { state, dispatch };
     const auth = getAuth();
-    const { uid, registration } = state;
+    const { uid, registration, isLoggedIn } = state;
 
     useEffect(() => {
-        if (registration) return;
+        if (registration || !isLoggedIn) return;
         dispatch({ type: "loading" });
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {

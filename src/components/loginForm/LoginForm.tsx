@@ -39,6 +39,7 @@ function LoginForm() {
 
             if (res.user) {
                 dispatch({ type: "registered", payload: false });
+                dispatch({ type: "loggedIn", payload: res.user.uid });
                 setSuccess(true);
             }
         } catch (error) {
