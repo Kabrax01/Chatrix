@@ -59,7 +59,8 @@ function NotificationMessage({
         <div
             className={`${type === "error" ? "error" : "success"} ${
                 show ? "active" : "hidden"
-            }`}>
+            }`}
+            role="alert">
             <h3>{notification}</h3>
             <p>{message}</p>
         </div>

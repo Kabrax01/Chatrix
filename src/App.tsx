@@ -4,7 +4,6 @@ import ChatMain from "./components/chatMain/ChatMain";
 import MainChatView from "./components/mainChatView/MainChatView";
 import LoginForm from "./components/loginForm/LoginForm";
 import RegisterForm from "./components/registerForm/RegisterForm";
-import { ThemeContextProvider } from "./contexts/themeContext/ThemeContext";
 import { useChatContext } from "./contexts/chatContext/ChatContext";
 import Loading from "./components/loading/Loading";
 import { ListContextProvider } from "./contexts/listContext/ListContext";
@@ -21,43 +20,41 @@ function App() {
     const { loading, isLoggedIn, activeChat } = state;
 
     return (
-        <ThemeContextProvider>
-            <ListContextProvider>
-                <MainChatView>
-                    <div className="main_container">
-                        {loading && (
-                            <Loading
-                                width={25}
-                                height={50}
-                                unit={"px"}
-                                text={"Loading..."}
-                            />
-                        )}
-                        {isLoggedIn && (
-                            <div className="chat__container">
-                                <ChatsList />
-                                {activeChat === null ? <Logo /> : <ChatMain />}
-                            </div>
-                        )}
-                        {!isLoggedIn && (
-                            <div className="login__container">
-                                <Logo text={""} />
+        <ListContextProvider>
+            <MainChatView>
+                <div className="main_container">
+                    {loading && (
+                        <Loading
+                            width={25}
+                            height={50}
+                            unit={"px"}
+                            text={"Loading..."}
+                        />
+                    )}
+                    {isLoggedIn && (
+                        <div className="chat__container">
+                            <ChatsList />
+                            {activeChat === null ? <Logo /> : <ChatMain />}
+                        </div>
+                    )}
+                    {!isLoggedIn && (
+                        <div className="login__container">
+                            <Logo text={""} />
 
-                                <SwitchForm
-                                    setFormType={setFormType}
-                                    formType={formType}
-                                />
-                                {formType === "Login" ? (
-                                    <LoginForm />
-                                ) : (
-                                    <RegisterForm />
-                                )}
-                            </div>
-                        )}
-                    </div>
-                </MainChatView>
-            </ListContextProvider>
-        </ThemeContextProvider>
+                            <SwitchForm
+                                setFormType={setFormType}
+                                formType={formType}
+                            />
+                            {formType === "Login" ? (
+                                <LoginForm />
+                            ) : (
+                                <RegisterForm />
+                            )}
+                        </div>
+                    )}
+                </div>
+            </MainChatView>
+        </ListContextProvider>
     );
 }
 

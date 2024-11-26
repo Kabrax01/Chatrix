@@ -1,6 +1,4 @@
 import "./registerForm.scss";
-// import { FcGoogle } from "react-icons/fc";
-// import { IconContext } from "react-icons";
 import { MutableRefObject, useRef, useState } from "react";
 
 import { createUserWithEmailAndPassword } from "firebase/auth";
@@ -9,6 +7,7 @@ import { doc, setDoc } from "firebase/firestore";
 import NotificationMessage from "../notificationMessage/NotificationMessage.js";
 import { useChatContext } from "../../contexts/chatContext/ChatContext.js";
 import { motion } from "framer-motion";
+import { isValidEmail } from "../../utils/emailValidation.ts";
 
 const formVariants = {
     initial: {
@@ -40,11 +39,6 @@ function RegisterForm() {
     async function signIn(e) {
         e.preventDefault();
 
-        if (password !== confirmPassword) {
-            setError([true, "Password doesn't match"]);
-            return;
-        }
-
         setLoading(true);
 
         try {
@@ -74,11 +68,40 @@ function RegisterForm() {
             setError([true, `${(error as Error).message}`]);
         } finally {
             setLoading(false);
-            input1Ref.current.value = "";
-            input2Ref.current.value = "";
-            input3Ref.current.value = "";
-            input4Ref.current.value = "";
         }
+    }
+
+    function validate(e) {
+        e.preventDefault();
+
+        if (!userName || !email || !password || !confirmPassword) {
+            setError([true, "All fields must be filled"]);
+            return;
+        }
+
+        if (!userName) {
+            setError([true, "Please type user name"]);
+            return;
+        }
+
+        const validEmail = isValidEmail(email);
+
+        if (!email || !validEmail) {
+            setError([true, "Please type valid email"]);
+            return;
+        }
+
+        if (password.length < 8) {
+            setError([true, "Password must have at least 8 characters"]);
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            setError([true, "Password doesn't match"]);
+            return;
+        }
+
+        signIn(e);
     }
 
     function handleClick() {
@@ -93,7 +116,7 @@ function RegisterForm() {
                 initial="initial"
                 animate="animate"
                 className="register"
-                onSubmit={(e) => signIn(e)}>
+                onSubmit={validate}>
                 <h1>Register</h1>
                 <div className="register__inputs">
                     <motion.input
@@ -102,25 +125,23 @@ function RegisterForm() {
                         type="text"
                         placeholder="user name"
                         name="user name"
-                        required
                         onChange={(e) => setUserName(e.target.value)}
                     />
                     <motion.input
                         variants={formVariants}
                         ref={input2Ref}
-                        type="email"
+                        type="text"
                         placeholder="email"
                         name="email"
-                        required
                         onChange={(e) => setEmail(e.target.value)}
                     />
                     <motion.input
                         variants={formVariants}
                         ref={input3Ref}
+                        data-testid="password"
                         type="password"
                         placeholder="password"
                         name="password"
-                        required
                         onChange={(e) => setPassword(e.target.value)}
                     />
                     <motion.input
@@ -129,7 +150,6 @@ function RegisterForm() {
                         type="password"
                         placeholder="confirm password"
                         name="confirm password"
-                        required
                         onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                 </div>
@@ -140,17 +160,6 @@ function RegisterForm() {
                     onClick={handleClick}>
                     Sign in
                 </motion.button>
-                {/* <button className="google__btn">
-                    Sign in with
-                    <span>
-                    <IconContext.Provider
-                    value={{
-                        size: "1.5rem",
-                        }}>
-                        <FcGoogle />
-                        </IconContext.Provider>
-                    </span>
-                    </button> */}
             </motion.form>
             {error[0] && (
                 <NotificationMessage

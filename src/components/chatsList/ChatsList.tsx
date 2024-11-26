@@ -7,14 +7,18 @@ import EditCurrentUser from "./editCurrentUser/EditCurrentUser.tsx";
 import { useListContext } from "../../contexts/listContext/ListContext.tsx";
 import { getAuth, signOut } from "firebase/auth";
 import { AnimatePresence } from "framer-motion";
+import { useChatContext } from "../../contexts/chatContext/ChatContext.tsx";
 
 function ChatsList() {
     const { isOpenCurrentUserEdit, isOpenSearch, isMenuOpen } =
         useListContext();
 
+    const { dispatch } = useChatContext();
+
     function logOut() {
         const auth = getAuth();
         signOut(auth);
+        dispatch({ type: "loggedOut" });
     }
 
     return (
