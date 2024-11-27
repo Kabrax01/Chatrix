@@ -1,6 +1,5 @@
 import "./registerForm.scss";
-import { MutableRefObject, useRef, useState } from "react";
-
+import { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../../firebase/firebase.js";
 import { doc, setDoc } from "firebase/firestore";
@@ -22,10 +21,6 @@ const formVariants = {
 };
 
 function RegisterForm() {
-    const input1Ref = useRef() as MutableRefObject<HTMLInputElement>;
-    const input2Ref = useRef() as MutableRefObject<HTMLInputElement>;
-    const input3Ref = useRef() as MutableRefObject<HTMLInputElement>;
-    const input4Ref = useRef() as MutableRefObject<HTMLInputElement>;
     const [userName, setUserName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -121,7 +116,6 @@ function RegisterForm() {
                 <div className="register__inputs">
                     <motion.input
                         variants={formVariants}
-                        ref={input1Ref}
                         type="text"
                         placeholder="user name"
                         name="user name"
@@ -129,7 +123,6 @@ function RegisterForm() {
                     />
                     <motion.input
                         variants={formVariants}
-                        ref={input2Ref}
                         type="text"
                         placeholder="email"
                         name="email"
@@ -137,7 +130,6 @@ function RegisterForm() {
                     />
                     <motion.input
                         variants={formVariants}
-                        ref={input3Ref}
                         data-testid="password"
                         type="password"
                         placeholder="password"
@@ -146,7 +138,6 @@ function RegisterForm() {
                     />
                     <motion.input
                         variants={formVariants}
-                        ref={input4Ref}
                         type="password"
                         placeholder="confirm password"
                         name="confirm password"
