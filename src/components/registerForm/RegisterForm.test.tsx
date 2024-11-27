@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import RegisterForm from "./RegisterForm";
 import { ChatContextProvider } from "../../contexts/chatContext/ChatContext";
 import userEvent from "@testing-library/user-event";
@@ -9,13 +9,27 @@ describe("RegisterForm", () => {
 
         const user = userEvent.setup();
 
+        const nameInput = screen.getByPlaceholderText(/name/i);
+        const emailInput = screen.getByPlaceholderText(/email/i);
+        const passwordInput = screen.getByTestId("password");
+        const confirmPasswordInput = screen.getByPlaceholderText(/confirm/i);
+        const singInButton = screen.getByRole("button", { name: /sign in/i });
+
+        const fillForm = async () => {
+            await user.type(nameInput, "Arni");
+            await user.type(emailInput, "Arni@gmail.com");
+            await user.type(passwordInput, "12345678");
+            await user.type(confirmPasswordInput, "12345678");
+        };
+
         return {
-            nameInput: screen.getByPlaceholderText(/name/i),
-            emailInput: screen.getByPlaceholderText(/email/i),
-            passwordInput: screen.getByTestId("password"),
-            confirmPasswordInput: screen.getByPlaceholderText(/confirm/i),
-            singInButton: screen.getByRole("button", { name: /sign in/i }),
+            nameInput,
+            emailInput,
+            passwordInput,
+            confirmPasswordInput,
+            singInButton,
             user,
+            fillForm,
         };
     };
 
@@ -58,4 +72,25 @@ describe("RegisterForm", () => {
             expect(error).toHaveTextContent(errorMessage);
         }
     );
+
+    // it("should disable the submit button upon submission", async () => {
+    //     const { singInButton, user, fillForm } = renderComponent();
+
+    //     await fillForm();
+    //     await user.click(singInButton);
+
+    //     expect(singInButton).toBeDisabled();
+    // });
+
+    it("should enable the submit button after successful submission", async () => {
+        const { singInButton, user, fillForm } = renderComponent();
+
+        await fillForm();
+        await user.click(singInButton);
+        await waitFor(() => {
+            expect(screen.getByText("successful")).toBeInTheDocument();
+        });
+
+        expect(singInButton).not.toBeDisabled();
+    });
 });
