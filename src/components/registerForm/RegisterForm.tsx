@@ -1,7 +1,7 @@
 import "./registerForm.scss";
 import { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth, db } from "../../firebase/firebase.js";
+import { auth, db } from "../../firebase/firebase";
 import { doc, setDoc } from "firebase/firestore";
 import NotificationMessage from "../notificationMessage/NotificationMessage.js";
 import { useChatContext } from "../../contexts/chatContext/ChatContext.js";

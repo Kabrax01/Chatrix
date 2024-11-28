@@ -1,7 +1,6 @@
 import "@testing-library/jest-dom/vitest";
 import ResizeObserver from "resize-observer-polyfill";
 import { vi } from "vitest";
-import { initializeApp } from "firebase/app";
 
 global.ResizeObserver = ResizeObserver;
 
@@ -9,28 +8,29 @@ window.HTMLElement.prototype.scrollIntoView = vi.fn();
 window.HTMLElement.prototype.hasPointerCapture = vi.fn();
 window.HTMLElement.prototype.releasePointerCapture = vi.fn();
 
-vi.mock("../../firebase/firebase.js", () => {
+vi.mock("firebase/firestore", () => {
     return {
-        auth: {},
-        db: {},
+        getFirestore: vi.fn(),
+    };
+});
+
+vi.mock("firebase/auth", () => {
+    return {
         createUserWithEmailAndPassword: vi.fn().mockResolvedValue({
-            user: { uid: "1234" },
+            user: { uid: "sadasdasdasd" },
         }),
+        getAuth: vi.fn(),
+    };
+});
+
+vi.mock("../../firebase/firebase", () => {
+    return {
+        auth: vi.fn(),
+        db: {},
         setDoc: vi.fn(),
         doc: vi.fn(),
     };
 });
-
-const firebaseConfig = {
-    apiKey: "test-api-key",
-    authDomain: "test-auth-domain",
-    projectId: "test-project-id",
-    storageBucket: "test-storage-bucket",
-    messagingSenderId: "test-sender-id",
-    appId: "test-app-id",
-};
-
-export const app = initializeApp(firebaseConfig);
 
 Object.defineProperty(window, "matchMedia", {
     writable: true,
