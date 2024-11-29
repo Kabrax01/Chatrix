@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom/vitest";
 import ResizeObserver from "resize-observer-polyfill";
-import { vi } from "vitest";
+import { beforeEach, vi } from "vitest";
 
 global.ResizeObserver = ResizeObserver;
 
@@ -11,24 +11,27 @@ window.HTMLElement.prototype.releasePointerCapture = vi.fn();
 vi.mock("firebase/firestore", () => {
     return {
         getFirestore: vi.fn(),
+        setDoc: vi.fn(),
+        doc: vi.fn(),
     };
 });
 
 vi.mock("firebase/auth", () => {
     return {
-        createUserWithEmailAndPassword: vi.fn().mockResolvedValue({
-            user: { uid: "sadasdasdasd" },
-        }),
+        createUserWithEmailAndPassword: vi.fn(
+            () =>
+                new Promise((resolve) =>
+                    setTimeout(() => resolve({ user: { uid: "12345" } }), 100)
+                )
+        ),
         getAuth: vi.fn(),
     };
 });
 
-vi.mock("../../firebase/firebase", () => {
+vi.mock("../../firebase/firebase", async () => {
     return {
         auth: vi.fn(),
         db: {},
-        setDoc: vi.fn(),
-        doc: vi.fn(),
     };
 });
 

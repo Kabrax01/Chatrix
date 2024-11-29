@@ -82,15 +82,15 @@ describe("RegisterForm", () => {
         expect(singInButton).toBeDisabled();
     });
 
-    it.only("should enable the submit button after successful submission", async () => {
+    it("should enable the submit button after successful submission", async () => {
         const { singInButton, user, fillForm } = renderComponent();
 
         await fillForm();
         await user.click(singInButton);
+
         await waitFor(() => {
             expect(screen.getByText(/successful/i)).toBeInTheDocument();
         });
-
-        expect(singInButton).not.toBeDisabled();
+        expect(singInButton).toBeEnabled();
     });
 });
