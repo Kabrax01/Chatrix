@@ -1,4 +1,4 @@
-import { MutableRefObject, useRef, useState } from "react";
+import { useState } from "react";
 import "./loginForm.scss";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import NotificationMessage from "../notificationMessage/NotificationMessage";
