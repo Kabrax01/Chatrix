@@ -13,6 +13,12 @@ vi.mock("firebase/firestore", () => {
         getFirestore: vi.fn(),
         setDoc: vi.fn(),
         doc: vi.fn(),
+        getDoc: vi.fn(
+            () =>
+                new Promise((resolve) =>
+                    setTimeout(() => resolve({ user: { uid: "12345" } }), 100)
+                )
+        ),
     };
 });
 
@@ -24,6 +30,13 @@ vi.mock("firebase/auth", () => {
                     setTimeout(() => resolve({ user: { uid: "12345" } }), 100)
                 )
         ),
+        signInWithEmailAndPassword: vi.fn(
+            () =>
+                new Promise((resolve) =>
+                    setTimeout(() => resolve({ user: { uid: "12345" } }), 100)
+                )
+        ),
+        onAuthStateChanged: vi.fn(),
         getAuth: vi.fn(),
     };
 });

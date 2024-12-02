@@ -18,8 +18,6 @@ const formVariants = {
 };
 
 function LoginForm() {
-    const input1Ref = useRef() as MutableRefObject<HTMLInputElement>;
-    const input2Ref = useRef() as MutableRefObject<HTMLInputElement>;
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState<[boolean, string]>([false, ""]);
@@ -30,6 +28,11 @@ function LoginForm() {
 
     async function logIn(e) {
         e.preventDefault();
+
+        if (!email || !password) {
+            setError([true, "All fields are required"]);
+            return;
+        }
         setLoading(true);
 
         const auth = getAuth();
@@ -38,17 +41,15 @@ function LoginForm() {
             const res = await signInWithEmailAndPassword(auth, email, password);
 
             if (res.user) {
+                setSuccess(true);
                 dispatch({ type: "registered", payload: false });
                 dispatch({ type: "loggedIn", payload: res.user.uid });
-                setSuccess(true);
             }
         } catch (error) {
             console.error(error);
             setError([true, `${(error as Error).message}`]);
         } finally {
             setLoading(false);
-            input1Ref.current.value = "";
-            input2Ref.current.value = "";
         }
     }
 
@@ -69,19 +70,15 @@ function LoginForm() {
                 <div className="login__inputs">
                     <motion.input
                         variants={formVariants}
-                        ref={input1Ref}
                         type="email"
                         placeholder="email"
                         onChange={(e) => setEmail(e.target.value)}
-                        required
                     />
                     <motion.input
                         variants={formVariants}
-                        ref={input2Ref}
                         type="password"
                         placeholder="password"
                         onChange={(e) => setPassword(e.target.value)}
-                        required
                     />
                 </div>
                 <motion.button
