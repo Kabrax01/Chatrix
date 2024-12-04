@@ -8,12 +8,9 @@ window.HTMLElement.prototype.scrollIntoView = vi.fn();
 window.HTMLElement.prototype.hasPointerCapture = vi.fn();
 window.HTMLElement.prototype.releasePointerCapture = vi.fn();
 
-vi.mock("firebase/firestore", () => {
+const mocks = vi.hoisted(() => {
     return {
-        getFirestore: vi.fn(),
-        setDoc: vi.fn(),
-        doc: vi.fn(),
-        getDoc: vi.fn(
+        promiseWithUidMock: vi.fn(
             () =>
                 new Promise((resolve) =>
                     setTimeout(() => resolve({ user: { uid: "12345" } }), 100)
@@ -22,20 +19,19 @@ vi.mock("firebase/firestore", () => {
     };
 });
 
+vi.mock("firebase/firestore", () => {
+    return {
+        getFirestore: vi.fn(),
+        setDoc: vi.fn(),
+        doc: vi.fn(),
+        getDoc: vi.fn(mocks.promiseWithUidMock),
+    };
+});
+
 vi.mock("firebase/auth", () => {
     return {
-        createUserWithEmailAndPassword: vi.fn(
-            () =>
-                new Promise((resolve) =>
-                    setTimeout(() => resolve({ user: { uid: "12345" } }), 100)
-                )
-        ),
-        signInWithEmailAndPassword: vi.fn(
-            () =>
-                new Promise((resolve) =>
-                    setTimeout(() => resolve({ user: { uid: "12345" } }), 100)
-                )
-        ),
+        createUserWithEmailAndPassword: vi.fn(mocks.promiseWithUidMock),
+        signInWithEmailAndPassword: vi.fn(mocks.promiseWithUidMock),
         onAuthStateChanged: vi.fn(),
         getAuth: vi.fn(),
     };
