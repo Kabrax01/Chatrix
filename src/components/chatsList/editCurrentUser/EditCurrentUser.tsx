@@ -1,6 +1,6 @@
 import "./editCurrentUser.scss";
 import uploadUserImg from "../../../firebase/uploadUserImg.js";
-import { useChatContext } from "../../../contexts/chatContext/ChatContext.js";
+import useChatContext from "../../../contexts/chatContext/useChatContext.js";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../../firebase/firebase.js";
 import { useState } from "react";

@@ -4,7 +4,7 @@ import "./searchChat.scss";
 import { useEffect, useState } from "react";
 import { useListContext } from "../../../contexts/listContext/ListContext";
 import { motion } from "framer-motion";
-import { useChatContext } from "../../../contexts/chatContext/ChatContext";
+import useChatContext from "../../../contexts/chatContext/useChatContext";
 
 const buttonVariants = {
     animate: {

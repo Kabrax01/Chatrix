@@ -3,7 +3,7 @@ import {
     ActiveChatUserObject,
     Chat,
 } from "../../../../contexts/chatContext/chatContextTypes";
-import { useChatContext } from "../../../../contexts/chatContext/ChatContext";
+import useChatContext from "../../../../contexts/chatContext/useChatContext";
 import updateUsersChats from "../../../../firebase/updateUserChats";
 import { useListContext } from "../../../../contexts/listContext/ListContext";
 

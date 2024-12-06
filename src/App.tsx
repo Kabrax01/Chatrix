@@ -4,7 +4,7 @@ import ChatMain from "./components/chatMain/ChatMain";
 import MainChatView from "./components/mainChatView/MainChatView";
 import LoginForm from "./components/loginForm/LoginForm";
 import RegisterForm from "./components/registerForm/RegisterForm";
-import { useChatContext } from "./contexts/chatContext/ChatContext";
+import useChatContext from "./contexts/chatContext/useChatContext";
 import Loading from "./components/loading/Loading";
 import { ListContextProvider } from "./contexts/listContext/ListContext";
 import { useState } from "react";

@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import RegisterForm from "./RegisterForm";
-import { ChatContextProvider } from "../../contexts/chatContext/ChatContext";
+import ChatContextProvider from "../../contexts/chatContext/ChatContext";
 import userEvent from "@testing-library/user-event";
 
 describe("RegisterForm", () => {

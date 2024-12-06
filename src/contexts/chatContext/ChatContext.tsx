@@ -1,14 +1,14 @@
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase/firebase.js";
-import { useReducer, createContext, useContext, useEffect } from "react";
+import { useReducer, createContext, useEffect } from "react";
 import {
     ChatContextProps,
     StateTypes,
     CounterAction,
 } from "./chatContextTypes.js";
 
-const ChatContext = createContext<{
+export const ChatContext = createContext<{
     state: StateTypes;
     dispatch: React.Dispatch<CounterAction>;
 } | null>(null);
@@ -102,7 +102,6 @@ function reducer(state: StateTypes, action: CounterAction): StateTypes {
 
 function ChatContextProvider({ children }: ChatContextProps) {
     const [state, dispatch] = useReducer(reducer, initialState);
-    const contextValue = { state, dispatch };
     const auth = getAuth();
     const { uid, registration, isLoggedIn } = state;
 
@@ -149,19 +148,10 @@ function ChatContextProvider({ children }: ChatContextProps) {
     }, [uid]);
 
     return (
-        <ChatContext.Provider value={contextValue}>
+        <ChatContext.Provider value={{ state, dispatch }}>
             {children}
         </ChatContext.Provider>
     );
 }
 
-function useChatContext() {
-    const context = useContext(ChatContext);
-
-    if (!context) throw new Error("ChatContext was used outside of provider");
-
-    return context;
-}
-
-// eslint-disable-next-line
-export { useChatContext, ChatContextProvider };
+export default ChatContextProvider;

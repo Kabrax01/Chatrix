@@ -9,7 +9,7 @@ import {
     setDoc,
     updateDoc,
 } from "firebase/firestore";
-import { useChatContext } from "../../../../contexts/chatContext/ChatContext.js";
+import useChatContext from "../../../../contexts/chatContext/useChatContext.js";
 import { useRef } from "react";
 import getChatsArray from "../../../../firebase/getChatsArray.js";
 import { useListContext } from "../../../../contexts/listContext/ListContext.js";
