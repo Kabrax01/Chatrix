@@ -4,7 +4,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../../firebase/firebase";
 import { doc, setDoc } from "firebase/firestore";
 import NotificationMessage from "../notificationMessage/NotificationMessage.js";
-import { useChatContext } from "../../contexts/chatContext/ChatContext.js";
+import useChatContext from "../../contexts/chatContext/useChatContext.js";
 import { motion } from "framer-motion";
 import { isValidEmail } from "../../utils/emailValidation.ts";
 

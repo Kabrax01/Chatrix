@@ -1,9 +1,9 @@
-import { useChatContext } from "../../../contexts/chatContext/ChatContext";
+import useChatContext from "../../../contexts/chatContext/useChatContext";
 import "./currentUser.scss";
 import { FaRegEdit } from "react-icons/fa";
 import { useListContext } from "../../../contexts/listContext/ListContext";
 
-function User() {
+function CurrentUser() {
     const { state } = useChatContext();
     const { user } = state;
     const { setIsOpenCurrentUserEdit } = useListContext();
@@ -24,4 +24,4 @@ function User() {
     );
 }
 
-export default User;
+export default CurrentUser;

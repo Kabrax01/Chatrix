@@ -1,13 +1,13 @@
 import "./chatsList.scss";
-import User from "./currentUser/CurrentUser.js";
-import SearchChat from "./searchChat/SearchChat.js";
-import List from "./list/List.js";
+import CurrentUser from "./currentUser/CurrentUser.tsx";
+import SearchChat from "./searchChat/SearchChat.tsx";
+import List from "./list/List.tsx";
 import AddUser from "./addUser/AddUser.tsx";
 import EditCurrentUser from "./editCurrentUser/EditCurrentUser.tsx";
 import { useListContext } from "../../contexts/listContext/ListContext.tsx";
 import { getAuth, signOut } from "firebase/auth";
 import { AnimatePresence } from "framer-motion";
-import { useChatContext } from "../../contexts/chatContext/ChatContext.tsx";
+import useChatContext from "../../contexts/chatContext/useChatContext.tsx";
 
 function ChatsList() {
     const { isOpenCurrentUserEdit, isOpenSearch, isMenuOpen } =
@@ -23,7 +23,7 @@ function ChatsList() {
 
     return (
         <section className={`chat__list ${isMenuOpen ? "active" : ""}`}>
-            <User />
+            <CurrentUser />
             <SearchChat />
             <AnimatePresence mode="wait">
                 {isOpenCurrentUserEdit ? (

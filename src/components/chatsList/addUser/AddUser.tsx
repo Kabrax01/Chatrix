@@ -7,7 +7,7 @@ import { User } from "../../../contexts/chatContext/chatContextTypes.ts";
 import CloseButton from "../../closeButton/CloseButton.js";
 import { useListContext } from "../../../contexts/listContext/ListContext.js";
 import { motion } from "framer-motion";
-import { useChatContext } from "../../../contexts/chatContext/ChatContext.tsx";
+import useChatContext from "../../../contexts/chatContext/useChatContext.tsx";
 
 function AddUser() {
     const [user, setUser] = useState<null | User>(null);
