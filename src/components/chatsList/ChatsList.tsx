@@ -4,7 +4,7 @@ import SearchChat from "./searchChat/SearchChat.tsx";
 import List from "./list/List.tsx";
 import AddUser from "./addUser/AddUser.tsx";
 import EditCurrentUser from "./editCurrentUser/EditCurrentUser.tsx";
-import { useListContext } from "../../contexts/listContext/ListContext.tsx";
+import useListContext from "../../contexts/listContext/useListContext";
 import { getAuth, signOut } from "firebase/auth";
 import { AnimatePresence } from "framer-motion";
 import useChatContext from "../../contexts/chatContext/useChatContext.tsx";

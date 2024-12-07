@@ -1,7 +1,7 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useState } from "react";
 import { ListProviderProps, ListContextTypes } from "./types";
 
-const ListContext = createContext<ListContextTypes | null>(null);
+export const ListContext = createContext<ListContextTypes | null>(null);
 
 function ListContextProvider({ children }: ListProviderProps) {
     const [isOpenSearch, setIsOpenSearch] = useState(false);
@@ -24,14 +24,4 @@ function ListContextProvider({ children }: ListProviderProps) {
     );
 }
 
-function useListContext() {
-    const context = useContext(ListContext);
-
-    if (!context)
-        throw new Error("Context was used outside of ListContext.Provider");
-
-    return context;
-}
-
-// eslint-disable-next-line
-export { ListContextProvider, useListContext };
+export default ListContextProvider;

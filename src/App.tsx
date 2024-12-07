@@ -6,7 +6,7 @@ import LoginForm from "./components/loginForm/LoginForm";
 import RegisterForm from "./components/registerForm/RegisterForm";
 import useChatContext from "./contexts/chatContext/useChatContext";
 import Loading from "./components/loading/Loading";
-import { ListContextProvider } from "./contexts/listContext/ListContext";
+import ListContextProvider from "./contexts/listContext/ListContext";
 import { useState } from "react";
 import SwitchForm from "./components/switchForm/SwitchForm";
 import Logo from "./components/logo/Logo";
