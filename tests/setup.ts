@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom/vitest";
 import ResizeObserver from "resize-observer-polyfill";
-import { beforeEach, vi } from "vitest";
+import { vi } from "vitest";
 
 global.ResizeObserver = ResizeObserver;
 
@@ -25,6 +25,8 @@ vi.mock("firebase/firestore", () => {
         setDoc: vi.fn(),
         doc: vi.fn(),
         getDoc: vi.fn(mocks.promiseWithUidMock),
+        collection: vi.fn(),
+        getDocs: vi.fn(mocks.promiseWithUidMock),
     };
 });
 

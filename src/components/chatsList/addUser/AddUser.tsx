@@ -85,14 +85,14 @@ function AddUser() {
                 margin={"0 0 .5rem 0"}
             />
             <h2>Search user</h2>
-            <form onSubmit={handleSearchUser}>
+            <form onSubmit={handleSearchUser} role="form">
                 <input
                     type="text"
                     placeholder="Username"
                     name="username"
                     maxLength={25}
                 />
-                <button>Search</button>
+                <button aria-label="search user button">Search</button>
             </form>
             {users &&
                 users.map((user, i) => <SearchedUser user={user} key={i} />)}
