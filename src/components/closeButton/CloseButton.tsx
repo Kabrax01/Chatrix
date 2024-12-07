@@ -29,6 +29,7 @@ function CloseButton({
                 style={style}
                 onClick={() => callback((prev) => !prev)}
                 role="button"
+                aria-label="close search user window button"
             />
         </span>
     );
