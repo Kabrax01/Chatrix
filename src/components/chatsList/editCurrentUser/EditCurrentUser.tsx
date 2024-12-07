@@ -6,7 +6,7 @@ import { db } from "../../../firebase/firebase.js";
 import { useState } from "react";
 import Loading from "../../loading/Loading.js";
 import CloseButton from "../../closeButton/CloseButton.js";
-import { useListContext } from "../../../contexts/listContext/ListContext.js";
+import useListContext from "../../../contexts/listContext/useListContext.js";
 import { AnimatePresence, motion } from "framer-motion";
 
 const notificationVariants = {

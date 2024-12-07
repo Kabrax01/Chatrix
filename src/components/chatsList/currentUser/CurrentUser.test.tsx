@@ -1,10 +1,15 @@
 import { render, screen } from "@testing-library/react";
 import CurrentUser from "./CurrentUser";
-import { ListContextProvider } from "../../../contexts/listContext/ListContext";
+import userEvent from "@testing-library/user-event";
 
-const { useChatContext } = vi.hoisted(() => {
+const setIsOpenCurrentUserEdit = vi.fn();
+
+const { useChatContext, useListContext } = vi.hoisted(() => {
     return {
         useChatContext: vi.fn(),
+        useListContext: vi.fn(() => ({
+            setIsOpenCurrentUserEdit,
+        })),
     };
 });
 
@@ -14,13 +19,15 @@ vi.mock("../../../contexts/chatContext/useChatContext", () => {
     };
 });
 
+vi.mock("../../../contexts/listContext/useListContext", () => {
+    return {
+        default: useListContext,
+    };
+});
+
 describe("CurrentUser", () => {
     const renderComponent = () => {
-        render(
-            <ListContextProvider>
-                <CurrentUser />
-            </ListContextProvider>
-        );
+        render(<CurrentUser />);
     };
 
     it("should render user image when avatar string is provided", () => {
@@ -54,5 +61,14 @@ describe("CurrentUser", () => {
         const name = screen.getByRole("paragraph");
 
         expect(name).toHaveTextContent("John Doe");
+    });
+
+    it("should show the settings when the button is clicked", async () => {
+        renderComponent();
+        const button = screen.getByRole("button");
+        const user = userEvent.setup();
+        await user.click(button);
+
+        expect(setIsOpenCurrentUserEdit).toHaveBeenCalledTimes(1);
     });
 });

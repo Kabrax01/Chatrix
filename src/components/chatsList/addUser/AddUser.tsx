@@ -5,7 +5,7 @@ import { useState } from "react";
 import SearchedUser from "./searchedUser/SearchedUser.js";
 import { User } from "../../../contexts/chatContext/chatContextTypes.ts";
 import CloseButton from "../../closeButton/CloseButton.js";
-import { useListContext } from "../../../contexts/listContext/ListContext.js";
+import useListContext from "../../../contexts/listContext/useListContext";
 import { motion } from "framer-motion";
 import useChatContext from "../../../contexts/chatContext/useChatContext.tsx";
 
