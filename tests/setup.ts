@@ -27,6 +27,12 @@ vi.mock("firebase/firestore", () => {
         getDoc: vi.fn(mocks.promiseWithUidMock),
         collection: vi.fn(),
         getDocs: vi.fn(mocks.promiseWithUidMock),
+        updateDoc: vi.fn(
+            () =>
+                new Promise((resolve) => {
+                    setTimeout(() => resolve({}), 100);
+                })
+        ),
     };
 });
 

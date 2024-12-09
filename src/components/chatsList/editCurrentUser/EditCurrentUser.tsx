@@ -74,7 +74,6 @@ function EditCurrentUser() {
                 setSuccess(true);
             }
         } catch (error) {
-            console.error(`${(error as Error).message}`);
             setError(`${(error as Error).message}`);
         } finally {
             setUploading(false);
@@ -110,7 +109,8 @@ function EditCurrentUser() {
                     type="file"
                     name="avatar"
                     id="avatar"
-                    accept="image/jpeg image/webp"
+                    accept="image/jpeg, image/webp"
+                    data-testid="fileInput"
                 />
                 <label htmlFor="userName">Change user name :</label>
                 <input
@@ -139,7 +139,8 @@ function EditCurrentUser() {
                         animate="visible"
                         exit="exit"
                         key={"error"}
-                        className="user__edit--error">
+                        className="user__edit--error"
+                        data-testid="error">
                         {error}
                     </motion.p>
                 )}
