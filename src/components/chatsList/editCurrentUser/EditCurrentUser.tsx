@@ -51,7 +51,8 @@ function EditCurrentUser() {
             setSuccess(false);
             setUploading(true);
             if (file.size > 1000000) {
-                throw new Error("Max file size: 1MB");
+                setError("Max file size: 1Mb");
+                return;
             } else if (file.name !== "") {
                 const imgURL = await uploadUserImg(file);
                 dispatch({
@@ -119,7 +120,11 @@ function EditCurrentUser() {
                     name="userName"
                     id="userName"
                 />
-                <button className="submit__btn">Submit</button>
+                <button
+                    className="submit__btn"
+                    disabled={uploading || Boolean(error)}>
+                    Submit
+                </button>
             </form>
             {uploading ? (
                 <div className="upload__indicator">
