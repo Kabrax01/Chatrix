@@ -29,6 +29,8 @@ It provides a simple interface with a chat list view, enabling users to easily s
 -   Context API ([Redux](https://redux.js.org/) pattern)
 -   [Firebase](https://firebase.google.com/)
 -   [Framer Motion](https://www.framer.com/motion/)
+-   [Vitest](https://vitest.dev/)
+-   [React Testing Library](https://testing-library.com/)
 
 ## Author
 
