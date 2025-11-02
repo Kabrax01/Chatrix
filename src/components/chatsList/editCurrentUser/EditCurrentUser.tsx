@@ -52,7 +52,6 @@ function EditCurrentUser() {
             setUploading(true);
             if (file.size > 1000000) {
                 setError("Max file size: 1Mb");
-                return;
             } else if (file.name !== "") {
                 const imgURL = await uploadUserImg(file);
                 dispatch({
